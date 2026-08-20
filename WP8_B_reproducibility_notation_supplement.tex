@@ -106,7 +106,7 @@ V1: 5; V2: 3; V3: 6; V4: 10; V5: 6; V6: 6. Mọi góc nhìn V1--V6 đều đư�
 \textbf{Kết quả B1:} 2 ĐÁP ỨNG TRỰC TIẾP + 7 ĐÁP ỨNG CÓ ĐIỀU KIỆN + 1 RỦI RO KIẾN TRÚC. Ma trận bao phủ làm rõ phạm vi đã thử, không chứng minh bộ mười kịch bản là đầy đủ mọi tình huống có thể xảy ra.
 \newpage
 
-\section*{C. Hồ sơ ký pháp của Hình 1--5}
+\section*{C. Hồ sơ ký pháp của Hình 1--6}
 \begin{tabularx}{\textwidth}{@{}p{1.0cm}p{3.2cm}p{3.1cm}p{6.0cm}Y@{}}
 \toprule
 \smallhead{Hình} & \smallhead{Mục đích} & \smallhead{Ký pháp/góc nhìn} & \smallhead{Loại phần tử/quan hệ} & \smallhead{Giới hạn biểu diễn} \\
@@ -114,20 +114,21 @@ V1: 5; V2: 3; V3: 6; V4: 10; V5: 6; V6: 6. Mọi góc nhìn V1--V6 đều đư�
 H1 & Vị trí nền tảng trong hệ quy chiếu & ArchiMate 3.2 & Constraint; Application Component; Association; Flow. & Chỉ biểu diễn liên hệ động lực--ứng dụng và luồng trao đổi mức cao; không khóa công nghệ. \\
 H2 & Năng lực--ứng dụng & ArchiMate 3.2 & Capability; Application Component; Association; Flow. & Association là ánh xạ hỗ trợ vì lớp hành vi/dịch vụ trung gian được lược bỏ; không khẳng định Realization trực tiếp. \\
 H3 & Ứng dụng--dữ liệu & ArchiMate 3.2 & Application Component; Data Object; Access; Flow. & Access chỉ nối thành phần ứng dụng với đối tượng dữ liệu; Flow nối các thành phần ứng dụng. \\
-H4 & Ranh giới vùng chứa logic & C4 Model -- Container logic & Person; Container; Software System; quan hệ một chiều có nhãn. & Công nghệ/giao thức cụ thể là L3 chưa khóa; hình là góc nhìn logic, không phải đặc tả triển khai đầy đủ. \\
-H5 & Mẫu triển khai logic & C4 Deployment & Deployment Node; Container instance; Infrastructure Node. & Ánh xạ các vùng chứa H4 vào nút triển khai; môi trường, nền tảng và giao thức cụ thể vẫn là L3. \\
+H4 & Chuyển giao quyền ghi (AD01) & UML State Machine & Initial/Final pseudo-state; State (prepared; old-frozen; cutover-confirmed; new-active; completed; aborted); Transition có nhãn. & Ngữ nghĩa thiết kế ở mức L2 (trường/trạng thái tham chiếu); thuật toán khóa, consensus hay middleware cụ thể là L3. \\
+H5 & Ranh giới vùng chứa logic & C4 Model -- Container logic & Person; Container; Software System; quan hệ một chiều có nhãn. & Công nghệ/giao thức cụ thể là L3 chưa khóa; hình là góc nhìn logic, không phải đặc tả triển khai đầy đủ. \\
+H6 & Mẫu triển khai logic & C4 Deployment & Deployment Node; Container instance; Infrastructure Node. & Ánh xạ các vùng chứa H5 vào nút triển khai; môi trường, nền tảng và giao thức cụ thể vẫn là L3. \\
 \bottomrule
 \end{tabularx}
 
 \vspace{10pt}
-\textbf{Nguyên tắc hardening WP8-B.}
+\textbf{Nguyên tắc hardening WP8-B (WP2 bổ sung H4).}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-\item TikZ chỉ là công cụ vẽ; nghĩa của phần tử/quan hệ do góc nhìn ArchiMate/C4 quy định.
-\item Các lựa chọn công nghệ/giao thức không được suy đoán nếu không phải ràng buộc L1/L2; H4--H5 ghi rõ chúng chưa khóa ở L3.
-\item Hình 3 loại bỏ nhãn quan hệ lặp và định tuyến Access ra ngoài hộp dữ liệu để tránh giao cắt chữ; Hình 4 giảm quan hệ hai chiều thành phụ thuộc một chiều có nhãn; Hình 5 tách rõ nút triển khai và bản thực thi vùng chứa.
+\item TikZ chỉ là công cụ vẽ; nghĩa của phần tử/quan hệ do góc nhìn ArchiMate/C4/UML quy định.
+\item Các lựa chọn công nghệ/giao thức không được suy đoán nếu không phải ràng buộc L1/L2; H4--H6 ghi rõ chúng chưa khóa ở L3.
+\item Hình 3 loại bỏ nhãn quan hệ lặp và định tuyến Access ra ngoài hộp dữ liệu để tránh giao cắt chữ; Hình 5 giảm quan hệ hai chiều thành phụ thuộc một chiều có nhãn; Hình 6 tách rõ nút triển khai và bản thực thi vùng chứa; Hình 4 (WP2) tách rõ vùng có-thể-hủy/không-thể-hủy bằng ranh giới đứt để tránh nhầm điểm không thể hủy.
 \item Registry máy đọc tương ứng: \texttt{notation\_registry.csv}, \texttt{viewpoint\_registry.csv}, \texttt{deployment\_view.csv}, \texttt{security\_privacy\_view.csv}.
 \end{itemize}
 
 \vfill
-\textbf{Đối soát cuối WP8-B:} 116 đơn vị nguồn; 128 mệnh đề nguyên tử (114 A, 8 D, 6 M); lớp A = 110 ĐÁP ỨNG + 3 MỘT PHẦN + 1 CẦN LÀM RÕ; 10 kịch bản = 2 trực tiếp + 7 có điều kiện + 1 rủi ro; 5 hình kiến trúc H1--H5; 37/37 tài liệu tham khảo được dùng và đúng thứ tự xuất hiện đầu tiên.
+\textbf{Đối soát cuối WP8-B (cập nhật số hình sau WP2):} 116 đơn vị nguồn; 128 mệnh đề nguyên tử (114 A, 8 D, 6 M); lớp A = 110 ĐÁP ỨNG + 3 MỘT PHẦN + 1 CẦN LÀM RÕ; 10 kịch bản = 2 trực tiếp + 7 có điều kiện + 1 rủi ro; 6 hình kiến trúc H1--H6; 37/37 tài liệu tham khảo được dùng và đúng thứ tự xuất hiện đầu tiên.
 \end{document}

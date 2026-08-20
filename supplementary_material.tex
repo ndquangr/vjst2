@@ -198,7 +198,7 @@ VP8 & Bộ thích nghi, giao thức và lược đồ nguồn ngoài & Giữ th�
 \normalsize
 
 \subsection*{S9.2. Chi tiết hai quyết định được tinh chỉnh sau stress-test}
-\textbf{AD01 -- biên quyền ghi theo thẩm quyền.} B1-R biểu diễn gán quyền ghi theo \texttt{write\_scope} (subject/aggregate hoặc \texttt{case\_id}) cùng \texttt{jurisdiction\_id}, khoảng hiệu lực, \texttt{source\_evidence}, \texttt{transfer\_id} và \texttt{writer\_epoch} tăng đơn điệu; mutation dùng epoch cũ bị từ chối. Chuyển giao theo chuỗi \textsc{prepared--old-frozen--cutover-confirmed--new-active--completed}; chỉ hủy trước \textsc{new-active}, sau đó phục hồi tiến về trước. Hồ sơ đang chạy được gán đúng một writer theo kế hoạch chuyển. Topology vẫn là VP7; cấu hình dùng trong stress-test là P-DIST. Chi tiết này là ngữ nghĩa thiết kế L2, không khóa thuật toán consensus, cơ chế khóa hay middleware L3.
+\textbf{AD01 -- biên quyền ghi theo thẩm quyền.} Cấu trúc bốn nhóm trường của gán quyền ghi, bất biến single-active-writer, máy trạng thái chuyển giao \textsc{prepared--old-frozen--cutover-confirmed--new-active--completed} và quy tắc hủy/phục hồi tiến/xác minh epoch khi khởi động lại đã được trình bày đầy đủ ở Mục~5.2 của thân bài (Hình~4); phần này chỉ giữ liên kết còn lại với topology: Topology vẫn là VP7; cấu hình dùng trong stress-test là P-DIST. Ngữ nghĩa thiết kế vẫn ở mức L2, không khóa thuật toán consensus, cơ chế khóa hay middleware L3.
 
 \textbf{AD03 -- mô hình nền pháp lý và cấu hình địa phương.} B1-R giữ trạng thái, cổng quyết định và thời hạn L1 trong mô hình nền; địa phương chỉ cấu hình bước nội bộ, vai trò, biểu mẫu và mục tiêu xử lý. Mỗi cấu hình có phiên bản/ngày hiệu lực và qua cổng kiểm tra. Sau SC10, hợp đồng/lược đồ/cấu hình còn phải công bố cửa sổ tương thích và phiên bản tối thiểu còn hỗ trợ; hồ sơ đang xử lý được ghim vào phiên bản quy trình cho đến khi có quy tắc chuyển minh thị.
 
@@ -268,20 +268,14 @@ Năng lực mở rộng & Không có ràng buộc A trực tiếp & Các chức 
 Phần này lưu các chi tiết được rút khỏi Mục kiến trúc dữ liệu của thân bài. Chúng phục vụ kiểm tra cách hiện thực hóa các bất biến về thẩm quyền, nguồn gốc và chuyển giao quyền ghi; các tên trường chỉ là biểu diễn tham chiếu ở mức L2, không phải schema bắt buộc của một sản phẩm phần mềm.
 
 \subsection*{S10.1. Bản ghi gán quyền ghi và chuyển giao}
-Một bản ghi gán quyền ghi có thể mang bốn nhóm trường tham chiếu:
+Một bản ghi gán quyền ghi mang bốn nhóm trường tham chiếu (không phải schema bắt buộc của một sản phẩm cụ thể):
 \begin{itemize}
 \item chủ thể và phạm vi: \texttt{subject\_id}, \texttt{write\_scope} hoặc \texttt{case\_id};
 \item địa bàn và hiệu lực: \texttt{jurisdiction\_id}, \texttt{valid\_from}, \texttt{valid\_to};
 \item bằng chứng và giao dịch chuyển quyền: \texttt{source\_evidence}, \texttt{transfer\_id};
 \item phiên writer: \texttt{writer\_epoch}.
 \end{itemize}
-Bất biến cần bảo toàn là: tại một thời điểm, mỗi phạm vi chỉ có tối đa một writer đang hiệu lực; mọi mutation phải mang epoch hiện hành và ghi bằng epoch cũ bị từ chối.
-
-Chuỗi trạng thái tham chiếu cho chuyển giao là
-\[
-\textsc{prepared}\rightarrow\textsc{old-frozen}\rightarrow\textsc{cutover-confirmed}\rightarrow\textsc{new-active}\rightarrow\textsc{completed}.
-\]
-Trước \textsc{new-active}, chuyển giao có thể bị hủy; sau khi epoch mới đã được kích hoạt, phục hồi phải tiến về trước thay vì quay lại epoch cũ. Hồ sơ đang xử lý phải được đưa vào kế hoạch chuyển với đúng một writer hợp lệ. Writer mới chỉ được kích hoạt sau khi có bằng chứng đóng băng writer cũ và hoàn thành đối soát dữ liệu/nguồn gốc. Khi một nút khởi động lại sau gián đoạn, nó phải xác minh epoch hiện hành trước khi cho phép ghi. Cơ chế khóa, consensus hoặc middleware cụ thể thuộc L3.
+Bất biến single-active-writer, chuỗi trạng thái chuyển giao (\textsc{prepared}$\rightarrow$\textsc{old-frozen}$\rightarrow$\textsc{cutover-confirmed}$\rightarrow$\textsc{new-active}$\rightarrow$\textsc{completed}), quy tắc hủy/phục hồi tiến và quy tắc xác minh epoch khi một nút khởi động lại sau gián đoạn đã được trình bày đầy đủ ở Mục~5.2 của thân bài (Hình~4); phần này chỉ giữ danh mục trường ở trên làm tham chiếu triển khai. Cơ chế khóa, consensus hoặc middleware cụ thể thuộc L3.
 
 \subsection*{S10.2. Ma trận nguồn/thẩm quyền chi tiết}
 \small

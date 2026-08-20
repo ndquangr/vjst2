@@ -37,21 +37,25 @@ xelatex main.tex && xelatex main.tex && xelatex main.tex
 
 Khuyến nghị XeLaTeX cho tiếng Việt. Nếu chỉ có pdfLaTeX, đổi khối font trong `main.tex` theo hướng dẫn ở đầu file.
 
-## Bốn hình và năm bảng trong thân bài hiện tại
+## Sáu hình và bảy bảng trong thân bài hiện tại (cập nhật sau WP1/WP2)
 
-Sau lượt final review, các bảng/hình mang tính registry, deployment profile hoặc đặc tả chi tiết được chuyển sang `supplementary_material`. Thân bài chỉ giữ các artefact trực tiếp phục vụ lập luận khoa học.
+Sau lượt final review, các bảng/hình mang tính registry, deployment profile hoặc đặc tả chi tiết được chuyển sang `supplementary_material`. Thân bài chỉ giữ các artefact trực tiếp phục vụ lập luận khoa học. WP1 bổ sung Bảng "Hệ thống hiện hữu và ranh giới kế thừa" (đẩy các bảng sau lên một số); WP2 bổ sung Hình máy trạng thái chuyển giao quyền ghi (đẩy Hình Container/P-DIST lên một số).
 
 | Mã | Nội dung | Mục |
 |---|---|---|
 | Hình 1 | Định vị nền tảng trong hệ quy chiếu kiến trúc số/dữ liệu | Kiến trúc hệ thống |
 | Hình 2 | Góc nhìn năng lực--ứng dụng | Kiến trúc hệ thống |
 | Hình 3 | Kiến trúc dữ liệu tỉnh--trung ương; topology là điểm biến thiên | Kiến trúc dữ liệu |
-| Hình 4 | Cấu trúc Container và ranh giới trách nhiệm theo C4 | Liên thông |
+| Hình 4 | Máy trạng thái chuyển giao quyền ghi (AD01) -- UML State Machine | Kiến trúc dữ liệu |
+| Hình 5 | Cấu trúc Container và ranh giới trách nhiệm theo C4 | Liên thông |
+| Hình 6 | Cấu hình triển khai logic P-DIST | Liên thông |
 | Bảng 1 | Ranh giới với nghiên cứu trước đã công bố | Giới thiệu |
-| Bảng 2 | Các quyết định kiến trúc chính và đánh đổi | Kiến trúc hệ thống |
-| Bảng 3 | Thẩm quyền dữ liệu ở mức khái quát | Kiến trúc dữ liệu |
-| Bảng 4 | Các ranh giới liên thông và hệ quả kiến trúc | Liên thông |
-| Bảng 5 | Thử thách B1$_0$ và hậu kiểm B1-R/P-DIST | Đánh giá |
+| Bảng 2 | Hệ thống hiện hữu và ranh giới kế thừa của nền tảng đề xuất | Cơ sở nghiên cứu |
+| Bảng 3 | Các quyết định kiến trúc chính và đánh đổi | Kiến trúc hệ thống |
+| Bảng 4 | Thẩm quyền dữ liệu ở mức khái quát | Kiến trúc dữ liệu |
+| Bảng 5 | Các ranh giới liên thông và hệ quả kiến trúc | Liên thông |
+| Bảng 6 | Kết quả stress-test B1 và hậu kiểm B1-R/P-DIST | Đánh giá |
+| Bảng 7 | Đối sánh SRA với các khung kiến trúc, dữ liệu và liên thông hiện hành | Bàn luận |
 
 ## Ước lượng độ dài
 

@@ -4,5 +4,5 @@ Inputs,"23 tài liệu thứ cấp; NĐ268 làm trục; kinh nghiệm Hàn Quố
 Method,"Nghiên cứu khái niệm; phân tích chính sách/tài liệu; đối sánh quốc tế; mã hóa FRx.y và ánh xạ sáu lớp","DSR; nguyên tử hóa Cxx.yy; DRV/AD/AE/VP/CR; stress-test B1 và hậu kiểm B1-R"
 Artifact,"Khung nền tảng sáu lớp; bốn nhóm người dùng; luồng dữ liệu đa cấp","SRA sáu góc nhìn; thẩm quyền thuộc tính; liên thông; conformance; cấu hình B1-R/P-DIST"
 Evaluation,"Không khảo sát/thí điểm; đối chiếu tính phù hợp chính sách và kinh nghiệm; khảo sát/thí điểm là hướng sau","Mười kịch bản trên B1 so với B0; tinh chỉnh R-SC9/R-SC10; chấm lại B1-R: 2 trực tiếp + 8 có điều kiện"
-Figures,"C4 sáu lớp và vòng đời dữ liệu/người dùng","Năm hình H1-H5 + V6; ArchiMate/C4 theo viewpoint; không nhập lại hình cũ"
+Figures,"C4 sáu lớp và vòng đời dữ liệu/người dùng","Sáu hình H1-H6 + V6; ArchiMate/C4/UML State Machine theo viewpoint; không nhập lại hình cũ"
 Role,"Nghiên cứu nền về khung chính sách--công nghệ","Chỉ dùng để xác lập ranh giới đóng góp; FR/sáu lớp/hình cũ không vào corpus hoặc chuỗi tổng hợp"

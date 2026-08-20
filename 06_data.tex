@@ -77,7 +77,57 @@ Danh mục, quan hệ và dữ liệu dẫn xuất & Danh mục dùng chung theo
 \end{table}
 }
 
-Một rủi ro đặc thù của mô hình nhiều địa phương là thay đổi thẩm quyền trong khi hồ sơ hoặc trạng thái nghiệp vụ vẫn đang tồn tại. Sau stress-test SC9, B1-R biểu diễn quyền ghi như một gán có phạm vi và khoảng hiệu lực thay vì thuộc tính địa bàn cố định. Đối với cùng một phạm vi, tại một thời điểm chỉ có một writer hợp lệ; việc chuyển quyền phải xác nhận đóng băng writer cũ, đối soát dữ liệu/nguồn gốc rồi mới kích hoạt writer mới. Một epoch tăng đơn điệu được dùng để phát hiện ghi từ gán quyền cũ. Đây là ngữ nghĩa thiết kế L2 nhằm bảo toàn single-active-writer và tính truy vết; thuật toán khóa, consensus hay middleware cụ thể vẫn thuộc L3. Chi tiết trường dữ liệu và máy trạng thái chuyển giao nằm trong tài liệu bổ trợ.
+Một rủi ro đặc thù của mô hình nhiều địa phương là thay đổi thẩm quyền trong khi hồ sơ hoặc trạng thái nghiệp vụ vẫn đang tồn tại. Sau stress-test SC9, B1-R biểu diễn quyền ghi không phải như một thuộc tính địa bàn cố định mà như một \emph{gán quyền ghi} có phạm vi và khoảng hiệu lực tường minh, mang bốn nhóm trường tham chiếu: (i) \emph{chủ thể và phạm vi} -- \texttt{subject\_id}, \texttt{write\_scope} hoặc \texttt{case\_id}; (ii) \emph{địa bàn và hiệu lực} -- \texttt{jurisdiction\_id}, \texttt{valid\_from}, \texttt{valid\_to}; (iii) \emph{bằng chứng và giao dịch chuyển quyền} -- \texttt{source\_evidence}, \texttt{transfer\_id}; và (iv) \emph{phiên writer} -- \texttt{writer\_epoch}, một số tăng đơn điệu phân biệt các gán quyền kế tiếp trên cùng phạm vi.
+
+Bất biến trung tâm là \textbf{single-active-writer}: tại một thời điểm, mỗi phạm vi ghi chỉ có tối đa một gán quyền đang hiệu lực; mọi mutation phải mang \texttt{writer\_epoch} hiện hành, ghi mang epoch cũ bị từ chối vô điều kiện. Chuyển giao giữa hai phạm vi đi qua máy trạng thái năm bước ở Hình~\ref{fig:writer-transfer}: \texttt{prepared} $\rightarrow$ \texttt{old-frozen} $\rightarrow$ \texttt{cutover-confirmed} $\rightarrow$ \texttt{new-active} $\rightarrow$ \texttt{completed}. Writer cũ chỉ được xác nhận đóng băng sau khi nhận lệnh chuyển; writer mới chỉ được kích hoạt (kèm tăng \texttt{writer\_epoch}) sau khi đối soát dữ liệu và nguồn gốc hoàn tất. Hồ sơ đang xử lý tại thời điểm chuyển giao phải được đưa vào kế hoạch với đúng một writer hợp lệ.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  state/.style={draw, rounded corners=4pt, align=center, minimum height=0.95cm, text width=2.3cm, inner sep=3pt},
+  bad/.style={draw, dashed, rounded corners=4pt, align=center, minimum height=0.95cm, text width=2.3cm, inner sep=3pt},
+  initial/.style={draw, circle, fill=black, minimum size=3.6pt, inner sep=0pt},
+  fend/.style={draw, circle, minimum size=9pt, inner sep=0pt},
+  fenddot/.style={draw, circle, fill=black, minimum size=4pt, inner sep=0pt},
+  rel/.style={-{Latex[length=1.8mm]}, thick},
+  arel/.style={-{Latex[length=1.8mm]}, thick, dashed},
+  lab/.style={fill=white, inner sep=0.8pt, align=center, font=\tiny}
+]
+\node[initial] (init) at (-7.7,4.2) {};
+\node[state] (prepared) at (-6.3,4.2) {\textbf{prepared}};
+\node[state] (oldfrozen) at (-2.6,4.2) {\textbf{old-frozen}};
+\node[state] (cutover) at (1.4,4.2) {\textbf{cutover-\\confirmed}};
+\node[bad] (aborted) at (-2.6,1.0) {\textbf{aborted}\\quay lại writer cũ};
+\node[state] (newactive) at (1.4,1.0) {\textbf{new-active}};
+\node[state] (completed) at (4.9,1.0) {\textbf{completed}};
+\node[fend] (fin) at (6.9,1.0) {};
+\node[fenddot] at (fin) {};
+
+\draw[rel] (init) -- (prepared.west);
+\draw[rel] (prepared) -- node[lab,above]{lệnh chuyển} (oldfrozen);
+\draw[rel] (oldfrozen) -- node[lab,above]{đối soát xong} (cutover);
+\draw[rel] (cutover) -- node[lab,right]{kích hoạt writer mới\\\texttt{writer\_epoch}+=1} (newactive);
+\draw[rel] (newactive) -- node[lab,above]{bàn giao xong} (completed);
+\draw[rel] (completed.east) -- (fin.west);
+
+\draw[arel] (prepared.south) -- ++(0,-1.5) -| node[lab,pos=0.75,above]{hủy} (aborted.north west);
+\draw[arel] (oldfrozen.south) -- node[lab,right]{hủy} (aborted.north);
+\draw[arel] (cutover.south) -- ++(0,-0.9) -| node[lab,pos=0.32,above]{hủy} (aborted.east);
+
+\draw[dash pattern=on 2pt off 2pt] (-0.6,0.0) -- (-0.6,5.35);
+\node[font=\tiny,align=center,text width=2.4cm] at (-3.0,5.05) {\textbf{có thể hủy}};
+\node[font=\tiny,align=center,text width=2.9cm] at (1.9,5.05) {\textbf{không thể hủy -- chỉ phục hồi tiến}};
+
+\node[font=\tiny,align=center,text width=15.0cm] at (0.6,-0.75) {Chú giải UML State Machine: nút tròn đặc = initial; nút tròn viền có chấm = final; hộp bo góc liền = trạng thái hợp lệ; hộp bo góc đứt = trạng thái hủy; mũi tên liền = chuyển tiếp; mũi tên đứt = hủy (chỉ khả dụng trước \texttt{new-active}). Mọi mutation phải mang \texttt{writer\_epoch} hiện hành, ghi bằng epoch cũ bị từ chối; nút khởi động lại sau gián đoạn phải xác minh epoch hiện hành trước khi ghi. Ngữ nghĩa thiết kế ở mức L2; thuật toán khóa, consensus hay middleware cụ thể vẫn thuộc L3.};
+\end{tikzpicture}
+\caption{Máy trạng thái chuyển giao quyền ghi (AD01) -- ký pháp UML State Machine; \texttt{new-active} là điểm không thể hủy, chỉ còn phục hồi tiến}
+\label{fig:writer-transfer}
+\end{figure}
+
+\texttt{new-active} là điểm không thể đảo ngược: trước đó, chuyển giao có thể bị hủy và quay lại writer cũ; sau khi \texttt{writer\_epoch} mới kích hoạt, mọi phục hồi phải tiến về trước thay vì quay lại epoch cũ, vì epoch cũ có thể đã bị từ chối ghi ở nơi khác. Khi một nút khởi động lại sau gián đoạn, nó phải xác minh \texttt{writer\_epoch} hiện hành trước khi cho phép ghi trở lại.
+
+Mô hình dừng ở mức L2: khóa ngữ nghĩa trường, bất biến và chuỗi trạng thái, không khóa thuật toán khóa phân tán, consensus hay middleware cụ thể -- đó là lựa chọn L3. Mô hình cũng không giới hạn trong bài toán DN KH\&CN/DN KNST: bất kỳ nền tảng chính phủ đa cấp nào có nghiệp vụ chuyển giao thẩm quyền xử lý theo thời gian đều có thể áp dụng cùng cấu trúc gán quyền, bất biến single-active-writer và máy trạng thái chuyển giao này. Mục~\ref{subsec:existing-systems} đã xác lập SoR nghiệp vụ là nút tỉnh đang giữ gán quyền ghi hiệu lực, không phải cơ quan hay nền tảng ở mức tổng thể; mô hình gán quyền ở đây là cơ chế kiến trúc hiện thực hóa phát biểu đó theo thời gian. Chi tiết trường dữ liệu và phép kiểm tra triển khai được giữ trong tài liệu bổ trợ (Mục S10.1).
 
 \subsection{Chuẩn hóa, nguồn gốc và chất lượng dữ liệu}
 \label{subsec:chuanhoa}

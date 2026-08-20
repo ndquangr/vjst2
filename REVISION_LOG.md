@@ -341,3 +341,187 @@ quản lý KH,CN&ĐMST quốc gia" lần đầu trong câu đầu tiên của `0
    hạng mục của WP0 ("tất cả file .tex, supplementary_material.tex, và
    tên/nội dung các file CSV"); **chưa sửa** để tránh viết lại lịch sử ngoài
    yêu cầu. Báo lại nếu muốn đồng bộ hóa thuật ngữ trong README luôn.
+
+---
+
+## WP1-fix2 — Ba tồn đọng từ review WP1-fix, gộp chung commit với WP2 (2026-08-21)
+
+### Vấn đề xử lý
+Review WP1-fix phát hiện 3 tồn đọng: (a) câu cuối đoạn 2 của §2.3 vỡ ngữ pháp
+sau khi viết lại ở WP1-fix -- mệnh đề "-- nghiệp vụ công nhận/chứng nhận DN
+KH&CN và DN KNST mà chưa hệ thống nào khác đảm nhiệm đầy đủ" không còn chủ
+ngữ để gắn vào; (b) ô bảng `tab:existing-systems` viết "UBND cấp tỉnh (SoR
+nghiệp vụ)", lẫn chủ thể pháp lý (cơ quan) với vai trò hệ thống (SoR là vai
+trò của nút tỉnh, không phải của UBND); (c) dòng bảng "Nền tảng số quốc gia"
+trong `07_interop.tex` dài gấp ~3 lần các dòng khác vì phần (b) về khoản 2
+Điều 66 trùng lặp với Mục 6.2 (`subsec:sla`) vốn đã xử lý kỹ hơn.
+
+### File thay đổi
+
+**03_background.tex §2.3**
+- [a] Tách câu cuối đoạn 2 thành câu độc lập: "Nghĩa vụ này thuộc về UBND cấp
+  tỉnh..." giữ nguyên; thêm câu mới "Nghiệp vụ công nhận/chứng nhận DN KH&CN
+  và DN KNST chính là phần mà chưa hệ thống hiện hữu nào trong số năm hệ
+  thống trên đảm nhiệm đầy đủ -- đây là lý do tồn tại của nền tảng đề xuất."
+  có chủ ngữ rõ ràng, không còn treo lửng sau dấu gạch ngang.
+- [b] Ô bảng dòng "Nền tảng số quản lý KH,CN&ĐMST quốc gia": viết lại từ
+  "UBND cấp tỉnh (SoR nghiệp vụ) dùng nền tảng..." thành "UBND cấp tỉnh mang
+  nghĩa vụ...; trong kiến trúc, nút tỉnh -- không phải cơ quan hay nền tảng
+  ở mức tổng thể -- giữ vai trò SoR nghiệp vụ." Grep `UBND.*SoR\|SoR.*UBND`
+  và `cơ quan.*SoR\|SoR.*cơ quan` toàn repo: chỉ còn hai chỗ, cả hai đều là
+  câu đã sửa đúng (phân biệt rõ vai trò), không còn chỗ nào lẫn.
+- [f, gộp từ yêu cầu nghiệm thu WP2] Thêm câu trỏ xuôi từ §2.3 sang Mục 5.2:
+  "...(SoR) cho phạm vi thẩm quyền của mình -- cơ chế gán và chuyển giao vai
+  trò này theo thời gian được hình thức hóa ở Mục~\ref{subsec:masterdata}".
+
+**07_interop.tex** [c] — Rút gọn ô "Nguồn/thẩm quyền cần bảo toàn" của dòng
+"Nền tảng số quốc gia": giữ đầy đủ (a) khoản 3 Điều 48; rút (b) khoản 2 Điều
+66 còn một mệnh đề ngắn kèm `\ref{subsec:sla}` thay vì lặp lại cơ chế gửi
+lại/chống trùng/bằng chứng đã có ở Mục 6.2. Ô "Hệ quả kiến trúc" rút tương
+ứng (bỏ phần mô tả (b) trùng lặp). Độ dài ô nay tương đương các dòng khác
+trong bảng.
+
+### Nghiệm thu WP1-fix2
+- `grep` xác nhận không còn chỗ nào lẫn vai trò SoR với chủ thể pháp lý.
+- Biên dịch sạch (gộp chung với compile cuối của WP2 bên dưới).
+
+---
+
+## WP2 — Mô hình gán quyền ghi theo phạm vi/thời gian thành đóng góp số 1 (2026-08-21)
+
+### Vấn đề xử lý
+Cơ chế gán quyền ghi (`write_scope` + `jurisdiction_id` + khoảng hiệu lực +
+`writer_epoch` đơn điệu + máy trạng thái `prepared→old-frozen→cutover-confirmed
+→new-active→completed`, bất biến single-active-writer) là phần duy nhất của
+bài mang tính thiết kế mới, tổng quát hóa được ra ngoài miền DN KH&CN/DN
+KNST -- nhưng trước WP2 nó chỉ có một đoạn ngắn ở Mục 5.2, còn chi tiết đầy
+đủ nằm ở tài liệu bổ trợ (S9.2, S10.1). WP2 nâng cơ chế này thành đóng góp
+số 1, được đặt tên, có hình minh họa riêng trong thân bài.
+
+### File thay đổi
+
+**06_data.tex §5.2 (`subsec:masterdata`)** — Mở rộng đoạn ~80 từ thành ~450
+từ prose (đo bằng script bóc tách LaTeX, không tính hình/bảng): cấu trúc bản
+ghi gán quyền ghi (4 nhóm trường: chủ thể/phạm vi, địa bàn/hiệu lực, bằng
+chứng/giao dịch chuyển quyền, phiên writer); bất biến single-active-writer;
+chuỗi trạng thái chuyển giao; quy tắc hủy (chỉ trước `new-active`) và phục
+hồi tiến (sau `new-active`); quy tắc xác minh `writer_epoch` khi khởi động
+lại sau gián đoạn; phát biểu tường minh mức L2 (không khóa consensus/khóa/
+middleware); và một câu tổng quát hóa rõ ràng cho "bất kỳ nền tảng chính phủ
+đa cấp nào có chuyển giao thẩm quyền theo thời gian". Chèn Hình~4 (mới)
+ngay giữa đoạn giải thích máy trạng thái. Thêm câu trỏ ngược về §2.3
+(`subsec:existing-systems`) để khớp phát biểu SoR mới.
+
+**Hình 4 mới -- máy trạng thái chuyển giao quyền ghi** — Tạo
+`figure_sources/fig04_write_authority_transfer_fsm.tex` theo đúng
+preamble/convention của 5 hình hiện có (standalone TikZ, fontspec Times New
+Roman/DejaVu Serif fallback, polyglossia). Ký pháp **UML State Machine**
+(không phải ArchiMate/C4 như 5 hình kia) theo đúng quy tắc 11 của README
+("State Machine cho cấu trúc và hành vi chi tiết"): initial pseudo-state,
+5 trạng thái hợp lệ + 1 trạng thái hủy (`aborted`), final pseudo-state,
+chuyển tiếp có nhãn, ranh giới đứt phân tách vùng "có thể hủy"/"không thể
+hủy -- chỉ phục hồi tiến". Tọa độ được thiết kế lại 2 lần sau khi phát hiện
+nhãn cạnh chồng lấn lên hộp trạng thái khi kiểm tra trực quan (render PNG độ
+phân giải cao); bản cuối biên dịch sạch, không overfull hbox khi nhúng vào
+thân bài. Chèn nguyên khối TikZ (đồng bộ tuyệt đối với file trong
+`figure_sources/`) vào `06_data.tex`.
+
+**Đánh số lại hình sau khi chèn Hình 4 (hạng mục e của WP1-fix2)** — Hình cũ
+4 (Container/ranh giới, `07_interop.tex`) → Hình 5; Hình cũ 5 (P-DIST,
+`07_interop.tex`) → Hình 6. Đổi tên file nguồn tương ứng:
+`fig04_c4_container_boundaries.*` → `fig05_c4_container_boundaries.*`;
+`fig05_c4_deployment_pdist.*` → `fig06_c4_deployment_pdist.*` (git mv, giữ
+nguyên nội dung/PDF, chỉ đổi tên + comment "% Hình N" nội bộ). Cập nhật
+`\includegraphics` trong `07_interop.tex` sang `fig06_...`. Quét toàn repo
+mọi chuỗi "Hình N"/"Bảng N" viết tay (không phải `\ref`) và sửa nốt các
+registry máy đọc bị lệch:
+- `figure_sources/README_FIGURES.md`: bảng ánh xạ Hình 1--6, thêm nguyên tắc
+  ký pháp UML cho Hình 4.
+- `viewpoint_registry.csv`: V1 Hình4→Hình5; V2 Bảng2→Bảng3 (lệch từ *trước*
+  WP1, chưa từng được sửa -- tab:arch-decisions-summary đã là Bảng3 từ khi
+  WP1 chèn Bảng2 mới); V3 Hình3→"Hình 3--4", Bảng3→Bảng4, bổ sung notation
+  "UML State Machine"; V4 Bảng4→Bảng5; V5 Hình5→Hình6; V6 "Bảng 4/I1" →
+  "Bảng 5/I1" (suy luận theo cùng quy luật +1, **chưa xác nhận được ý nghĩa
+  của "I1"** -- báo lại bên dưới).
+- `notation_registry.csv`: chèn hàng H4 (UML State Machine), dịch H4→H5,
+  H5→H6; sửa cross-ref nội bộ "Ánh xạ các vùng chứa H4" → "H5".
+- `prior_work_delta.csv`: "Năm hình H1-H5" → "Sáu hình H1-H6".
+- `WP8_B_reproducibility_notation_supplement.tex` mục C: bảng ký pháp
+  "Hình 1--5" → "Hình 1--6", chèn hàng H4, dịch H4→H5/H5→H6, sửa cross-ref
+  "H4 vào nút triển khai" → "H5", cập nhật dòng "Đối soát cuối WP8-B".
+- `README.md`: đổi tiêu đề "Bốn hình và năm bảng..." → "Sáu hình và bảy
+  bảng...", viết lại bảng liệt kê đầy đủ 6 hình + 7 bảng đúng nội dung/mục
+  hiện hành (bảng này mô tả trạng thái hiện tại, không phải nhật ký lịch sử
+  theo mốc WP, nên được cập nhật; các đoạn "HOÀN THÀNH ngày..." khác giữ
+  nguyên vì đó là lịch sử tại thời điểm viết).
+- Xác nhận bằng `pdftotext` trên PDF đã biên dịch: Hình 1--6 và Bảng 1--7
+  đều đúng thứ tự, đúng caption; không còn `\ref` nào trỏ sai (biên dịch
+  latexmk không báo `Reference ... undefined` hay `may have changed`).
+
+**01_abstract.tex** — Viết lại đoạn kết quả VI + EN: bỏ câu "Từ 16 tài liệu,
+nghiên cứu xác lập 116 đơn vị nguồn và 128 dòng truy vết..."; thay bằng phát
+biểu phát hiện đặt tên mô hình gán quyền ghi ("Phát hiện trung tâm là quyền
+ghi cần được biểu diễn như một gán có phạm vi thẩm quyền và thời gian hiệu
+lực... single-active-writer"). Giữ nguyên 16/116/128 ở Mục 3.2
+(`subsec:corpus`, đã có sẵn, không đổi) đúng theo yêu cầu. VI: 298 → 321 từ;
+EN: (đếm mới) 200 từ -- cả hai vẫn trong hoặc gần khoảng 160--250 từ/ngôn ngữ
+của quy tắc 13 (VI đã vượt nhẹ từ trước WP2, không phải lỗi mới).
+
+**02_intro.tex** — Đoạn "Bài đóng góp ba kết quả chính": hoán đổi thứ tự
+Thứ nhất/Thứ hai (mô hình gán quyền ghi lên đầu, đặt tên và mô tả cơ chế;
+SRA đa góc nhìn xuống vị trí hai); Thứ ba (quy trình truy vết, giữ 16/116/128)
+không đổi vị trí. Câu "Từ hai đóng góp kiến trúc đầu, Mục~... khái quát ba
+nguyên tắc..." giữ nguyên vì hai đóng góp đầu vẫn là cùng một cặp nội dung,
+chỉ hoán vị trí 1↔2 với nhau -- không phá vỡ liên kết tới P1--P3 ở Mục 8.2.
+
+**10_conclusion.tex** — Câu tổng kết đóng góp: đặt mô hình gán quyền ghi lên
+đầu danh sách, có tên và nhắc máy trạng thái/single-active-writer, kèm câu
+tổng quát hóa; các đóng góp còn lại (lõi ổn định/điểm biến thiên, ranh giới
+liên thông, chuỗi truy vết) giữ nguyên nội dung, dịch xuống.
+
+**supplementary_material.tex S9.2/S10.1** — Bỏ phần mô tả cơ chế trùng lặp
+nguyên văn với Mục 5.2 mới (cấu trúc trường, chuỗi trạng thái, hủy/phục hồi
+tiến, xác minh epoch khi khởi động lại); mỗi mục thay bằng một câu trỏ ngược
+"đã được trình bày đầy đủ ở Mục~5.2 của thân bài (Hình~4)". S9.2 (AD01) giữ
+lại phần KHÔNG có ở thân bài (liên kết với VP7/P-DIST). S10.1 giữ nguyên
+danh mục 4 nhóm trường (đúng yêu cầu "giữ lại chi tiết trường dữ liệu") làm
+tham chiếu triển khai, chỉ cắt phần narrative đã trùng.
+
+### Nghiệm thu (đối chiếu đầy đủ với WP1-fix2 + WP2)
+- `python scripts/check_citation_order.py` → **37/37 khớp** (không citation
+  mới nào được thêm trong WP2, không cần sửa `references.tex`).
+- Biên dịch `latexmk -xelatex main.tex`: sạch, không lỗi, không cảnh báo
+  tham chiếu/trích dẫn thiếu, **0 overfull hbox** (Hình 4 ban đầu gây 1
+  overfull ~6pt do chú giải quá rộng; đã sửa `text width` từ 15.4cm xuống
+  15.0cm).
+- Đối soát số hình/bảng bằng `pdftotext`: Hình 1--6, Bảng 1--7 đúng thứ tự,
+  đúng caption; grep xác nhận không còn "Hình N"/"Bảng N" viết tay nào trỏ
+  sai (chỉ còn trích dẫn ngoài tới "Hình 3" của EIF, không phải tự trỏ).
+  Kiểm tra trực quan Hình 4 bằng render PNG độ phân giải cao (300 DPI) qua
+  hai vòng sửa tọa độ trước khi xác nhận không còn nhãn chồng hộp trạng thái.
+- Kiểm tra thủ công §2.3 (Mục 2.3, background) và Mục 5.2 (06_data.tex) có
+  tham chiếu chéo hai chiều nhất quán về SoR = nút tỉnh, không phải cơ quan
+  hay nền tảng ở mức tổng thể.
+- **Số trang/từ:** trước WP1: 13754 từ, 29 trang. Sau WP0: 15337 từ, 32
+  trang. Sau WP1-fix2+WP2: **15948 từ, 33 trang** (`pdftotext | wc -w`,
+  `pdfinfo`). Tăng lũy kế so với trước WP1: **+2194 từ (+16,0%), +4 trang**.
+  Riêng delta WP1-fix2+WP2: +611 từ, +1 trang.
+
+### Điểm cần lưu ý — BÁO CÁO LẠI CHO NGƯỜI DÙNG
+1. **`viewpoint_registry.csv`, hàng V6, cột `body_artifact` = "Bảng 4/I1"**:
+   đã đổi thành "Bảng 5/I1" theo cùng quy luật +1 áp dụng cho các hàng khác
+   (Bảng cũ 4 = `tab:lienthong`, nay là Bảng 5), nhưng nhóm tác giả **không
+   xác định được "I1" trỏ tới đâu** -- không tìm thấy định nghĩa "I1" ở bất
+   kỳ file nào khác trong repo (không phải mã AE/AD/VP/CR/Cxx.yy đã biết).
+   Có thể là appendix nội bộ chưa từng được tạo, hoặc ký hiệu lỗi thời sót
+   lại. Xin xác nhận hoặc cung cấp ngữ cảnh để sửa đúng.
+2. **Độ dài tóm tắt tiếng Việt (321 từ)** đã vượt khoảng 160--250 từ của quy
+   tắc 13 -- nhưng bản trước WP2 (298 từ) cũng đã vượt sẵn từ trước, đây
+   không phải hồi quy mới do WP2 gây ra. Chưa chủ động cắt để không mất nội
+   dung phát hiện mới theo đúng yêu cầu; báo lại nếu cần nén xuống đúng
+   ngưỡng trước khi nộp.
+3. Hai file PDF nguồn hình bị đổi tên (`fig05_c4_container_boundaries.pdf`,
+   `fig06_c4_deployment_pdist.pdf`) giữ nguyên nội dung nhị phân (chỉ
+   `git mv`, không build lại) vì nội dung TikZ bên trong không đổi, chỉ số
+   thứ tự đổi; đã xác nhận qua diff rằng nội dung `.tex` nguồn chỉ khác dòng
+   comment "% Hình N" ở đầu file.

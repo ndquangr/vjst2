@@ -1,0 +1,60 @@
+% Source extracted verbatim from manuscript figure TikZ block.
+% Hình 4: Máy trạng thái chuyển giao quyền ghi (AD01) -- ký pháp UML State Machine;
+% new-active là điểm không thể hủy, chỉ còn phục hồi tiến
+% Edit the TikZ block below; compile with XeLaTeX.
+
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}[Ligatures=TeX]}
+  {\setmainfont{DejaVu Serif}[Ligatures=TeX]}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setotherlanguage{english}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\newcommand{\dnkhcn}{DN KH\&CN}
+\newcommand{\dnknst}{DN KNST}
+\newcommand{\khcn}{KH\&CN}
+\newcommand{\dmst}{ĐMST}
+\begin{document}
+\begin{tikzpicture}[
+  font=\scriptsize,
+  state/.style={draw, rounded corners=4pt, align=center, minimum height=0.95cm, text width=2.3cm, inner sep=3pt},
+  bad/.style={draw, dashed, rounded corners=4pt, align=center, minimum height=0.95cm, text width=2.3cm, inner sep=3pt},
+  initial/.style={draw, circle, fill=black, minimum size=3.6pt, inner sep=0pt},
+  fend/.style={draw, circle, minimum size=9pt, inner sep=0pt},
+  fenddot/.style={draw, circle, fill=black, minimum size=4pt, inner sep=0pt},
+  rel/.style={-{Latex[length=1.8mm]}, thick},
+  arel/.style={-{Latex[length=1.8mm]}, thick, dashed},
+  lab/.style={fill=white, inner sep=0.8pt, align=center, font=\tiny}
+]
+\node[initial] (init) at (-7.7,4.2) {};
+\node[state] (prepared) at (-6.3,4.2) {\textbf{prepared}};
+\node[state] (oldfrozen) at (-2.6,4.2) {\textbf{old-frozen}};
+\node[state] (cutover) at (1.4,4.2) {\textbf{cutover-\\confirmed}};
+\node[bad] (aborted) at (-2.6,1.0) {\textbf{aborted}\\quay lại writer cũ};
+\node[state] (newactive) at (1.4,1.0) {\textbf{new-active}};
+\node[state] (completed) at (4.9,1.0) {\textbf{completed}};
+\node[fend] (fin) at (6.9,1.0) {};
+\node[fenddot] at (fin) {};
+
+\draw[rel] (init) -- (prepared.west);
+\draw[rel] (prepared) -- node[lab,above]{lệnh chuyển} (oldfrozen);
+\draw[rel] (oldfrozen) -- node[lab,above]{đối soát xong} (cutover);
+\draw[rel] (cutover) -- node[lab,right]{kích hoạt writer mới\\\texttt{writer\_epoch}+=1} (newactive);
+\draw[rel] (newactive) -- node[lab,above]{bàn giao xong} (completed);
+\draw[rel] (completed.east) -- (fin.west);
+
+\draw[arel] (prepared.south) -- ++(0,-1.5) -| node[lab,pos=0.75,above]{hủy} (aborted.north west);
+\draw[arel] (oldfrozen.south) -- node[lab,right]{hủy} (aborted.north);
+\draw[arel] (cutover.south) -- ++(0,-0.9) -| node[lab,pos=0.32,above]{hủy} (aborted.east);
+
+\draw[dash pattern=on 2pt off 2pt] (-0.6,0.0) -- (-0.6,5.35);
+\node[font=\tiny,align=center,text width=2.4cm] at (-3.0,5.05) {\textbf{có thể hủy}};
+\node[font=\tiny,align=center,text width=2.9cm] at (1.9,5.05) {\textbf{không thể hủy -- chỉ phục hồi tiến}};
+
+\node[font=\tiny,align=center,text width=15.0cm] at (0.6,-0.75) {Chú giải UML State Machine: nút tròn đặc = initial; nút tròn viền có chấm = final; hộp bo góc liền = trạng thái hợp lệ; hộp bo góc đứt = trạng thái hủy; mũi tên liền = chuyển tiếp; mũi tên đứt = hủy (chỉ khả dụng trước \texttt{new-active}). Mọi mutation phải mang \texttt{writer\_epoch} hiện hành, ghi bằng epoch cũ bị từ chối; nút khởi động lại sau gián đoạn phải xác minh epoch hiện hành trước khi ghi. Ngữ nghĩa thiết kế ở mức L2; thuật toán khóa, consensus hay middleware cụ thể vẫn thuộc L3.};
+\end{tikzpicture}
+\end{document}
