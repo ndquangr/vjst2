@@ -19,6 +19,49 @@ Các ràng buộc dữ liệu hiện hành làm cho bài toán không thể gi�
 
 Định danh, bảo vệ dữ liệu và liên thông cũng tạo các ranh giới riêng. NĐ 69/2024/NĐ-CP và NĐ 169/2025/NĐ-CP yêu cầu sử dụng các nguồn định danh/xác thực có thẩm quyền và đáp ứng điều kiện kết nối \citep{nd69_2024,nd169_2025}; Luật Bảo vệ dữ liệu cá nhân và NĐ 356/2025/NĐ-CP đặt yêu cầu về giới hạn truy cập, biện pháp quản lý/kỹ thuật và vòng đời dữ liệu \citep{luatbvdlcn2025,nd356_2025}. Do đó, SRA cần tách xác thực danh tính khỏi phân quyền nghiệp vụ, đồng thời duy trì nguồn gốc, phiên bản, nhật ký và biên tin cậy cho các luồng dữ liệu liên cơ quan.
 
+\subsection{Hệ thống hiện hữu và ranh giới kế thừa}
+\label{subsec:existing-systems}
+
+Định vị SRA đòi hỏi trả lời minh thị nó kế thừa gì từ hạ tầng số đã vận hành hoặc đã được quy định. Trong phạm vi liên quan tới DN KH\&CN và DN KNST, năm hệ thống cần được định vị: Nền tảng số quản lý KH,CN\&ĐMST quốc gia; hệ thống quản lý trực tuyến nhiệm vụ KH\&CN; hệ thống thủ tục hành chính/dịch vụ công; CSDL quốc gia về doanh nghiệp; và các CSDL chuyên ngành theo danh mục QĐ 1762/QĐ-BKHCN. Bảng~\ref{tab:existing-systems} tóm tắt chức năng, dữ liệu thuộc thẩm quyền và quan hệ của từng hệ thống; văn bản dưới đây làm rõ hai điểm bảng không thể hiện hết: quan hệ với nền tảng quốc gia, và trạng thái nguồn của hệ thống quản lý nhiệm vụ KH\&CN.
+
+Luật KH,CN\&ĐMST giao Nhà nước xây dựng, vận hành và duy trì Nền tảng số quản lý KH,CN\&ĐMST quốc gia tập trung, thống nhất, kết nối các chủ thể liên quan \citep[khoản 3 Điều 20]{luatkhcndmst2025}; NĐ 268 cụ thể hóa bằng yêu cầu UBND cấp tỉnh định kỳ cập nhật dữ liệu vòng đời chứng nhận DN KH\&CN lên nền tảng đó \citep[khoản 3 Điều 48]{nd268_2025}. Từ đó, quan hệ có thể trả lời trực tiếp: nền tảng đề xuất là một \emph{thành phần chuyên ngành cấp Bộ}, có nghĩa vụ cập nhật định kỳ lên nền tảng quốc gia, không phải hệ thống song song hay thay thế. Nền tảng quốc gia giữ vai trò tổng hợp, kết nối, quan sát liên ngành; nền tảng đề xuất giữ vai trò hệ thống lưu bản ghi nghiệp vụ chính (SoR) cho nghiệp vụ công nhận/chứng nhận -- nghiệp vụ mà chưa hệ thống nào khác đảm nhiệm đầy đủ.
+
+Riêng hệ thống quản lý trực tuyến nhiệm vụ KH\&CN, được phản biện của nghiên cứu trước nêu qua miền stm.mst.gov.vn, cần xử lý thận trọng hơn về nguồn. Nhóm dữ liệu giao dịch ``Khoa học và Công nghệ'' mà QĐ 1973 mô tả -- hồ sơ đề xuất, tuyển chọn, phê duyệt, báo cáo tiến độ/kết quả, nghiệm thu nhiệm vụ \citep{qd1973_2026} -- đúng là phạm vi nghiệp vụ của một hệ thống quản lý nhiệm vụ trực tuyến. Tuy vậy, tính đến thời điểm rà soát nguồn, nhóm tác giả chưa xác định được văn bản pháp lý công khai mô tả chính thức phạm vi, đơn vị chủ quản và các mốc thay đổi phạm vi sử dụng của hệ thống; mô tả trên chỉ dựa trên chức năng vận hành công khai, được đánh dấu \textsc{cần bổ sung} và không tạo nghĩa vụ L1. Riêng sự tồn tại của hệ thống đã đủ để khẳng định nền tảng đề xuất không thiết kế lại quy trình quản lý nhiệm vụ KH\&CN.
+
+Ba hệ thống còn lại có văn bản dẫn chiếu trực tiếp hơn. Hệ thống TTHC/dịch vụ công giữ kênh tiếp nhận và trả kết quả hồ sơ \citep{nd268_2025,nd278_2025}, đã phân tích riêng ở Mục~\ref{sec:interop}. CSDL quốc gia về doanh nghiệp là nguồn có thẩm quyền cho định danh pháp lý doanh nghiệp \citep{luatdulieu2024,nd278_2025,qd1973_2026}. Danh mục QĐ 1762 liệt kê 59 CSDL chuyên ngành của Bộ KH\&CN, mỗi CSDL có đơn vị chủ trì riêng, gồm cả CSDL Nhiệm vụ khoa học và công nghệ và CSDL Doanh nghiệp khởi nghiệp \citep[Phụ lục, STT 38, 43]{qd1762_2025}. Với cả ba, nền tảng đề xuất không thiết kế lại: mỗi hệ thống đã có chủ quản và nghĩa vụ báo cáo riêng theo Luật Dữ liệu và QĐ 1973 \citep{luatdulieu2024,qd1973_2026}; tạo bản sao song song sẽ vi phạm nguyên tắc một nguồn có thẩm quyền cho mỗi loại dữ liệu.
+
+Khoảng trống mà SRA thực sự đóng góp nằm ở năm điểm chưa hệ thống nào đảm nhiệm đầy đủ: (i) nghiệp vụ công nhận/chứng nhận DN KH\&CN và DN KNST theo NĐ 268; (ii) hồ sơ năng lực tổng hợp, kết hợp dữ liệu tự khai với bằng chứng đối chiếu từ các nguồn trên; (iii) đối soát, chuẩn hóa dữ liệu khi một doanh nghiệp xuất hiện trên nhiều CSDL với định danh/trạng thái khác nhau; (iv) quản trị thẩm quyền theo nhóm thuộc tính và thời gian thay vì gán tĩnh theo địa bàn hoặc CSDL; và (v) quan hệ hệ sinh thái doanh nghiệp--quỹ--chuyên gia--viện/trường vượt địa giới hành chính \citep[pp.~27--28]{fischer2022}; \citep[pp.~1483--1484]{noak2025}. Nguyên tắc thiết kế theo đó là kế thừa nơi đã có chủ quản rõ ràng, chỉ khác biệt hóa ở khoảng trống thật được xác lập minh thị.
+
+{\vjsttablefont
+\renewcommand{\arraystretch}{1.03}
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{2.6cm}p{4.0cm}p{3.9cm}p{2.9cm}@{}}
+\caption{Hệ thống hiện hữu và ranh giới kế thừa của nền tảng đề xuất}
+\label{tab:existing-systems}\\
+\toprule
+\textbf{Hệ thống hiện hữu} & \textbf{Chức năng/dữ liệu đã phủ} & \textbf{Quan hệ với nền tảng đề xuất} & \textbf{Căn cứ} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{\tablename\ \thetable\ -- tiếp theo}\\
+\toprule
+\textbf{Hệ thống hiện hữu} & \textbf{Chức năng/dữ liệu đã phủ} & \textbf{Quan hệ với nền tảng đề xuất} & \textbf{Căn cứ} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+Nền tảng số quản lý KH,CN\&ĐMST quốc gia & Tổng hợp, kết nối và quan sát liên ngành dữ liệu KH,CN\&ĐMST ở cấp quốc gia; đầu mối nhận cập nhật định kỳ từ các bộ/tỉnh. & Nền tảng đề xuất là nguồn ghi cấp Bộ, có nghĩa vụ cập nhật định kỳ lên nền tảng này; không phải hệ thống song song. & Luật 93/2025/QH15, khoản 3 Điều 20; NĐ 268, khoản 3 Điều 48 \citep{luatkhcndmst2025,nd268_2025}. \\
+\addlinespace
+Hệ thống quản lý trực tuyến nhiệm vụ KH\&CN (miền stm.mst.gov.vn) & Đề xuất, tuyển chọn, phê duyệt, triển khai, theo dõi, nghiệm thu nhiệm vụ KH\&CN. & Nền tảng đề xuất tham chiếu kết quả nhiệm vụ KH\&CN như bằng chứng hồ sơ công nhận/chứng nhận; không thiết kế lại quy trình quản lý nhiệm vụ. & Phạm vi dữ liệu giao dịch KH\&CN theo QĐ 1973 \citep{qd1973_2026}; chưa xác định văn bản pháp lý công khai riêng cho hệ thống -- \textsc{cần bổ sung}. \\
+\addlinespace
+Hệ thống thủ tục hành chính/dịch vụ công & Tiếp nhận hồ sơ, trả kết quả TTHC cho công dân/doanh nghiệp. & Nền tảng đề xuất trao đổi hồ sơ/kết quả qua định danh dùng chung; không tạo kênh nộp hồ sơ song song. & NĐ 268, khoản 1 Điều 50; NĐ 278 \citep{nd268_2025,nd278_2025}. \\
+\addlinespace
+CSDL quốc gia về doanh nghiệp & Định danh pháp lý doanh nghiệp. & Nền tảng đề xuất tham chiếu/đồng bộ định danh; không tạo master định danh doanh nghiệp song song. & Luật Dữ liệu; NĐ 278; QĐ 1973 \citep{luatdulieu2024,nd278_2025,qd1973_2026}. \\
+\addlinespace
+CSDL chuyên ngành theo danh mục QĐ 1762 & 59 CSDL chuyên ngành thuộc phạm vi quản lý của Bộ KH\&CN, mỗi CSDL có đơn vị chủ trì riêng. & Nền tảng đề xuất tham chiếu/xác minh CSDL liên quan khi cần bằng chứng chuyên ngành; không thay thế CSDL đã có chủ quản. & QĐ 1762/QĐ-BKHCN, Phụ lục \citep{qd1762_2025}. \\
+\end{longtable}
+}
+
 \subsection{Khoảng trống thiết kế và hệ quả đối với SRA}
 \label{subsec:design-gap}
 
