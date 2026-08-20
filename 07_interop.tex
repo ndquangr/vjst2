@@ -27,7 +27,7 @@ EIF được dùng như một khung phân tích bốn lớp pháp lý--tổ ch�
 \bottomrule
 \endfoot
 
-\textbf{Nền tảng số quốc gia} & Nền tảng số quản lý KH,CN\&ĐMST quốc gia giữ vai trò tổng hợp, kết nối và quan sát liên ngành; nền tảng đề xuất là nguồn ghi cấp Bộ có nghĩa vụ cập nhật định kỳ \citep{luatkhcndmst2025,nd268_2025}. & Đồng bộ định kỳ dữ liệu vòng đời công nhận/chứng nhận lên nền tảng quốc gia qua cổng tích hợp; không mở nhánh báo cáo song song hoặc thay thế vai trò tổng hợp quốc gia. \\
+\textbf{Nền tảng số quốc gia} & Nền tảng số quản lý KH,CN\&ĐMST quốc gia giữ vai trò tổng hợp, kết nối và quan sát liên ngành \citep[khoản 3 Điều 20]{luatkhcndmst2025}. UBND cấp tỉnh mang hai nghĩa vụ báo cáo khác nhau: (a) định kỳ cập nhật dữ liệu vòng đời Giấy chứng nhận DN KH\&CN lên nền tảng quốc gia \citep[khoản 3 Điều 48]{nd268_2025}; (b) thông báo Bộ KH\&CN trong 15 ngày kể từ ngày ra quyết định, áp dụng cho cả Giấy công nhận (gồm DN KNST) và Giấy chứng nhận DN KH\&CN \citep[khoản 2 Điều 66]{nd268_2025}. & Nền tảng đề xuất là phương tiện kỹ thuật hỗ trợ UBND cấp tỉnh thực hiện (a) và (b) qua cổng tích hợp, không tự mang nghĩa vụ pháp lý và không giữ quyền ghi cấp Bộ; sự kiện (a) và (b) mang định danh, đích nhận và thời hạn tách biệt để không lẫn phạm vi DN KH\&CN với DN KNST; không mở nhánh báo cáo song song hoặc thay thế vai trò tổng hợp quốc gia. \\
 \addlinespace
 \textbf{Định danh/xác thực} & Dịch vụ định danh và CSDL đăng ký doanh nghiệp giữ định danh pháp lý; nền tảng là bên sử dụng dịch vụ \citep{nd69_2024,nd169_2025}. & Không tạo định danh pháp lý song song; lưu khóa định danh chính thức và thực hiện xác thực/đối soát theo điều kiện kết nối được quy định. \\
 \addlinespace
@@ -104,7 +104,7 @@ Hình~\ref{fig:ranhgioi} biểu diễn cấu trúc vùng chứa logic theo C4 \c
 \subsection{Triển khai và biên tin cậy như các điểm biến thiên}
 \label{subsec:v5v6}
 
-Profile P-DIST được dùng trong đánh giá để làm rõ một phương án trong đó mỗi tỉnh có kho vận hành vật lý tách biệt và trung ương duy trì mô hình đọc/tổng hợp. Đây là một lựa chọn L2 của điểm biến thiên topology, không phải thành phần bắt buộc của lõi SRA. Các hiện thực hóa đa tenant, phân vùng logic/schema hoặc mô hình lai vẫn có thể phù hợp nếu bảo toàn cùng biên quyền ghi, nguồn gốc dữ liệu, quan hệ phụ thuộc và khả năng truy vết. Hình~\ref{fig:pdist-main} minh họa P-DIST ở mức deployment logic để cho thấy vị trí tương đối của nút tỉnh, nút trung ương và hạ tầng chia sẻ/điều phối; hình không ấn định sản phẩm CSDL, middleware hay giao thức cụ thể.
+Profile P-DIST -- đã giới thiệu ở Mục~\ref{subsec:arch-decisions} và Mục~\ref{subsec:phanlopdulieu} như một lựa chọn L2 của điểm biến thiên topology, không phải thành phần bắt buộc của lõi SRA -- được Hình~\ref{fig:pdist-main} minh họa ở mức deployment logic để cho thấy vị trí tương đối của nút tỉnh, nút trung ương và hạ tầng chia sẻ/điều phối; hình không ấn định sản phẩm CSDL, middleware hay giao thức cụ thể.
 
 \begin{figure}[H]
 \centering
