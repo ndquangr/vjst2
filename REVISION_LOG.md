@@ -197,3 +197,147 @@ và in danh sách vị trí lệch. Dùng lại như bước nghiệm thu bắt 
    93/2025/QH15, Quốc hội, 27/6/2025). Ghi ngày truy cập là 20/8/2026 (ngày thực
    hiện WP1-fix) thay vì tái dùng mốc "9/8/2026" của các nguồn khác trong corpus,
    vì đây là lần xác minh mới, không thuộc đợt rà soát gốc 08/08/2026.
+
+---
+
+## WP0 — Vệ sinh bản thảo: nhãn nội bộ, tên phiên bản, trùng ký hiệu kịch bản (2026-08-20)
+
+### Vấn đề xử lý
+Sáu lỗi vệ sinh phát hiện độc lập với nội dung khoa học: (1) nhãn nội bộ
+"VJST2 - Round 3 strengthened SRA manuscript" rò rỉ vào metadata các bản DOCX
+nộp; (2) tên phiên bản kiến trúc lẫn lộn giữa B1$_0$ (rendered "B1₀", dễ đọc
+nhầm "B10")/B1/B1-R/b1r; (3) trùng ký hiệu S — vừa là số kịch bản (S1--S10)
+vừa là số mục tài liệu bổ trợ (S1--S12), ví dụ "S1" vừa là "Tập nguồn" vừa là
+"Tỉnh xử lý và quyết định"; (4) câu placeholder chưa xử lý ở mục S6 tài liệu
+bổ trợ; (5) `deployment_view.csv` rỗng (1 byte); (6) Luật 93/2025/QH15 được
+tài liệu bổ trợ viện dẫn ("Luật 93, khoản 3 Điều 20") nhưng không có mục tham
+khảo tương ứng ở Mục 1 thân bài (mục này đã được bổ sung ở phạm vi khác bởi
+WP1/WP1-fix trong cùng phiên làm việc, nhưng chưa xuất hiện ở Mục 1 như đề bài
+yêu cầu).
+
+### File thay đổi
+
+**Nhãn nội bộ trong DOCX (hạng mục 1)** — Grep văn bản không thấy chuỗi
+"Round 3" ở bất kỳ file `.tex`/`.md` nào (chuỗi này chưa từng tồn tại trong
+mã nguồn LaTeX); nguồn gốc thực tế là trường metadata `dc:title` trong
+`docProps/core.xml` của 4 file DOCX, bị đặt cứng thành
+"VJST2 - Round 3 strengthened SRA manuscript" thay vì tên bài báo. Đã sửa
+bằng script Python (`zipfile`, giữ nguyên cấu trúc/compression/thứ tự các
+entry khác trong zip) cho cả 4 file:
+`VJST2_submission_round3_strengthened.docx`,
+`VJST2_submission_round4_recentered.docx`,
+`VJST2_submission_round5_hardened.docx`,
+`VJST_SUBMISSION_PACKAGE_20260810/01_UPLOAD_TO_OJS/01_MANUSCRIPT_VJST2_round5_hardened.docx`
+(bản dự kiến nộp OJS). `dc:title` mới: tên bài báo hiện hành lấy nguyên văn
+từ `00_frontmatter.tex`. Đã xác minh `zipfile.testzip()` không báo lỗi và
+`word/document.xml`/`docProps/app.xml` không còn chuỗi "Round 3" ở cả 7 file
+DOCX trong repo (kể cả các bản chưa từng chứa nhãn lỗi).
+
+**Tên phiên bản kiến trúc (hạng mục 2)** — Literal "B10" chưa từng tồn tại
+trong mã nguồn; nguồn gây đọc nhầm là ký pháp subscript `B1$_0$` (render
+"B1₀"). Chọn quy ước: **B1** cho ứng viên ban đầu, **B1-R** cho bản tinh
+chỉnh, **B0** cho đường cơ sở tập trung (đã đúng sẵn). Thay `B1$_0$` → `B1`
+trong toàn bộ `.tex` sống: `04_method.tex`, `08_evaluation.tex`,
+`supplementary_material.tex` (2 vị trí, gồm cả tiêu đề Bảng S12),
+`WP8_A_refinement_independence_supplement.tex`,
+`WP8_B_reproducibility_notation_supplement.tex`; và `B1_0` → `B1` trong
+`architecture_refinement_log.csv`, `prior_work_delta.csv`. Tên file
+`evaluation_results_b1r.csv` và các trích dẫn `\texttt{...b1r.csv}` đã khớp
+sẵn quy ước (không cần đổi tên).
+
+**Trùng ký hiệu S -- kịch bản vs. mục tài liệu bổ trợ (hạng mục 3)** — Đổi
+**S1--S10 (kịch bản) → SC1--SC10** ở mọi nơi các số này thực sự chỉ kịch bản,
+giữ nguyên **S1--S12 (mục tài liệu bổ trợ, kể cả S9.1--S9.4/S10.1--S10.3)**
+vì đó là namespace khác. Đã phân loại thủ công từng lần xuất hiện trước khi
+đổi (ví dụ "Mục~S10.3 và S11 (C07)" trong `03_background.tex` là tham chiếu
+mục tài liệu, KHÔNG đổi). Đồng thời đổi `R-S9`/`R-S10` (refinement ID bắt
+nguồn từ số kịch bản) → `R-SC9`/`R-SC10` cho nhất quán. File sửa:
+`04_method.tex`, `08_evaluation.tex` (bảng + prose), `09_discussion.tex`,
+`05_architecture.tex` (AD01/AD03), `06_data.tex`,
+`supplementary_material.tex` (Mục S5, S12, prose S9/S10 rời rạc),
+`WP8_A_refinement_independence_supplement.tex`,
+`WP8_B_reproducibility_notation_supplement.tex` (bảng COV + bảng đăng ký
+kịch bản), và các CSV: `evaluation_scenarios.csv`, `evaluation_results.csv`,
+`evaluation_results_b1r.csv`, `scenario_coverage.csv`,
+`scenario_coverage_rules.csv`, `evaluation_refinements.csv`,
+`architecture_refinement_log.csv`, `architecture_decisions.csv`.
+
+**Placeholder chưa xử lý ở S6 (hạng mục 4)** — Xóa câu "Trước khi nộp chính
+thức, gói dữ liệu bổ trợ nên được đóng băng... Các định danh phát hành được
+điền sau khi chốt bản nộp cuối..." trong `supplementary_material.tex`; thay
+bằng `% TODO-WP6: điền định danh phát hành chính thức (DOI/URL/tag/commit/
+checksum)...` — comment LaTeX, không hiển thị trong PDF.
+
+**`deployment_view.csv` rỗng (hạng mục 5)** — **Lựa chọn: điền nội dung**
+thay vì xóa, vì nội dung có thể trích xuất trực tiếp, không suy diễn, từ
+`figure_sources/fig05_c4_deployment_pdist.tex` (Hình 5, đã có trong thân bài)
+— tránh mất một artefact máy-đọc-được mà README đã liệt kê. File mới có 3
+dòng: Nút tỉnh P_i, Nút trung ương, Hạ tầng chia sẻ/điều phối + Agent Node,
+mỗi dòng liệt kê đúng các Container instance và quan hệ đã vẽ trong Hình 5,
+không thêm chi tiết nào ngoài hình.
+
+**Luật 93/2025/QH15 ở Mục 1 (hạng mục 6)** — `luatkhcndmst2025` đã có trong
+`refs.bib`/`references.tex` từ WP1, và đã được trích ở Mục 2.3
+(`03_background.tex`) và Bảng ranh giới liên thông (`07_interop.tex`) từ
+WP1-fix, nhưng chưa xuất hiện ở Mục 1 như đề bài WP0 yêu cầu minh thị. Thêm
+`\citep[khoản 3 Điều 20]{luatkhcndmst2025}` ngay tại điểm nhắc "Nền tảng số
+quản lý KH,CN&ĐMST quốc gia" lần đầu trong câu đầu tiên của `02_intro.tex`;
+đồng thời gắn `\citep{nd268_2025}` ngay sau "Nghị định số 268/2025/NĐ-CP" ở
+đầu câu đó để giữ đúng vị trí trích dẫn đầu tiên của nd268_2025 (đã là mục
+[1] từ trước). Do luatkhcndmst2025 giờ được trích lần đầu ở Mục 1 (trước cả
+`nhom_bai1`), di chuyển `\bibitem{luatkhcndmst2025}` từ vị trí cũ (giữa
+`nd356_2025` và `qd1762_2025`, do WP1-fix đặt) lên ngay sau `\bibitem{nd268_2025}`.
+
+### Nghiệm thu
+- `python scripts/check_citation_order.py` → **37/37 khớp** (chạy lại sau khi
+  di chuyển bibitem `luatkhcndmst2025`; lần chạy trung gian ngay sau khi thêm
+  câu trích dẫn ở Mục 1 nhưng trước khi dời bibitem báo 11/37, đúng như dự
+  kiến vì thứ tự xuất hiện trong thân bài đã đổi).
+- `grep -rn "B10"` và `grep -rn "B1_0\|B1\$_0\$"` trên toàn bộ `.tex`/`.csv`
+  sống (loại trừ `VJST_SUBMISSION_PACKAGE_20260810/`) → không còn kết quả.
+- `grep -rnE 'bare S9/S10 ngoài mục tài liệu'` (quét thủ công, phân loại theo
+  ngữ cảnh) → không còn kịch bản nào dùng ký hiệu S trần; toàn bộ 10 kịch bản
+  và các refinement ID liên quan dùng SC1--SC10/R-SC9/R-SC10.
+- Chuỗi "Round 3" không còn trong `word/document.xml`, `docProps/core.xml`,
+  `docProps/app.xml` của cả 7 file DOCX trong repo (kiểm tra bằng
+  `unzip -p ... | grep`, vì ripgrep không đọc được nội dung nén bên trong
+  DOCX nên bước "grep toàn repo" của đề bài tự nó không phát hiện được lỗi
+  gốc — đã kiểm tra trực tiếp qua zip thay vì chỉ dựa vào grep).
+- `latexmk -xelatex main.tex`: biên dịch sạch, không lỗi, không cảnh báo
+  tham chiếu/trích dẫn thiếu, không overfull hbox. 32 trang (không đổi so
+  với sau WP1-fix), 15315 → 15337 từ (`pdftotext | wc -w`; +22, hạng mục 6
+  là thay đổi nội dung duy nhất của WP0, còn lại là đổi tên/định dạng).
+- Biên dịch riêng `supplementary_material.tex` và
+  `WP8_A_refinement_independence_supplement.tex` bằng `xelatex`: sạch, PDF
+  đã được build lại và cập nhật trong repo.
+  `WP8_B_reproducibility_notation_supplement.tex` **không biên dịch được**
+  trong môi trường hiện tại vì thiếu font "Liberation Serif" (lỗi môi trường
+  có sẵn từ trước, không liên quan tới sửa đổi của WP0 — xác nhận bằng
+  `git diff` cho thấy dòng `\setmainfont{Liberation Serif}` không đổi, và
+  bằng bản sao thử nghiệm đổi tạm sang DejaVu Serif biên dịch sạch). PDF của
+  file này **chưa được build lại**; cần build trên máy có Times New
+  Roman/Liberation Serif, hoặc sửa fallback font giống các supplement khác
+  (`\IfFontExistsTF{Times New Roman}{...}{\setmainfont{DejaVu Serif}}`) —
+  đây là sửa đổi ngoài phạm vi 6 hạng mục của WP0 nên chưa tự ý thực hiện.
+
+### Điểm cần lưu ý — BÁO CÁO LẠI CHO NGƯỜI DÙNG
+1. `WP8_B_reproducibility_notation_supplement.pdf` trong repo hiện **lệch**
+   với `.tex` đã sửa (PDF cũ còn "S1--S10"/"B1$_0$"; `.tex` đã có
+   "SC1--SC10"/"B1"). Cần build lại PDF này trước khi coi tài liệu bổ trợ là
+   nhất quán/đóng băng, sau khi xử lý lỗi font ở trên.
+2. `VJST_SUBMISSION_PACKAGE_20260810/02_SUPPLEMENTARY_DATA_RELEASE/` là gói
+   "frozen" theo `00_README_SUBMISSION_PACKAGE.md`; các CSV/tex bên trong đó
+   (bản sao của `architecture_refinement_log.csv`, `prior_work_delta.csv`,
+   `architecture_decisions.csv`, `evaluation_refinements.csv`, v.v.) **chưa
+   được đồng bộ** với các sửa đổi hạng mục 2--3 ở bản làm việc gốc, vì gói
+   này được tài liệu hóa là snapshot chỉ-đọc, không phải nơi sửa trực tiếp.
+   Chỉ file DOCX trong gói (`01_UPLOAD_TO_OJS/...round5_hardened.docx`) được
+   sửa, vì đó đúng là hạng mục 1 của đề bài. Cần tái tạo (regenerate) toàn bộ
+   gói `02_SUPPLEMENTARY_DATA_RELEASE/` từ các file gốc đã sửa trước khi nộp
+   chính thức.
+3. `README.md` còn nhắc "B1$_0$", "S1--S10", "R-S9/R-S10" ở các đoạn tường
+   thuật lịch sử theo mốc WP (ví dụ "Sau các vòng WP7--WP8-B..."). Đây là
+   nhật ký diễn biến dự án, không phải bản thảo khoa học nằm trong phạm vi 6
+   hạng mục của WP0 ("tất cả file .tex, supplementary_material.tex, và
+   tên/nội dung các file CSV"); **chưa sửa** để tránh viết lại lịch sử ngoài
+   yêu cầu. Báo lại nếu muốn đồng bộ hóa thuật ngữ trong README luôn.

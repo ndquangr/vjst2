@@ -61,34 +61,34 @@ DOC16 & EU 2024/903 & M & D4 & Tham chiếu phương pháp về đánh giá liê
 \textbf{Đối soát:} 16 tài liệu = 13 lớp A + 1 lớp D + 2 lớp M. Sau bước chọn tài liệu, 116 đơn vị nguồn được tách thành 128 mệnh đề ràng buộc nguồn nguyên tử theo R1--R5; đây là hai tầng tái lập khác nhau.
 \newpage
 
-\section*{B. Quy tắc sinh và bao phủ bộ kịch bản S1--S10}
+\section*{B. Quy tắc sinh và bao phủ bộ kịch bản SC1--SC10}
 \begin{tabularx}{\textwidth}{@{}p{1.4cm}p{5.0cm}p{2.8cm}Y@{}}
 \toprule
 \smallhead{Nhóm} & \smallhead{Chiều lựa chọn} & \smallhead{Kịch bản} & \smallhead{Mục đích bao phủ} \\
 \midrule
-COV1 & Vận hành bình thường và biến thể địa phương & S1, S2 & Thẩm quyền bình thường; cấu hình quy trình địa phương. \\
-COV2 & Thay đổi quy định, nguồn hoặc phiên bản & S3, S6, S10 & Thay đổi quy định; thay đổi nguồn có thẩm quyền; nâng cấp cuốn chiếu. \\
-COV3 & Gián đoạn hạ tầng/lớp trung ương & S4, S7 & Mất liên thông và mất lớp điều phối trung ương. \\
-COV4 & Tổng hợp toàn quốc và quan hệ xuyên địa bàn & S5, S8 & Độ mới/tổng hợp và liên kết vượt biên thẩm quyền. \\
-COV5 & Chuyển quyền quản lý/ghi & S9 & Quyền ghi theo thời gian và chuyển giao thẩm quyền. \\
+COV1 & Vận hành bình thường và biến thể địa phương & SC1, SC2 & Thẩm quyền bình thường; cấu hình quy trình địa phương. \\
+COV2 & Thay đổi quy định, nguồn hoặc phiên bản & SC3, SC6, SC10 & Thay đổi quy định; thay đổi nguồn có thẩm quyền; nâng cấp cuốn chiếu. \\
+COV3 & Gián đoạn hạ tầng/lớp trung ương & SC4, SC7 & Mất liên thông và mất lớp điều phối trung ương. \\
+COV4 & Tổng hợp toàn quốc và quan hệ xuyên địa bàn & SC5, SC8 & Độ mới/tổng hợp và liên kết vượt biên thẩm quyền. \\
+COV5 & Chuyển quyền quản lý/ghi & SC9 & Quyền ghi theo thời gian và chuyển giao thẩm quyền. \\
 \bottomrule
 \end{tabularx}
 
 \vspace{7pt}
 \begin{tabularx}{\textwidth}{@{}p{1.0cm}p{1.9cm}p{2.6cm}p{2.8cm}Y@{}}
 \toprule
-\smallhead{S} & \smallhead{Nhóm} & \smallhead{DRV} & \smallhead{Góc nhìn} & \smallhead{Điều kiện được thử} \\
+\smallhead{SC} & \smallhead{Nhóm} & \smallhead{DRV} & \smallhead{Góc nhìn} & \smallhead{Điều kiện được thử} \\
 \midrule
-S1 & COV1 & DRV1 & V1, V3, V4 & Tỉnh xử lý/quyết định trong phạm vi thẩm quyền. \\
-S2 & COV1 & DRV2, DRV5 & V2, V4, V6 & Khác biệt bước nội bộ nhưng giữ nghĩa vụ pháp lý. \\
-S3 & COV2 & DRV2, DRV5 & V2, V4, V5, V6 & Thay đổi biểu mẫu/trạng thái/thời hạn bắt buộc. \\
-S4 & COV3 & DRV3, DRV4, DRV5 & V4, V5, V6 & Gián đoạn lớp chia sẻ sau quyết định của tỉnh. \\
-S5 & COV4 & DRV4, DRV5 & V1, V3, V4, V5 & Đọc/tổng hợp toàn quốc và độ mới của bản đọc. \\
-S6 & COV2 & DRV4, DRV5 & V3, V4, V6 & Nguồn định danh quốc gia thay đổi dữ liệu/tham chiếu. \\
-S7 & COV3 & DRV3, DRV4 & V1, V4, V5 & Lớp trung ương không sẵn sàng khi tỉnh đang xử lý. \\
-S8 & COV4 & DRV1, DRV4 & V1, V3, V4 & Quan hệ hệ sinh thái xuyên tỉnh. \\
-S9 & COV5 & DRV1, DRV4, DRV5 & V1, V3, V4, V5, V6 & Chuyển phạm vi quản lý/quyền ghi giữa hai tỉnh. \\
-S10 & COV2 & DRV2, DRV4, DRV5 & V2, V3, V4, V5, V6 & Nâng cấp lược đồ/quy trình không đồng thời. \\
+SC1 & COV1 & DRV1 & V1, V3, V4 & Tỉnh xử lý/quyết định trong phạm vi thẩm quyền. \\
+SC2 & COV1 & DRV2, DRV5 & V2, V4, V6 & Khác biệt bước nội bộ nhưng giữ nghĩa vụ pháp lý. \\
+SC3 & COV2 & DRV2, DRV5 & V2, V4, V5, V6 & Thay đổi biểu mẫu/trạng thái/thời hạn bắt buộc. \\
+SC4 & COV3 & DRV3, DRV4, DRV5 & V4, V5, V6 & Gián đoạn lớp chia sẻ sau quyết định của tỉnh. \\
+SC5 & COV4 & DRV4, DRV5 & V1, V3, V4, V5 & Đọc/tổng hợp toàn quốc và độ mới của bản đọc. \\
+SC6 & COV2 & DRV4, DRV5 & V3, V4, V6 & Nguồn định danh quốc gia thay đổi dữ liệu/tham chiếu. \\
+SC7 & COV3 & DRV3, DRV4 & V1, V4, V5 & Lớp trung ương không sẵn sàng khi tỉnh đang xử lý. \\
+SC8 & COV4 & DRV1, DRV4 & V1, V3, V4 & Quan hệ hệ sinh thái xuyên tỉnh. \\
+SC9 & COV5 & DRV1, DRV4, DRV5 & V1, V3, V4, V5, V6 & Chuyển phạm vi quản lý/quyền ghi giữa hai tỉnh. \\
+SC10 & COV2 & DRV2, DRV4, DRV5 & V2, V3, V4, V5, V6 & Nâng cấp lược đồ/quy trình không đồng thời. \\
 \bottomrule
 \end{tabularx}
 
@@ -103,7 +103,7 @@ V1: 5; V2: 3; V3: 6; V4: 10; V5: 6; V6: 6. Mọi góc nhìn V1--V6 đều đư�
 \end{minipage}
 
 \vspace{7pt}
-\textbf{Kết quả B1$_0$:} 2 ĐÁP ỨNG TRỰC TIẾP + 7 ĐÁP ỨNG CÓ ĐIỀU KIỆN + 1 RỦI RO KIẾN TRÚC. Ma trận bao phủ làm rõ phạm vi đã thử, không chứng minh bộ mười kịch bản là đầy đủ mọi tình huống có thể xảy ra.
+\textbf{Kết quả B1:} 2 ĐÁP ỨNG TRỰC TIẾP + 7 ĐÁP ỨNG CÓ ĐIỀU KIỆN + 1 RỦI RO KIẾN TRÚC. Ma trận bao phủ làm rõ phạm vi đã thử, không chứng minh bộ mười kịch bản là đầy đủ mọi tình huống có thể xảy ra.
 \newpage
 
 \section*{C. Hồ sơ ký pháp của Hình 1--5}

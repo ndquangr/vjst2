@@ -77,7 +77,7 @@ Danh mục, quan hệ và dữ liệu dẫn xuất & Danh mục dùng chung theo
 \end{table}
 }
 
-Một rủi ro đặc thù của mô hình nhiều địa phương là thay đổi thẩm quyền trong khi hồ sơ hoặc trạng thái nghiệp vụ vẫn đang tồn tại. Sau stress-test S9, B1-R biểu diễn quyền ghi như một gán có phạm vi và khoảng hiệu lực thay vì thuộc tính địa bàn cố định. Đối với cùng một phạm vi, tại một thời điểm chỉ có một writer hợp lệ; việc chuyển quyền phải xác nhận đóng băng writer cũ, đối soát dữ liệu/nguồn gốc rồi mới kích hoạt writer mới. Một epoch tăng đơn điệu được dùng để phát hiện ghi từ gán quyền cũ. Đây là ngữ nghĩa thiết kế L2 nhằm bảo toàn single-active-writer và tính truy vết; thuật toán khóa, consensus hay middleware cụ thể vẫn thuộc L3. Chi tiết trường dữ liệu và máy trạng thái chuyển giao nằm trong tài liệu bổ trợ.
+Một rủi ro đặc thù của mô hình nhiều địa phương là thay đổi thẩm quyền trong khi hồ sơ hoặc trạng thái nghiệp vụ vẫn đang tồn tại. Sau stress-test SC9, B1-R biểu diễn quyền ghi như một gán có phạm vi và khoảng hiệu lực thay vì thuộc tính địa bàn cố định. Đối với cùng một phạm vi, tại một thời điểm chỉ có một writer hợp lệ; việc chuyển quyền phải xác nhận đóng băng writer cũ, đối soát dữ liệu/nguồn gốc rồi mới kích hoạt writer mới. Một epoch tăng đơn điệu được dùng để phát hiện ghi từ gán quyền cũ. Đây là ngữ nghĩa thiết kế L2 nhằm bảo toàn single-active-writer và tính truy vết; thuật toán khóa, consensus hay middleware cụ thể vẫn thuộc L3. Chi tiết trường dữ liệu và máy trạng thái chuyển giao nằm trong tài liệu bổ trợ.
 
 \subsection{Chuẩn hóa, nguồn gốc và chất lượng dữ liệu}
 \label{subsec:chuanhoa}

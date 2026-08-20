@@ -8,7 +8,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
 \begin{document}\sloppy\setlength{\emergencystretch}{5em}
-\section*{Phụ lục WP8-A: vòng tinh chỉnh B1$_0$--B1-R và tính độc lập với công trình trước}
+\section*{Phụ lục WP8-A: vòng tinh chỉnh B1--B1-R và tính độc lập với công trình trước}
 
 \subsection*{1. Nhật ký vòng thiết kế--đánh giá--tinh chỉnh}
 \small
@@ -16,15 +16,15 @@
 \toprule
 \textbf{Bước} & \textbf{Artefact} & \textbf{Kích hoạt} & \textbf{Thay đổi/quan sát} & \textbf{Trạng thái khoa học}\\
 \midrule
-D0 & B1$_0$/AD01-v1 & DRV1--DRV5 trước đánh giá & Biên ghi theo tỉnh + AE25 mô hình đọc/điều phối; chưa biểu diễn chuyển quyền ghi theo thời gian. & Ứng viên được đưa vào stress-test.\\
+D0 & B1/AD01-v1 & DRV1--DRV5 trước đánh giá & Biên ghi theo tỉnh + AE25 mô hình đọc/điều phối; chưa biểu diễn chuyển quyền ghi theo thời gian. & Ứng viên được đưa vào stress-test.\\
 \addlinespace
-E1 & S9 & Chuyển phạm vi quản lý A$\rightarrow$B & Phát hiện nguy cơ hai nút cùng ghi, định tuyến sai hoặc mất nguồn gốc nếu quyền ghi chỉ là thuộc tính địa bàn tĩnh. & \textsc{Rủi ro kiến trúc} của B1$_0$.\\
+E1 & SC9 & Chuyển phạm vi quản lý A$\rightarrow$B & Phát hiện nguy cơ hai nút cùng ghi, định tuyến sai hoặc mất nguồn gốc nếu quyền ghi chỉ là thuộc tính địa bàn tĩnh. & \textsc{Rủi ro kiến trúc} của B1.\\
 \addlinespace
-R1 & B1-R/AD01-v2 & R-S9 & Bổ sung gán quyền ghi theo khoảng hiệu lực, \texttt{transfer\_id}/bằng chứng nguồn và bất biến một gán đang hoạt động; AE25 định tuyến theo thời gian. & Đã tích hợp ở mức L2; cần kiểm thử triển khai.\\
+R1 & B1-R/AD01-v2 & R-SC9 & Bổ sung gán quyền ghi theo khoảng hiệu lực, \texttt{transfer\_id}/bằng chứng nguồn và bất biến một gán đang hoạt động; AE25 định tuyến theo thời gian. & Đã tích hợp ở mức L2; cần kiểm thử triển khai.\\
 \addlinespace
-E2 & S10 & Nâng cấp lược đồ/quy trình lệch thời điểm & Làm rõ khoảng trống khi nhiều phiên bản cùng tồn tại trong nâng cấp cuốn chiếu. & \textsc{Đáp ứng có điều kiện} của B1$_0$.\\
+E2 & SC10 & Nâng cấp lược đồ/quy trình lệch thời điểm & Làm rõ khoảng trống khi nhiều phiên bản cùng tồn tại trong nâng cấp cuốn chiếu. & \textsc{Đáp ứng có điều kiện} của B1.\\
 \addlinespace
-R2 & B1-R/AD03-v2 & R-S10 & Bổ sung cửa sổ tương thích, phiên bản tối thiểu còn hỗ trợ, ghim phiên bản hồ sơ và đọc/chuyển đổi nhiều phiên bản tại AE25. & Đã tích hợp ở mức L2; cần kiểm thử triển khai.\\
+R2 & B1-R/AD03-v2 & R-SC10 & Bổ sung cửa sổ tương thích, phiên bản tối thiểu còn hỗ trợ, ghim phiên bản hồ sơ và đọc/chuyển đổi nhiều phiên bản tại AE25. & Đã tích hợp ở mức L2; cần kiểm thử triển khai.\\
 \bottomrule
 \end{tabularx}
 
@@ -37,13 +37,13 @@ Vai trò trong bài mới & Chỉ dùng để xác lập bối cảnh và ranh g
 \addlinespace
 Artefact không nhận lại làm novelty & FR, sáu lớp năng lực, bốn nhóm người dùng và sơ đồ C4 Container trước đây. & Không dùng các artefact này để tạo Cxx.yy, DRV, AD, AE hoặc kết quả stress-test.\\
 \addlinespace
-Pipeline hiện tại & -- & Tập nguồn $\rightarrow$ đơn vị nguồn $\rightarrow$ Cxx.yy $\rightarrow$ DRV1--DRV5 $\rightarrow$ AD/AE/VP $\rightarrow$ B1$_0$ $\rightarrow$ S1--S10 $\rightarrow$ B1-R.\\
+Pipeline hiện tại & -- & Tập nguồn $\rightarrow$ đơn vị nguồn $\rightarrow$ Cxx.yy $\rightarrow$ DRV1--DRV5 $\rightarrow$ AD/AE/VP $\rightarrow$ B1 $\rightarrow$ SC1--SC10 $\rightarrow$ B1-R.\\
 \addlinespace
 Đóng góp chính & -- & SRA đa góc nhìn; thẩm quyền dữ liệu theo nhóm thuộc tính; biên trách nhiệm/liên thông; topology tỉnh--trung ương; truy vết nguyên tử; vòng stress-test--tinh chỉnh.\\
 \bottomrule
 \end{tabularx}
 
 \subsection*{3. Giới hạn diễn giải}
-B1-R là artefact thiết kế sau vòng stress-test. Việc tích hợp R-S9/R-S10 vào AD01/AD03 không phải bằng chứng rằng cơ chế đã hoạt động đúng trong hệ thống triển khai. Các bất biến về một quyền ghi hoạt động, cắt chuyển, hoàn tác, bảo toàn nguồn gốc, cửa sổ tương thích và nâng cấp cuốn chiếu vẫn phải được kiểm tra bằng nguyên mẫu và phép thử có thể lặp lại.
+B1-R là artefact thiết kế sau vòng stress-test. Việc tích hợp R-SC9/R-SC10 vào AD01/AD03 không phải bằng chứng rằng cơ chế đã hoạt động đúng trong hệ thống triển khai. Các bất biến về một quyền ghi hoạt động, cắt chuyển, hoàn tác, bảo toàn nguồn gốc, cửa sổ tương thích và nâng cấp cuốn chiếu vẫn phải được kiểm tra bằng nguyên mẫu và phép thử có thể lặp lại.
 
 \end{document}

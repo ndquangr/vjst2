@@ -1,11 +1,11 @@
 scenario_id,b1_assessment,driver_links,mechanism,sensitivity_point,risk_or_condition,b0_contrast
-S1,ĐÁP ỨNG TRỰC TIẾP,DRV1,AE24;AE20,định tuyến thẩm quyền,Sai định tuyến có thể tạo quyết định ngoài thẩm quyền,B0 có thể phân quyền logic nhưng phụ thuộc môi trường thực thi/kho trung tâm.
-S2,ĐÁP ỨNG TRỰC TIẾP,DRV2;DRV5,AE26;AE18,local-cấu hình conformance gate,lệch cấu hình / ghi đè trái quy tắc,B0 đơn giản hơn nếu dùng một quy trình chuẩn.
-S3,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV2;DRV5,AE26;AE18,phát hành mô hình nền và tái kiểm tra cấu hình,lan truyền thay đổi phân tán / chuyển phiên bản hồ sơ đang xử lý,B0 có ít điểm phát hành/cấu hình hơn.
-S4,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV3;DRV4;DRV5,AE10;AE24;AE25,gửi lại/hộp thư giao dịch + giám sát thời hạn,Outage longer than statutory window,B0 phụ thuộc trực tiếp hơn vào lớp trung tâm.
-S5,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV4;DRV5,AE25;AE15,siêu dữ liệu độ mới/nguồn gốc,Stale national aggregate,B0 có ảnh đọc tập trung đơn giản hơn.
-S6,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV4;DRV5,AE03;AE15;AE24,làm mới bản tham chiếu / xác minh lại nguồn có thẩm quyền,Stale legal identity reference,B0 có ít bản tham chiếu vận hành hơn.
-S7,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV3;DRV4,AE24;AE25,tách miền sự cố,Local step may still depend on mandatory external source,B0 có miền sự cố trung tâm rộng hơn.
-S8,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV1;DRV4,AE17;AE25,mô hình quan hệ dùng chung/trung ương,Fragmented cross-province relation,B0 đơn giản hơn cho truy vấn quan hệ liên tỉnh.
-S9,RỦI RO KIẾN TRÚC,DRV1;DRV4;DRV5,AE24;AE25 (hiện chưa có giao thức chuyển quyền ghi),single-active-writer khi chuyển thẩm quyền,"Hai tỉnh có thể cùng ghi, định tuyến sai hoặc mất provenance nếu chỉ sao chép dữ liệu/thay mã địa bàn.",B0 giảm phức tạp chuyển dữ liệu vật lý nhưng vẫn cần chuyển quyền nghiệp vụ và audit.
-S10,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV2;DRV4;DRV5,AE18;AE25;AE26;AD03,cửa sổ tương thích phiên bản giữa các nút,Một tỉnh phát dữ liệu theo phiên bản mới trong khi AE25/tỉnh khác chỉ hiểu phiên bản cũ; workflow đang chạy bị đổi ngầm.,B0 có ít trạng thái rollout phân tán hơn nhưng vẫn cần quản lý phiên bản giao diện ngoài.
+SC1,ĐÁP ỨNG TRỰC TIẾP,DRV1,AE24;AE20,định tuyến thẩm quyền,Sai định tuyến có thể tạo quyết định ngoài thẩm quyền,B0 có thể phân quyền logic nhưng phụ thuộc môi trường thực thi/kho trung tâm.
+SC2,ĐÁP ỨNG TRỰC TIẾP,DRV2;DRV5,AE26;AE18,local-cấu hình conformance gate,lệch cấu hình / ghi đè trái quy tắc,B0 đơn giản hơn nếu dùng một quy trình chuẩn.
+SC3,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV2;DRV5,AE26;AE18,phát hành mô hình nền và tái kiểm tra cấu hình,lan truyền thay đổi phân tán / chuyển phiên bản hồ sơ đang xử lý,B0 có ít điểm phát hành/cấu hình hơn.
+SC4,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV3;DRV4;DRV5,AE10;AE24;AE25,gửi lại/hộp thư giao dịch + giám sát thời hạn,Outage longer than statutory window,B0 phụ thuộc trực tiếp hơn vào lớp trung tâm.
+SC5,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV4;DRV5,AE25;AE15,siêu dữ liệu độ mới/nguồn gốc,Stale national aggregate,B0 có ảnh đọc tập trung đơn giản hơn.
+SC6,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV4;DRV5,AE03;AE15;AE24,làm mới bản tham chiếu / xác minh lại nguồn có thẩm quyền,Stale legal identity reference,B0 có ít bản tham chiếu vận hành hơn.
+SC7,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV3;DRV4,AE24;AE25,tách miền sự cố,Local step may still depend on mandatory external source,B0 có miền sự cố trung tâm rộng hơn.
+SC8,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV1;DRV4,AE17;AE25,mô hình quan hệ dùng chung/trung ương,Fragmented cross-province relation,B0 đơn giản hơn cho truy vấn quan hệ liên tỉnh.
+SC9,RỦI RO KIẾN TRÚC,DRV1;DRV4;DRV5,AE24;AE25 (hiện chưa có giao thức chuyển quyền ghi),single-active-writer khi chuyển thẩm quyền,"Hai tỉnh có thể cùng ghi, định tuyến sai hoặc mất provenance nếu chỉ sao chép dữ liệu/thay mã địa bàn.",B0 giảm phức tạp chuyển dữ liệu vật lý nhưng vẫn cần chuyển quyền nghiệp vụ và audit.
+SC10,ĐÁP ỨNG CÓ ĐIỀU KIỆN,DRV2;DRV4;DRV5,AE18;AE25;AE26;AD03,cửa sổ tương thích phiên bản giữa các nút,Một tỉnh phát dữ liệu theo phiên bản mới trong khi AE25/tỉnh khác chỉ hiểu phiên bản cũ; workflow đang chạy bị đổi ngầm.,B0 có ít trạng thái rollout phân tán hơn nhưng vẫn cần quản lý phiên bản giao diện ngoài.
