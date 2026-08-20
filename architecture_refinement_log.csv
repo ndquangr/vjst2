@@ -1,0 +1,8 @@
+step,artifact,trigger,change,status
+D0,B1_0 / AD01-v1,DRV1-DRV5 trước đánh giá,Biên ghi theo tỉnh + AE25 mô hình đọc/điều phối; chưa mô hình hóa chuyển quyền ghi theo thời gian.,Ứng viên được stress-test
+E1,S9,Chuyển phạm vi quản lý A->B,Phát hiện nguy cơ hai nút cùng ghi/định tuyến sai/mất provenance khi quyền ghi thay đổi theo thời gian.,RỦI RO KIẾN TRÚC đối với B1_0
+R1,B1-R / AD01-v2,R-S9,Bổ sung gán quyền ghi theo khoảng hiệu lực + single-active-writer + transfer_id/source_evidence + routing tại AE25.,Đã tích hợp ở mức thiết kế L2; cần kiểm thử triển khai
+E2,S10,Nâng cấp lược đồ/quy trình lệch thời điểm,Làm rõ khoảng trống về tương thích nhiều phiên bản trong nâng cấp cuốn chiếu.,ĐÁP ỨNG CÓ ĐIỀU KIỆN đối với B1_0
+R2,B1-R / AD03-v2,R-S10,"Bổ sung compatibility window, minimum supported version và workflow-version pinning; AE25 hỗ trợ các phiên bản còn trong cửa sổ.",Đã tích hợp ở mức thiết kế L2; cần kiểm thử triển khai
+R3,B1-R / AD01-v3,R-S9 hậu phản biện,"Bổ sung write_scope, xử lý hồ sơ đang chạy, máy trạng thái chuyển giao và writer_epoch/fencing; chỉ cho phép forward recovery sau khi kích hoạt writer mới.",Đã tích hợp ở mức thiết kế L2; cần kiểm thử triển khai
+E3,B1-R/P-DIST,S1-S10 hậu tinh chỉnh,Áp dụng lại cùng rubric cho toàn bộ 10 kịch bản: 2 trực tiếp + 8 có điều kiện + 0 rủi ro chưa hấp thụ ở L2.,Hoàn tất hậu kiểm thiết kế; không thay thế kiểm thử nguyên mẫu

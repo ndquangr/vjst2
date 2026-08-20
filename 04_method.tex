@@ -1,0 +1,44 @@
+%=====================================================================
+% 04 — TƯ LIỆU VÀ PHƯƠNG PHÁP NGHIÊN CỨU — final scientific compression
+%=====================================================================
+\section{Tư liệu và phương pháp nghiên cứu}
+\label{sec:method}
+
+\subsection{Thiết kế nghiên cứu}
+\label{subsec:dsr}
+
+Nghiên cứu sử dụng nghiên cứu khoa học thiết kế (\textit{Design Science Research}, DSR) để xây dựng và đánh giá một kiến trúc tham chiếu phần mềm (SRA) cho bài toán quản lý DN KH\&CN và DN KNST theo mô hình tỉnh--trung ương. DSR phù hợp với mục tiêu này vì đối tượng nghiên cứu là một sản phẩm thiết kế cần vừa giải quyết một vấn đề thực tiễn, vừa được lập luận và đánh giá có hệ thống \citep[pp.~82--83]{hevner2004}. Quy trình được tổ chức theo bốn bước chính, tương ứng với logic thiết kế--đánh giá của Peffers và cộng sự \citep[pp.~52--56]{peffers2007}: (i) xác lập các ràng buộc có hệ quả kiến trúc từ tập nguồn; (ii) tổng hợp các động lực, quyết định và thành phần của SRA; (iii) hiện thực hóa một cấu hình ứng viên để làm rõ các đánh đổi; và (iv) thử thách cấu hình đó bằng các kịch bản, sau đó tinh chỉnh và đánh giá lại.
+
+Sản phẩm nghiên cứu gồm SRA đa góc nhìn, mô hình thẩm quyền dữ liệu, mô hình liên thông và ranh giới trách nhiệm, cùng chuỗi truy vết nối căn cứ nguồn với quyết định kiến trúc và tiêu chí đánh giá. SRA được thiết kế theo nguyên tắc tách \emph{lõi ổn định} khỏi \emph{điểm biến thiên}: lõi chỉ giữ các bất biến cần bảo toàn khi triển khai, còn các lựa chọn như topology lưu trữ, cơ chế đồng bộ hoặc công nghệ tích hợp được xem là cấu hình dẫn xuất. Cách tách này cho phép nghiên cứu đánh giá một profile cụ thể mà không đồng nhất profile đó với toàn bộ kiến trúc tham chiếu.
+
+\subsection{Tập nguồn và tổng hợp ràng buộc kiến trúc}
+\label{subsec:corpus}
+
+Tập nguồn được khóa theo trạng thái đến ngày 08/08/2026. Việc lựa chọn ưu tiên các văn bản hiện hành trực tiếp điều chỉnh đối tượng quản lý và các khung kiến trúc, dữ liệu, định danh, liên thông, bảo vệ dữ liệu có tác động tới nền tảng; văn bản sửa đổi hoặc được dẫn chiếu chỉ được bổ sung khi làm thay đổi một nghĩa vụ có hệ quả kiến trúc. Tài liệu học thuật được dùng để xây dựng nền tảng lý thuyết và phương pháp, không được dùng để tạo nghĩa vụ pháp lý. Để tránh trộn lẫn mức căn cứ, nguồn được phân thành ba lớp: \textbf{A}--hiện hành/có thẩm quyền, tạo đường cơ sở; \textbf{D}--dự thảo, chỉ dùng chẩn đoán; và \textbf{M}--phương pháp hoặc tham chiếu quốc tế. Danh mục đầy đủ và lý do lựa chọn từng tài liệu được cung cấp trong tài liệu bổ trợ.
+
+Từ 16 tài liệu, nghiên cứu xác định 116 đơn vị nguồn và mã hóa thành 128 dòng truy vết, gồm 114 dòng lớp A, 8 dòng lớp D và 6 dòng lớp M. Mỗi dòng biểu diễn một mệnh đề ràng buộc nguồn có vị trí dẫn chiếu cụ thể; một đơn vị nguồn được tách thành nhiều dòng khi chứa các nghĩa vụ có thể kiểm tra độc lập, trong khi các mệnh đề tương đồng ở những nguồn khác nhau vẫn được giữ riêng để bảo toàn xuất xứ. Vì vậy, con số 128 phản ánh số dòng truy vết theo nguồn, không phải số yêu cầu ngữ nghĩa duy nhất sau khử trùng lặp. Quy tắc nguyên tử hóa và các ví dụ mã hóa được chuyển sang tài liệu bổ trợ để thân bài chỉ giữ logic phương pháp cần thiết cho việc đánh giá nghiên cứu.
+
+Để phân biệt căn cứ chuẩn tắc với lựa chọn thiết kế, nghiên cứu dùng ba mức: \textbf{L1} là nghĩa vụ, cấu trúc hoặc mốc thời gian được nguồn lớp A quy định minh thị; \textbf{L2} là hệ quả kiến trúc suy ra trực tiếp để đáp ứng L1; và \textbf{L3} là lựa chọn hiện thực hóa cần được kiểm chứng khi triển khai. Phân lớp này đặc biệt quan trọng đối với các nội dung như topology lưu trữ, cơ chế hàng đợi, đồng bộ sự kiện hoặc giao thức kỹ thuật: chúng chỉ được khóa trong SRA khi có căn cứ ở mức tương ứng, thay vì được suy đoán từ yêu cầu nghiệp vụ.
+
+\subsection{Tổng hợp kiến trúc và truy vết}
+\label{subsec:formalization}
+
+Các ràng buộc lớp A được tổng hợp thành động lực kiến trúc, sau đó ánh xạ tới quyết định và thành phần của SRA. Chuỗi truy vết sử dụng trong nghiên cứu có dạng \emph{nguồn/vị trí $\rightarrow$ ràng buộc $\rightarrow$ quyết định hoặc thành phần kiến trúc $\rightarrow$ tiêu chí kiểm tra $\rightarrow$ trạng thái}. Chiều thuận cho biết một quyết định kiến trúc được dẫn xuất từ đâu; chiều ngược giúp nhận diện thành phần không có căn cứ rõ ràng hoặc chỉ là lựa chọn thiết kế. Các quyết định kiến trúc được ghi kèm vấn đề, phương án, lý do và đánh đổi, phù hợp với yêu cầu mô tả kiến trúc theo ISO/IEC/IEEE 42010 và thực hành ghi nhận quyết định kiến trúc \citep[pp.~19--27]{tyree2005}.
+
+SRA được biểu diễn bằng sáu góc nhìn nhằm tách các mối quan tâm: bối cảnh và trách nhiệm; năng lực--ứng dụng; dữ liệu--thẩm quyền; liên thông; triển khai; và an toàn/riêng tư. C4 được dùng cho ranh giới hệ thống và triển khai, ArchiMate cho quan hệ năng lực--ứng dụng và dữ liệu--ứng dụng, còn EIF và ma trận biên tin cậy được dùng để cấu trúc các vấn đề liên thông và kiểm soát. Việc sử dụng nhiều góc nhìn nhằm làm rõ các quyết định thiết kế chứ không nhằm đặc tả đầy đủ một hệ thống triển khai; các công nghệ và giao thức ở mức L3 được để mở khi nguồn và bằng chứng chưa đủ để khóa lựa chọn \citep{c4model2026}\citep[Chs.~5, 7, 9; Apps.~A--C]{archimate32_2023}.
+
+\subsection{Đánh giá theo kịch bản}
+\label{subsec:scenario-method}
+
+Kiến trúc ứng viên ban đầu \textbf{B1$_0$} được hình thành trước bước đánh giá từ các động lực về thẩm quyền ghi, khả năng cấu hình quy trình địa phương, khả năng tiếp tục xử lý khi lớp trung ương tạm gián đoạn, quản trị ngữ nghĩa/nguồn dữ liệu thống nhất và truy vết phiên bản. Để quan sát rõ các đánh đổi của một phương án triển khai, B1$_0$ được cấu hình theo profile \textbf{P-DIST}, trong đó mỗi tỉnh có kho vận hành vật lý tách biệt và trung ương duy trì mô hình đọc/tổng hợp. P-DIST là một giả thuyết thiết kế L2 dùng cho stress-test, không phải nghĩa vụ pháp lý hay cấu hình mặc định của SRA.
+
+Một cấu hình tập trung \textbf{B0} được dùng làm đường cơ sở đối chiếu. Mười kịch bản S1--S10 bao phủ năm nhóm mối quan tâm: vận hành bình thường và biến thể địa phương; thay đổi quy định/nguồn/phiên bản; gián đoạn hạ tầng hoặc lớp trung ương; tổng hợp toàn quốc và quan hệ xuyên địa bàn; và chuyển giao phạm vi quản lý. Bộ kịch bản không được xem là đầy đủ theo nghĩa thống kê; mục đích của nó là tạo các tình huống có khả năng làm lộ điểm nhạy, rủi ro và đánh đổi kiến trúc. Mỗi kịch bản được đánh giá theo ba mức: \textsc{đáp ứng trực tiếp} nếu lõi kiến trúc xử lý được mà không cần sửa quyết định ổn định; \textsc{đáp ứng có điều kiện} nếu cần hiện thực hóa hoặc kiểm chứng một cơ chế đã được kiến trúc cho phép; và \textsc{rủi ro kiến trúc} nếu kịch bản buộc phải xem xét lại một quyết định/lõi ổn định hoặc còn khoảng trống về thẩm quyền, toàn vẹn hay tương thích.
+
+Khi một kịch bản làm lộ khoảng trống, kết quả được đưa trở lại sản phẩm thiết kế theo vòng DSR để tạo phiên bản tinh chỉnh \textbf{B1-R}; sau đó toàn bộ S1--S10 được áp dụng lại bằng cùng rubric. Nghiên cứu không cộng điểm và không xếp hạng tổng thể B0 với B1$_0$, vì hai cấu hình khác nhau đồng thời ở nhiều quyết định và không cho phép suy luận nhân quả về một yếu tố riêng lẻ. Cách đánh giá lấy cảm hứng từ việc sử dụng kịch bản để phát hiện rủi ro và đánh đổi trong ATAM, nhưng không phải một quy trình ATAM đầy đủ \citep[pp.~3, 5--7]{gallagher2000}.
+
+Đây là đánh giá trước triển khai. Nghiên cứu không gán tải đỉnh, độ trễ, tính sẵn sàng, thời gian phục hồi hoặc các thuộc tính chất lượng chưa được đo; các mốc số chỉ được sử dụng khi có căn cứ chuẩn tắc. Vì vậy, kết quả đánh giá chỉ cho phép kết luận về mức đầy đủ và tính nhất quán của đặc tả kiến trúc dưới các kịch bản đã chọn. Kiểm chứng tiếp theo cần một nguyên mẫu và các phép thử lặp lại đối với liên thông, chuyển quyền ghi, nâng cấp cuốn chiếu, phục hồi, an toàn và các thuộc tính chất lượng.
+
+\subsection{Dữ liệu bổ trợ}
+\label{subsec:supplement}
+
+Để hỗ trợ khả năng kiểm tra lại mà không biến thân bài thành đặc tả kỹ thuật, tài liệu bổ trợ lưu danh mục nguồn, quy tắc nguyên tử hóa, ma trận truy vết, các bảng chi tiết về quyết định/điểm biến thiên/quy tắc phù hợp, bộ kịch bản và rubric, cùng kết quả trước--sau tinh chỉnh. Các artefact này cung cấp mức chi tiết cần thiết để kiểm tra và tái lập quy trình nghiên cứu, trong khi thân bài chỉ trình bày các bước phương pháp và bằng chứng trực tiếp phục vụ câu hỏi nghiên cứu.

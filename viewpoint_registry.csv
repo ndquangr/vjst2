@@ -1,0 +1,7 @@
+id,name,stakeholders,concerns,model_kind,body_artifact,core_elements,open_variation
+V1,Hệ sinh thái và trách nhiệm,STK1;STK2;STK3;STK4;STK5;STK6,sở hữu; thẩm quyền; trách nhiệm; biên hệ thống,C4 Container (logic; technology/protocol L3),Hình 4; Mục 6.3,AE20;AE21;AE24;AE25;AE26,VP4;VP7;VP8
+V2,Năng lực và ứng dụng,STK1;STK2;STK3;STK5,bao phủ năng lực; quy trình; khả năng thay đổi; tái sử dụng,ArchiMate 3.2 Capability--Application (Association mapping),Hình 2; Bảng 2,AE04-AE12;AE18;AE24;AE26,VP2;VP4;VP7
+V3,Dữ liệu và thẩm quyền,STK1;STK2;STK4;STK5,thẩm quyền pháp lý; thẩm quyền tạo/cập nhật; bản ghi vận hành chính; nguồn gốc; phân loại,ArchiMate 3.2 Application--Data,Hình 3; Bảng 3,AE02;AE03;AE15;AE16;AE19;AE24;AE25,VP1;VP6;VP8
+V4,Liên thông,STK1;STK2;STK4;STK5,liên thông pháp lý/tổ chức/ngữ nghĩa/kỹ thuật; hợp đồng; ngữ nghĩa sự cố,ma trận giao diện bốn lớp EIF,Bảng 4,AE11;AE12;AE20;AE24;AE25,VP3;VP8
+V5,Hiện thực hóa công nghệ,STK1;STK2;STK5;STK6,cấu trúc triển khai; phụ thuộc; khả năng chịu lỗi; trung lập công nghệ,C4 Deployment,Hình 5; Mục 6.4,AE22;AE24;AE25;AE26,VP1;VP3;VP7;VP8
+V6,An toàn và riêng tư,STK1;STK2;STK3;STK4;STK6,biên tin cậy; xác thực/phân quyền; phân loại dữ liệu; quyền riêng tư; kiểm toán; vòng đời kiểm soát,ma trận biên tin cậy--kiểm soát,Ma trận V6; Mục 6.4; Bảng 4/I1,AE13;AE14;AE15;AE20;AE23;AE24;AE25,VP5;VP7;VP8

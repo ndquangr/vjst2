@@ -1,0 +1,6 @@
+﻿rule_id,name,operational_rule,example_constraints
+R1,Chọn đơn vị nguồn nhỏ nhất,Chọn cặp nguồn--locator đủ chính xác có nội dung tác động trực tiếp tới kiến trúc; một đơn vị chỉ sinh một Cxx.yy nếu có một tiêu chí kiểm tra độc lập.,C03.46
+R2,Tách theo khả năng kiểm tra độc lập,Nếu cùng một đơn vị nguồn chứa nhiều nghĩa vụ/quyền/trạng thái/thời hạn có tiêu chí kiểm tra độc lập thì tách thành nhiều Cxx.yy; các kích hoạt thay thế dùng chung chủ thể--hành động--thời hạn có thể giữ trong một Cxx.yy.,C03.18-C03.22
+R3,Bảo toàn xuất xứ và không khử trùng lặp nguồn,Các mệnh đề tương đồng ở nguồn/locator khác nhau được giữ thành các source constraints riêng và có thể cùng hội tụ vào một AD/AE.,C05.09;C06.12
+R4,Phân lớp bằng chứng trước suy luận,Chỉ mệnh đề minh thị từ nguồn A tạo L1; D và M không tạo L1; L2/L3 nằm ở đáp ứng/rationale thiết kế và không được đếm thêm vào source constraints.,C03.46
+R5,Đóng vòng truy vết và trạng thái,"Mỗi Cxx.yy phải có source/locator, class/level, response, AE, verification criterion và status; status là design-response status, không phải chứng nhận tuân thủ triển khai.",C03.46;C05.09

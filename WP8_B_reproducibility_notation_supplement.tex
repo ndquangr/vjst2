@@ -1,0 +1,133 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,landscape,margin=1.35cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}
+\usepackage{booktabs,tabularx,array,longtable,xcolor}
+\usepackage[vietnamese,english]{babel}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\smallhead}[1]{\textbf{#1}}
+\begin{document}
+\selectlanguage{vietnamese}
+\begin{center}
+{\Large\bfseries Phụ lục WP8-B: tái lập lựa chọn nguồn, bao phủ kịch bản và hồ sơ ký pháp}\\[2pt]
+{\small Bản QA ngày 09/08/2026 -- dùng để kiểm tra phương pháp và tính nhất quán, không phải phụ lục bắt buộc của bản nộp.}
+\end{center}
+
+\section*{A. Lựa chọn tập nguồn ở cấp tài liệu}
+\begin{tabularx}{\textwidth}{@{}p{1.1cm}p{4.0cm}Y@{}}
+\toprule
+\smallhead{Mã} & \smallhead{Quy tắc} & \smallhead{Tiêu chí vận hành} \\
+\midrule
+D1 & Khởi tạo tập nguồn & Bắt đầu từ văn bản hiện hành trực tiếp điều chỉnh DN KH\&CN/DN KNST và các khung kiến trúc, dữ liệu, định danh, liên thông, bảo vệ dữ liệu có hệ quả kiến trúc. \\
+D2 & Lần theo thay đổi & Theo văn bản sửa đổi, thay thế hoặc dẫn chiếu khi chúng làm thay đổi nghĩa vụ có hệ quả kiến trúc. \\
+D3 & Đưa vào tập ràng buộc & Chỉ giữ tài liệu tác động trực tiếp tới dữ liệu, quy trình, thẩm quyền, vòng đời, chia sẻ, bảo vệ, báo cáo hoặc kiểm soát; tài liệu học thuật không sinh Cxx.yy. \\
+D4 & Khóa trạng thái & Khóa trạng thái tại ngày cắt; tách dự thảo và nguồn phương pháp khỏi nguồn tạo nghĩa vụ L1. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+\small
+\begin{tabularx}{\textwidth}{@{}p{1.1cm}p{3.4cm}p{1.0cm}p{2.1cm}Y p{1.2cm}@{}}
+\toprule
+\smallhead{ID} & \smallhead{Tài liệu} & \smallhead{Lớp} & \smallhead{Đường chọn} & \smallhead{Lý do đưa vào} & \smallhead{Họ} \\
+\midrule
+DOC01 & QĐ 3090/QĐ-BKHCN & A & D1 & Khung kiến trúc tổng thể quốc gia số ảnh hưởng vị trí hệ thống chuyên ngành. & C01 \\
+DOC02 & QĐ 292/QĐ-BKHCN & A & D1 & Khung/mô hình tham chiếu Chính phủ số có hệ quả kiến trúc. & C01 \\
+DOC03 & QĐ 2439/QĐ-TTg & A & D1 & Kiến trúc dữ liệu quốc gia và nguyên tắc kết nối/chia sẻ. & C02 \\
+DOC04 & Luật 93/2025/QH15 & A & D1 & Nghĩa vụ trực tiếp đối với DN KH\&CN/DN KNST. & C03 \\
+DOC05 & NĐ 268/2025/NĐ-CP & A & D1 & Thẩm quyền, quy trình, thời hạn, vòng đời và báo cáo chuyên ngành. & C03 \\
+DOC06 & Luật Dữ liệu 60/2024/QH15 & A & D1 & Danh mục, dữ liệu chủ, chất lượng, phân loại và nguyên tắc không thu thập lại. & C04 \\
+DOC07 & NĐ 278/2025/NĐ-CP & A & D1/D2 & Nguồn tin cậy, chia sẻ bắt buộc, truy vấn/đồng bộ, Agent Node, kiểm toán và chuyển tiếp. & C05 \\
+DOC08 & QĐ 1973/QĐ-BKHCN & A & D1 & Kiến trúc dữ liệu Bộ KH\&CN, phân loại dữ liệu, MDM, từ điển, tích hợp. & C06 \\
+DOC09 & QĐ 1762/QĐ-BKHCN & A & D1 & Danh mục CSDL chuyên ngành liên quan phạm vi đối tượng nghiên cứu. & C07 \\
+DOC10 & NĐ 69/2024/NĐ-CP & A & D1 & Định danh điện tử và điều kiện kết nối/xác thực. & C08 \\
+DOC11 & NĐ 169/2025/NĐ-CP & A & D2 & Chỉ phần sửa đổi NĐ 69 có liên quan trực tiếp tới kiến trúc. & C08 \\
+DOC12 & Luật 91/2025/QH15 & A & D1 & Nghĩa vụ bảo vệ dữ liệu cá nhân có hệ quả kiểm soát kiến trúc. & C09 \\
+DOC13 & NĐ 356/2025/NĐ-CP & A & D1/D2 & Quy định chi tiết và thay thế văn bản cũ về dữ liệu cá nhân. & C09 \\
+DOC14 & Dự thảo Khung TC DNKHCN & D & D4 & Nguồn chẩn đoán khoảng trống/ngữ nghĩa; không tạo L1. & C07 \\
+DOC15 & EIF 2017 & M & D4 & Khung kiểm tra liên thông bốn lớp; không tạo nghĩa vụ pháp lý Việt Nam. & C10 \\
+DOC16 & EU 2024/903 & M & D4 & Tham chiếu phương pháp về đánh giá liên thông/EIF; không tạo L1. & C10 \\
+\bottomrule
+\end{tabularx}
+\normalsize
+
+\vfill
+\textbf{Đối soát:} 16 tài liệu = 13 lớp A + 1 lớp D + 2 lớp M. Sau bước chọn tài liệu, 116 đơn vị nguồn được tách thành 128 mệnh đề ràng buộc nguồn nguyên tử theo R1--R5; đây là hai tầng tái lập khác nhau.
+\newpage
+
+\section*{B. Quy tắc sinh và bao phủ bộ kịch bản S1--S10}
+\begin{tabularx}{\textwidth}{@{}p{1.4cm}p{5.0cm}p{2.8cm}Y@{}}
+\toprule
+\smallhead{Nhóm} & \smallhead{Chiều lựa chọn} & \smallhead{Kịch bản} & \smallhead{Mục đích bao phủ} \\
+\midrule
+COV1 & Vận hành bình thường và biến thể địa phương & S1, S2 & Thẩm quyền bình thường; cấu hình quy trình địa phương. \\
+COV2 & Thay đổi quy định, nguồn hoặc phiên bản & S3, S6, S10 & Thay đổi quy định; thay đổi nguồn có thẩm quyền; nâng cấp cuốn chiếu. \\
+COV3 & Gián đoạn hạ tầng/lớp trung ương & S4, S7 & Mất liên thông và mất lớp điều phối trung ương. \\
+COV4 & Tổng hợp toàn quốc và quan hệ xuyên địa bàn & S5, S8 & Độ mới/tổng hợp và liên kết vượt biên thẩm quyền. \\
+COV5 & Chuyển quyền quản lý/ghi & S9 & Quyền ghi theo thời gian và chuyển giao thẩm quyền. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{7pt}
+\begin{tabularx}{\textwidth}{@{}p{1.0cm}p{1.9cm}p{2.6cm}p{2.8cm}Y@{}}
+\toprule
+\smallhead{S} & \smallhead{Nhóm} & \smallhead{DRV} & \smallhead{Góc nhìn} & \smallhead{Điều kiện được thử} \\
+\midrule
+S1 & COV1 & DRV1 & V1, V3, V4 & Tỉnh xử lý/quyết định trong phạm vi thẩm quyền. \\
+S2 & COV1 & DRV2, DRV5 & V2, V4, V6 & Khác biệt bước nội bộ nhưng giữ nghĩa vụ pháp lý. \\
+S3 & COV2 & DRV2, DRV5 & V2, V4, V5, V6 & Thay đổi biểu mẫu/trạng thái/thời hạn bắt buộc. \\
+S4 & COV3 & DRV3, DRV4, DRV5 & V4, V5, V6 & Gián đoạn lớp chia sẻ sau quyết định của tỉnh. \\
+S5 & COV4 & DRV4, DRV5 & V1, V3, V4, V5 & Đọc/tổng hợp toàn quốc và độ mới của bản đọc. \\
+S6 & COV2 & DRV4, DRV5 & V3, V4, V6 & Nguồn định danh quốc gia thay đổi dữ liệu/tham chiếu. \\
+S7 & COV3 & DRV3, DRV4 & V1, V4, V5 & Lớp trung ương không sẵn sàng khi tỉnh đang xử lý. \\
+S8 & COV4 & DRV1, DRV4 & V1, V3, V4 & Quan hệ hệ sinh thái xuyên tỉnh. \\
+S9 & COV5 & DRV1, DRV4, DRV5 & V1, V3, V4, V5, V6 & Chuyển phạm vi quản lý/quyền ghi giữa hai tỉnh. \\
+S10 & COV2 & DRV2, DRV4, DRV5 & V2, V3, V4, V5, V6 & Nâng cấp lược đồ/quy trình không đồng thời. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{7pt}
+\begin{minipage}[t]{0.47\textwidth}
+\textbf{Bao phủ động lực}\par
+DRV1: 3 kịch bản; DRV2: 3; DRV3: 2; DRV4: 7; DRV5: 7. Mỗi DRV xuất hiện ít nhất hai lần.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\textbf{Bao phủ góc nhìn}\par
+V1: 5; V2: 3; V3: 6; V4: 10; V5: 6; V6: 6. Mọi góc nhìn V1--V6 đều được ít nhất một kịch bản thử thách.
+\end{minipage}
+
+\vspace{7pt}
+\textbf{Kết quả B1$_0$:} 2 ĐÁP ỨNG TRỰC TIẾP + 7 ĐÁP ỨNG CÓ ĐIỀU KIỆN + 1 RỦI RO KIẾN TRÚC. Ma trận bao phủ làm rõ phạm vi đã thử, không chứng minh bộ mười kịch bản là đầy đủ mọi tình huống có thể xảy ra.
+\newpage
+
+\section*{C. Hồ sơ ký pháp của Hình 1--5}
+\begin{tabularx}{\textwidth}{@{}p{1.0cm}p{3.2cm}p{3.1cm}p{6.0cm}Y@{}}
+\toprule
+\smallhead{Hình} & \smallhead{Mục đích} & \smallhead{Ký pháp/góc nhìn} & \smallhead{Loại phần tử/quan hệ} & \smallhead{Giới hạn biểu diễn} \\
+\midrule
+H1 & Vị trí nền tảng trong hệ quy chiếu & ArchiMate 3.2 & Constraint; Application Component; Association; Flow. & Chỉ biểu diễn liên hệ động lực--ứng dụng và luồng trao đổi mức cao; không khóa công nghệ. \\
+H2 & Năng lực--ứng dụng & ArchiMate 3.2 & Capability; Application Component; Association; Flow. & Association là ánh xạ hỗ trợ vì lớp hành vi/dịch vụ trung gian được lược bỏ; không khẳng định Realization trực tiếp. \\
+H3 & Ứng dụng--dữ liệu & ArchiMate 3.2 & Application Component; Data Object; Access; Flow. & Access chỉ nối thành phần ứng dụng với đối tượng dữ liệu; Flow nối các thành phần ứng dụng. \\
+H4 & Ranh giới vùng chứa logic & C4 Model -- Container logic & Person; Container; Software System; quan hệ một chiều có nhãn. & Công nghệ/giao thức cụ thể là L3 chưa khóa; hình là góc nhìn logic, không phải đặc tả triển khai đầy đủ. \\
+H5 & Mẫu triển khai logic & C4 Deployment & Deployment Node; Container instance; Infrastructure Node. & Ánh xạ các vùng chứa H4 vào nút triển khai; môi trường, nền tảng và giao thức cụ thể vẫn là L3. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{10pt}
+\textbf{Nguyên tắc hardening WP8-B.}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+\item TikZ chỉ là công cụ vẽ; nghĩa của phần tử/quan hệ do góc nhìn ArchiMate/C4 quy định.
+\item Các lựa chọn công nghệ/giao thức không được suy đoán nếu không phải ràng buộc L1/L2; H4--H5 ghi rõ chúng chưa khóa ở L3.
+\item Hình 3 loại bỏ nhãn quan hệ lặp và định tuyến Access ra ngoài hộp dữ liệu để tránh giao cắt chữ; Hình 4 giảm quan hệ hai chiều thành phụ thuộc một chiều có nhãn; Hình 5 tách rõ nút triển khai và bản thực thi vùng chứa.
+\item Registry máy đọc tương ứng: \texttt{notation\_registry.csv}, \texttt{viewpoint\_registry.csv}, \texttt{deployment\_view.csv}, \texttt{security\_privacy\_view.csv}.
+\end{itemize}
+
+\vfill
+\textbf{Đối soát cuối WP8-B:} 116 đơn vị nguồn; 128 mệnh đề nguyên tử (114 A, 8 D, 6 M); lớp A = 110 ĐÁP ỨNG + 3 MỘT PHẦN + 1 CẦN LÀM RÕ; 10 kịch bản = 2 trực tiếp + 7 có điều kiện + 1 rủi ro; 5 hình kiến trúc H1--H5; 37/37 tài liệu tham khảo được dùng và đúng thứ tự xuất hiện đầu tiên.
+\end{document}

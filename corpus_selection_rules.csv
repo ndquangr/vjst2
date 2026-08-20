@@ -1,0 +1,5 @@
+rule_id,name,rule
+D1,Khởi tạo tập nguồn,"Bắt đầu từ văn bản hiện hành trực tiếp điều chỉnh DN KH&CN/DN KNST và khung kiến trúc, dữ liệu, định danh, liên thông, bảo vệ dữ liệu có hệ quả kiến trúc."
+D2,Lần theo thay đổi pháp lý,"Theo văn bản sửa đổi, thay thế hoặc dẫn chiếu khi thay đổi nghĩa vụ có hệ quả kiến trúc."
+D3,Tiêu chí đưa vào,"Chỉ giữ tài liệu tác động trực tiếp tới dữ liệu, quy trình, thẩm quyền, vòng đời, chia sẻ, bảo vệ, báo cáo hoặc kiểm soát; tài liệu học thuật không sinh Cxx.yy."
+D4,Khóa trạng thái,Khóa trạng thái tại ngày cắt; tách dự thảo và nguồn phương pháp khỏi nguồn tạo nghĩa vụ L1.

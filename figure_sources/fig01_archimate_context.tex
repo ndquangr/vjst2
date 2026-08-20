@@ -1,0 +1,46 @@
+% Source extracted verbatim from manuscript figure TikZ block.
+% Hình 1: Định vị nền tảng trong hệ quy chiếu kiến trúc số và dữ liệu -- góc nhìn động lực--ứng dụng theo ArchiMate
+% Edit the TikZ block below; compile with XeLaTeX.
+
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}[Ligatures=TeX]}
+  {\setmainfont{DejaVu Serif}[Ligatures=TeX]}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setotherlanguage{english}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\newcommand{\dnkhcn}{DN KH\&CN}
+\newcommand{\dnknst}{DN KNST}
+\newcommand{\khcn}{KH\&CN}
+\newcommand{\dmst}{ĐMST}
+\begin{document}
+\begin{tikzpicture}[
+  font=\scriptsize,
+  constraint/.style={draw, rectangle, align=center, minimum height=1.35cm, text width=2.55cm, inner sep=3pt},
+  app/.style={draw, rounded corners=1pt, align=center, minimum height=1.05cm, text width=12.5cm, inner sep=4pt},
+  extapp/.style={draw, rounded corners=1pt, align=center, minimum height=0.85cm, text width=2.75cm, inner sep=2pt},
+  assoc/.style={thick},
+  flow/.style={-{Latex[length=2mm]}, thick, dashed},
+  lab/.style={font=\tiny, fill=white, inner sep=1pt}
+]
+\node[constraint] (q3090) at (0,0) {\textbf{Constraint}\\QĐ 3090/QĐ-BKHCN\\Khung kiến trúc tổng thể quốc gia số\\\texttt{C01}};
+\node[constraint] (q292) at (3.0,0) {\textbf{Constraint}\\QĐ 292/QĐ-BKHCN\\Mô hình tham chiếu Chính phủ số\\\texttt{C01}};
+\node[constraint] (qdata) at (6.0,0) {\textbf{Constraint}\\QĐ 2439 + NĐ 278\\Kiến trúc/quản trị dữ liệu và chia sẻ bắt buộc\\\texttt{C02,C05}};
+\node[constraint] (q1973) at (9.0,0) {\textbf{Constraint}\\QĐ 1973/QĐ-BKHCN\\Kiến trúc dữ liệu Bộ KH\&CN\\\texttt{C06}};
+\node[constraint] (n268) at (12.0,0) {\textbf{Constraint}\\NĐ 268/2025/NĐ-CP\\Thẩm quyền, quy trình, thời hạn\\\texttt{C03}};
+\node[app] (platform) at (6.0,-2.35) {\textbf{Application Component}\\\textbf{Nền tảng quản lý \dnkhcn{} và \dnknst{}}\\năng lực nghiệp vụ, dữ liệu, liên thông và kiểm soát cắt ngang};
+\foreach \n/\p in {q3090/0.10,q292/0.30,qdata/0.50,q1973/0.70,n268/0.90}{
+  \draw[assoc] (\n.south) -- node[lab,right]{Association} ($(platform.north west)!\p!(platform.north east)$);
+}
+\node[extapp] (e1) at (1.6,-4.10) {\textbf{Application Component}\\CSDL quốc gia về doanh nghiệp};
+\node[extapp] (e2) at (4.55,-4.10) {\textbf{Application Component}\\Hệ thống TTHC};
+\node[extapp] (e3) at (7.45,-4.10) {\textbf{Application Component}\\Hạ tầng chia sẻ dữ liệu};
+\node[extapp] (e4) at (10.4,-4.10) {\textbf{Application Component}\\Nguồn KH\&CN/SHTT};
+\foreach \e in {e1,e2,e3,e4}{\draw[flow] (platform.south) -- node[lab,right]{Flow} (\e.north);}
+\node[font=\tiny,align=center,text width=13.4cm] at (6,-5.05) {Chú giải ArchiMate 3.2: Constraint, Application Component;\\Association biểu diễn liên hệ khái quát, Flow biểu diễn luồng trao đổi.};
+\end{tikzpicture}
+\end{document}

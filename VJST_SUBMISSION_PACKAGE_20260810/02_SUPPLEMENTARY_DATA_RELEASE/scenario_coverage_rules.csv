@@ -1,0 +1,6 @@
+coverage_group,selection_dimension,scenario_ids,purpose
+COV1,Vận hành bình thường và biến thể địa phương,S1;S2,Thẩm quyền bình thường; cấu hình địa phương
+COV2,"Thay đổi quy định, nguồn hoặc phiên bản",S3;S6;S10,Thay đổi quy định; nguồn có thẩm quyền; nâng cấp cuốn chiếu
+COV3,Gián đoạn hạ tầng/lớp trung ương,S4;S7,Gián đoạn liên thông; gián đoạn lớp trung ương
+COV4,Tổng hợp toàn quốc và quan hệ xuyên địa bàn,S5;S8,Độ mới/tổng hợp; liên kết vượt biên thẩm quyền
+COV5,Chuyển quyền quản lý/ghi,S9,Quyền ghi theo thời gian và chuyển giao thẩm quyền

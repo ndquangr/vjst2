@@ -1,0 +1,135 @@
+%=====================================================================
+% 05 — KIẾN TRÚC HỆ THỐNG ĐỀ XUẤT — scientific compact version
+%=====================================================================
+\section{Kiến trúc hệ thống đề xuất}
+\label{sec:arch}
+
+\subsection{Phạm vi và lõi ổn định của kiến trúc tham chiếu}
+\label{subsec:scope-viewpoints}
+
+SRA được đề xuất cho một nền tảng số chuyên ngành khu vực công có nghiệp vụ phân bố giữa trung ương và địa phương, phụ thuộc các nguồn dữ liệu có thẩm quyền bên ngoài và phải thích nghi với thay đổi quy trình mà không làm thay đổi nghĩa vụ pháp lý. Vì vậy, kiến trúc không được xây dựng như một cấu hình triển khai duy nhất mà như một tập các bất biến thiết kế kèm các điểm có thể thay đổi. Sáu góc nhìn được sử dụng gồm: hệ sinh thái--trách nhiệm, năng lực--ứng dụng, dữ liệu--thẩm quyền, liên thông, hiện thực hóa công nghệ và an toàn--riêng tư. Cách tổ chức này phù hợp với nguyên tắc mô tả kiến trúc theo nhiều mối quan tâm và viewpoint của ISO/IEC/IEEE 42010 \citep{iso42010_2022}.
+
+Phiên bản kiến trúc sau vòng tinh chỉnh B1-R giữ năm nguyên tắc ổn định. Thứ nhất, quyền thay đổi trạng thái nghiệp vụ phải bám thẩm quyền đang có hiệu lực, trong khi topology lưu trữ không được suy diễn trực tiếp từ thẩm quyền hành chính. Thứ hai, dữ liệu định danh và bằng chứng bên ngoài được tham chiếu từ nguồn có thẩm quyền thay vì tạo một bản chủ mới trong nền tảng. Thứ ba, quy trình địa phương được cấu hình trên một mô hình nền pháp lý có phiên bản, nên phần biến thiên không được nới thẩm quyền, trạng thái quyết định hoặc thời hạn bắt buộc. Thứ tư, trao đổi liên cơ quan phải bảo toàn nguồn, phiên bản và bằng chứng giao nhận qua hạ tầng được quy định. Thứ năm, mạng quan hệ hệ sinh thái được tách khỏi biên địa giới quản lý để tránh nhân bản quan hệ xuyên tỉnh. Các lựa chọn về đồng bộ, công nghệ quy trình, phân quyền, bộ thích nghi nguồn và topology triển khai được giữ như điểm biến thiên; danh mục VP1--VP8 được chuyển sang tài liệu bổ trợ.
+
+\subsection{Định vị nền tảng và kiến trúc năng lực--ứng dụng}
+\label{subsec:phanlop}
+
+Hình~\ref{fig:dinhvi} đặt nền tảng tại giao điểm của các khung kiến trúc số, kiến trúc/quản trị dữ liệu và các ràng buộc nghiệp vụ của NĐ 268. Mục đích của hình không phải mô tả cấu trúc triển khai mà xác lập các ranh giới mà SRA phải tôn trọng: định danh pháp lý doanh nghiệp phải tham chiếu nguồn có thẩm quyền; dữ liệu và siêu dữ liệu phải phù hợp khung quản trị quốc gia/Bộ; còn các luồng chia sẻ liên cơ quan phải đi qua hạ tầng được quy định \citep{luatdulieu2024,nd278_2025,qd1973_2026}. Trong ký pháp ArchiMate 3.2, các phần tử Constraint và Application Component được dùng để biểu diễn quan hệ giữa các ràng buộc thể chế và nền tảng ở mức kiến trúc, không phải để khẳng định một sản phẩm công nghệ cụ thể \citep[Chs.~5, 7, 9; Apps.~A--C]{archimate32_2023}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  constraint/.style={draw, rectangle, align=center, minimum height=1.35cm, text width=2.55cm, inner sep=3pt},
+  app/.style={draw, rounded corners=1pt, align=center, minimum height=1.05cm, text width=12.5cm, inner sep=4pt},
+  extapp/.style={draw, rounded corners=1pt, align=center, minimum height=0.85cm, text width=2.75cm, inner sep=2pt},
+  assoc/.style={thick},
+  flow/.style={-{Latex[length=2mm]}, thick, dashed},
+  lab/.style={font=\tiny, fill=white, inner sep=1pt}
+]
+\node[constraint] (q3090) at (0,0) {\textbf{Constraint}\\QĐ 3090/QĐ-BKHCN\\Khung kiến trúc tổng thể quốc gia số\\\texttt{C01}};
+\node[constraint] (q292) at (3.0,0) {\textbf{Constraint}\\QĐ 292/QĐ-BKHCN\\Mô hình tham chiếu Chính phủ số\\\texttt{C01}};
+\node[constraint] (qdata) at (6.0,0) {\textbf{Constraint}\\QĐ 2439 + NĐ 278\\Kiến trúc/quản trị dữ liệu và chia sẻ bắt buộc\\\texttt{C02,C05}};
+\node[constraint] (q1973) at (9.0,0) {\textbf{Constraint}\\QĐ 1973/QĐ-BKHCN\\Kiến trúc dữ liệu Bộ KH\&CN\\\texttt{C06}};
+\node[constraint] (n268) at (12.0,0) {\textbf{Constraint}\\NĐ 268/2025/NĐ-CP\\Thẩm quyền, quy trình, thời hạn\\\texttt{C03}};
+\node[app] (platform) at (6.0,-2.35) {\textbf{Application Component}\\\textbf{Nền tảng quản lý \dnkhcn{} và \dnknst{}}\\năng lực nghiệp vụ, dữ liệu, liên thông và kiểm soát cắt ngang};
+\foreach \n/\p in {q3090/0.10,q292/0.30,qdata/0.50,q1973/0.70,n268/0.90}{
+  \draw[assoc] (\n.south) -- node[lab,right]{Association} ($(platform.north west)!\p!(platform.north east)$);
+}
+\node[extapp] (e1) at (1.6,-4.10) {\textbf{Application Component}\\CSDL quốc gia về doanh nghiệp};
+\node[extapp] (e2) at (4.55,-4.10) {\textbf{Application Component}\\Hệ thống TTHC};
+\node[extapp] (e3) at (7.45,-4.10) {\textbf{Application Component}\\Hạ tầng chia sẻ dữ liệu};
+\node[extapp] (e4) at (10.4,-4.10) {\textbf{Application Component}\\Nguồn KH\&CN/SHTT};
+\foreach \e in {e1,e2,e3,e4}{\draw[flow] (platform.south) -- node[lab,right]{Flow} (\e.north);}
+\node[font=\tiny,align=center,text width=13.4cm] at (6,-5.05) {Chú giải ArchiMate 3.2: Constraint, Application Component;\\Association biểu diễn liên hệ khái quát, Flow biểu diễn luồng trao đổi.};
+\end{tikzpicture}
+\caption{Định vị nền tảng trong hệ quy chiếu kiến trúc số và dữ liệu -- góc nhìn động lực--ứng dụng theo ArchiMate}
+\label{fig:dinhvi}
+\end{figure}
+
+Từ các ràng buộc trên, Hình~\ref{fig:kientruc} tổ chức kiến trúc ở mức năng lực thay vì mô-đun triển khai. Bốn nhóm năng lực chính là: quản lý hồ sơ và vòng đời; thẩm định/công nhận; điều phối và cấu hình; dữ liệu--liên thông--an toàn. Các nhóm này được hỗ trợ bởi năm nhóm thành phần ứng dụng logic. Việc dùng quan hệ Association ở mức này nhằm chỉ ra quan hệ hỗ trợ giữa năng lực và thành phần, không khóa quan hệ hiện thực hóa hay một sản phẩm phần mềm cụ thể; giao thức, middleware và bộ thích nghi nguồn chỉ được quyết định ở L3 khi có đặc tả triển khai.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  capability/.style={draw, rounded corners=6pt, align=center, minimum height=0.9cm, text width=3.15cm, inner sep=3pt},
+  comp/.style={draw, rounded corners=1pt, align=center, minimum height=0.95cm, text width=2.55cm, inner sep=3pt},
+  ext/.style={draw, dashed, rounded corners=1pt, align=center, minimum height=0.75cm, text width=2.85cm, inner sep=2pt},
+  assoc/.style={thick},
+  flow/.style={-{Latex[length=1.8mm]},thick,dashed},
+  lab/.style={font=\tiny,fill=white,inner sep=0.7pt}
+]
+\node[capability] (c1) at (-5.0,2.25) {\textbf{Capability}\\Tiếp nhận và vòng đời hồ sơ};
+\node[capability] (c2) at (-1.7,2.25) {\textbf{Capability}\\Thẩm định, công nhận/chứng nhận};
+\node[capability] (c3) at (1.7,2.25) {\textbf{Capability}\\Điều phối liên cấp và cấu hình};
+\node[capability] (c4) at (5.0,2.25) {\textbf{Capability}\\An toàn, dữ liệu và liên thông};
+
+\node[comp] (a1) at (-5.2,0.15) {\textbf{Application Component}\\Hồ sơ và tương tác};
+\node[comp] (a2) at (-2.6,0.15) {\textbf{Application Component}\\Dịch vụ miền};
+\node[comp] (a3) at (0,0.15) {\textbf{Application Component}\\Quy trình, quy tắc và cấu hình};
+\node[comp] (a4) at (2.6,0.15) {\textbf{Application Component}\\Định danh, phân quyền và nhật ký};
+\node[comp] (a5) at (5.2,0.15) {\textbf{Application Component}\\Tích hợp và truy cập dữ liệu};
+
+\draw[assoc] (a1.north) -- node[lab,left]{Association} (c1.south);
+\draw[assoc] (a2.north) -- (c2.south);
+\draw[assoc] (a3.north) -- (c3.south);
+\draw[assoc] (a4.north) -- (c4.south west);
+\draw[assoc] (a5.north) -- (c4.south east);
+
+\node[ext] (e1) at (-4.8,-2.05) {\textbf{Application Component bên ngoài}\\CSDL quốc gia về doanh nghiệp};
+\node[ext] (e2) at (-1.6,-2.05) {\textbf{Application Component bên ngoài}\\Hệ thống TTHC};
+\node[ext] (e3) at (1.6,-2.05) {\textbf{Application Component bên ngoài}\\Hạ tầng chia sẻ dữ liệu};
+\node[ext] (e4) at (4.8,-2.05) {\textbf{Application Component bên ngoài}\\Nguồn KH\&CN/SHTT};
+\draw[flow] (a5.south) -- ++(0,-0.45) -| (e1.north);
+\draw[flow] (a5.south) -- ++(0,-0.45) -| (e2.north);
+\draw[flow] (a5.south) -- ++(0,-0.45) -| (e3.north);
+\draw[flow] (a5.south) -- ++(0,-0.45) -| (e4.north);
+\node[font=\tiny,align=center,text width=13.4cm] at (0,-3.0) {Chú giải ArchiMate 3.2: Association = ánh xạ hỗ trợ ở mức trừu tượng;\\Flow = luồng trao đổi giữa các thành phần ứng dụng.};
+\end{tikzpicture}
+\caption{Ánh xạ năng lực vào thành phần ứng dụng -- góc nhìn năng lực--ứng dụng theo ArchiMate}
+\label{fig:kientruc}
+\end{figure}
+
+\subsection{Các quyết định kiến trúc và đánh đổi}
+\label{subsec:arch-decisions}
+
+Năm quyết định kiến trúc được rút ra từ chuỗi truy vết nguồn--ràng buộc--động lực và được ghi nhận cùng phương án thay thế, lý do và đánh đổi theo thực hành ghi nhận quyết định kiến trúc \citep[pp.~19--27]{tyree2005}. Bảng~\ref{tab:arch-decisions-summary} chỉ giữ các quyết định có ý nghĩa đối với lập luận nghiên cứu; phiên bản chi tiết, liên kết tới Cxx.yy/AE/VP và các điều kiện hiện thực hóa nằm trong tài liệu bổ trợ.
+
+{\vjsttablefont
+\renewcommand{\arraystretch}{1.04}
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{1.1cm}p{5.2cm}p{7.55cm}@{}}
+\caption{Các quyết định kiến trúc chính và đánh đổi}
+\label{tab:arch-decisions-summary}\\
+\toprule
+\textbf{Mã} & \textbf{Quyết định} & \textbf{Lý do và đánh đổi chính} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{\tablename\ \thetable\ -- tiếp theo}\\
+\toprule
+\textbf{Mã} & \textbf{Quyết định} & \textbf{Lý do và đánh đổi chính} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+AD01 & Quyền ghi bám thẩm quyền đang hiệu lực; topology lưu trữ là điểm biến thiên. & Giữ ranh giới pháp lý mà không đồng nhất nó với biên vật lý. Sau S9, quyết định được tinh chỉnh để bảo toàn một writer hợp lệ trên mỗi phạm vi ghi và chuyển quyền có phiên bản; đổi lại, các profile phân tán phải xử lý cắt chuyển, đối soát và phục hồi phức tạp hơn. \\
+\addlinespace
+AD02 & Các luồng chia sẻ bắt buộc đi qua hạ tầng chia sẻ/điều phối được quy định. & Tăng khả năng kiểm toán và quản trị liên thông nhưng tạo thêm phụ thuộc vào hạ tầng trung gian. \\
+\addlinespace
+AD03 & Mô hình nền pháp lý trung ương kết hợp cấu hình địa phương có phiên bản. & Cho phép biến thể nội bộ nhưng giữ nguyên thẩm quyền, trạng thái quyết định và thời hạn L1. Sau S10, cần cửa sổ tương thích và quy tắc cho hồ sơ đang xử lý; đổi lại là chi phí quản trị và kiểm thử nhiều phiên bản \citep[pp.~486--500]{gottschalk2009municipality}. \\
+\addlinespace
+AD04 & Mẫu tương tác lai: truy vấn khi cần đọc và thông điệp/sự kiện cho thay đổi trạng thái khi hạ tầng hỗ trợ. & Cân bằng tính tức thời với khả năng chịu gián đoạn và bằng chứng giao nhận; đổi lại phải quản lý trùng, thứ tự và độ mới của mô hình đọc. \\
+\addlinespace
+AD05 & Tách phạm vi thẩm quyền khỏi mạng quan hệ hệ sinh thái. & Giữ đúng quyền quản lý hồ sơ theo địa bàn nhưng vẫn biểu diễn được quan hệ đầu tư/hỗ trợ xuyên tỉnh; đổi lại truy vấn và hợp nhất quan hệ phức tạp hơn. \\
+\end{longtable}
+}
+
+AD01 không mặc nhiên dẫn tới một kho vật lý cho mỗi tỉnh. NĐ 268 xác lập thẩm quyền/nghĩa vụ liên cấp, còn NĐ 278 cho phép truy vấn và đồng bộ qua hạ tầng dùng chung nhưng không ấn định topology lưu trữ \citep{nd268_2025,nd278_2025}. Vì vậy, lõi SRA có thể được hiện thực bằng kho tập trung đa tenant, phân vùng logic/schema, kho vật lý theo tỉnh hoặc mô hình lai nếu các bất biến về thẩm quyền, nguồn gốc và phiên bản được giữ nguyên. Nghiên cứu chọn \textbf{P-DIST} làm profile để stress-test, trong đó các nút nghiệp vụ tỉnh có kho vận hành vật lý tách biệt và lớp trung ương duy trì mô hình đọc/tổng hợp. Lựa chọn này được dùng để làm lộ đánh đổi của một cấu hình phân tán, không phải để khẳng định đây là topology duy nhất hoặc tối ưu; profile có nét tương đồng với tư tưởng phối hợp các nút có quyền vận hành riêng trong CSDL liên bang \citep{sheth1990}.
+
+\subsection{Điều kiện phù hợp và ranh giới của đề xuất}
+\label{subsec:conformance}
+
+Một hiện thực hóa được xem là phù hợp với lõi SRA khi bảo toàn bốn nhóm điều kiện. Nhóm thứ nhất là \emph{truy vết và thẩm quyền}: hành vi pháp lý phải truy về căn cứ nguồn, thao tác thay đổi trạng thái phải kiểm tra quyền ghi hiện hành và không cho phép hai writer hợp lệ đồng thời trên cùng phạm vi. Nhóm thứ hai là \emph{quản trị dữ liệu và cấu hình}: thẩm quyền dữ liệu được xác định theo nhóm thuộc tính; cấu hình địa phương không được nới các bất biến L1; hợp đồng, lược đồ và quy trình phải có phiên bản và quy tắc tương thích. Nhóm thứ ba là \emph{nguồn gốc và liên thông}: mô hình đọc trung ương phải công bố nguồn/độ mới và không thay thế quyết định gốc; trao đổi bắt buộc phải giữ định danh và bằng chứng giao nhận. Nhóm cuối cùng là \emph{quan hệ hệ sinh thái}: quan hệ xuyên địa bàn phải giữ định danh, nguồn và khoảng hiệu lực thay vì bị nhân bản theo biên quản lý. Chín quy tắc CR1--CR9 và hai điều kiện bổ sung PD1--PD2 cho profile P-DIST được công bố đầy đủ trong tài liệu bổ trợ.
+
+Cách xác định phù hợp này cố ý tách \emph{kiến trúc tham chiếu} khỏi \emph{đặc tả triển khai}. SRA trả lời thành phần trách nhiệm nào phải tồn tại, dữ liệu nào thuộc nguồn nào, các biên quyền và biên trao đổi nào phải được bảo toàn, cùng những điểm nào được phép biến thiên. Nó không quy định sản phẩm CSDL, middleware, giao thức cụ thể, số cụm triển khai, thuật toán đồng thuận hay chỉ tiêu hiệu năng khi chưa có bằng chứng đo kiểm. Tương tự, các thời hạn 05/15 ngày, 03/15 ngày, chu kỳ 03 năm hoặc mốc báo cáo trong NĐ 268 được xem là ràng buộc thời gian nghiệp vụ, không phải SLA kỹ thuật \citep{nd268_2025}. Việc kiểm chứng các lựa chọn L3 và thuộc tính chất lượng được để cho giai đoạn nguyên mẫu/triển khai; phần đánh giá của nghiên cứu chỉ kiểm tra mức đầy đủ và nhất quán của kiến trúc dưới các kịch bản đã xác định.

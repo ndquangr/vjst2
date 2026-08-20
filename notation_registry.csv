@@ -1,0 +1,6 @@
+figure_id,purpose,notation,element_relationship_profile,scope_caveat
+H1,Vị trí nền tảng trong hệ quy chiếu,ArchiMate 3.2,Constraint; Application Component; Association; Flow,Kiểu phần tử/quan hệ ghi trực tiếp; trình bày đơn sắc trung tính.
+H2,Năng lực--ứng dụng,ArchiMate 3.2,Capability; Application Component; Association; Flow,Association chỉ ánh xạ hỗ trợ vì lớp hành vi/dịch vụ trung gian được lược bỏ.
+H3,Ứng dụng--dữ liệu,ArchiMate 3.2,Application Component; Data Object; Access; Flow,Access chỉ nối thành phần ứng dụng với đối tượng dữ liệu; Flow nối thành phần ứng dụng.
+H4,Ranh giới vùng chứa logic,C4 Model,Person; Container; Software System; quan hệ một chiều có nhãn,"Công nghệ/giao thức là L3 chưa khóa; đây là góc nhìn logic, không phải đặc tả triển khai đầy đủ."
+H5,Mẫu triển khai logic,C4 Model Deployment,Deployment Node; Container instance; Infrastructure Node,Ánh xạ các vùng chứa H4 vào nút triển khai; môi trường/công nghệ cụ thể là L3.

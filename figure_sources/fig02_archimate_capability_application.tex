@@ -1,0 +1,57 @@
+% Source extracted verbatim from manuscript figure TikZ block.
+% Hình 2: Ánh xạ năng lực vào thành phần ứng dụng -- góc nhìn năng lực--ứng dụng theo ArchiMate
+% Edit the TikZ block below; compile with XeLaTeX.
+
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}[Ligatures=TeX]}
+  {\setmainfont{DejaVu Serif}[Ligatures=TeX]}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setotherlanguage{english}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\newcommand{\dnkhcn}{DN KH\&CN}
+\newcommand{\dnknst}{DN KNST}
+\newcommand{\khcn}{KH\&CN}
+\newcommand{\dmst}{ĐMST}
+\begin{document}
+\begin{tikzpicture}[
+  font=\scriptsize,
+  capability/.style={draw, rounded corners=6pt, align=center, minimum height=0.9cm, text width=3.15cm, inner sep=3pt},
+  comp/.style={draw, rounded corners=1pt, align=center, minimum height=0.95cm, text width=2.55cm, inner sep=3pt},
+  ext/.style={draw, dashed, rounded corners=1pt, align=center, minimum height=0.75cm, text width=2.85cm, inner sep=2pt},
+  assoc/.style={thick},
+  flow/.style={-{Latex[length=1.8mm]},thick,dashed},
+  lab/.style={font=\tiny,fill=white,inner sep=0.7pt}
+]
+\node[capability] (c1) at (-5.0,2.25) {\textbf{Capability}\\Tiếp nhận và vòng đời hồ sơ};
+\node[capability] (c2) at (-1.7,2.25) {\textbf{Capability}\\Thẩm định, công nhận/chứng nhận};
+\node[capability] (c3) at (1.7,2.25) {\textbf{Capability}\\Điều phối liên cấp và cấu hình};
+\node[capability] (c4) at (5.0,2.25) {\textbf{Capability}\\An toàn, dữ liệu và liên thông};
+
+\node[comp] (a1) at (-5.2,0.15) {\textbf{Application Component}\\Hồ sơ và tương tác};
+\node[comp] (a2) at (-2.6,0.15) {\textbf{Application Component}\\Dịch vụ miền};
+\node[comp] (a3) at (0,0.15) {\textbf{Application Component}\\Quy trình, quy tắc và cấu hình};
+\node[comp] (a4) at (2.6,0.15) {\textbf{Application Component}\\Định danh, phân quyền và nhật ký};
+\node[comp] (a5) at (5.2,0.15) {\textbf{Application Component}\\Tích hợp và truy cập dữ liệu};
+
+\draw[assoc] (a1.north) -- node[lab,left]{Association} (c1.south);
+\draw[assoc] (a2.north) -- (c2.south);
+\draw[assoc] (a3.north) -- (c3.south);
+\draw[assoc] (a4.north) -- (c4.south west);
+\draw[assoc] (a5.north) -- (c4.south east);
+
+\node[ext] (e1) at (-4.8,-2.05) {\textbf{Application Component bên ngoài}\\CSDL quốc gia về doanh nghiệp};
+\node[ext] (e2) at (-1.6,-2.05) {\textbf{Application Component bên ngoài}\\Hệ thống TTHC};
+\node[ext] (e3) at (1.6,-2.05) {\textbf{Application Component bên ngoài}\\Hạ tầng chia sẻ dữ liệu};
+\node[ext] (e4) at (4.8,-2.05) {\textbf{Application Component bên ngoài}\\Nguồn KH\&CN/SHTT};
+\draw[flow] (a5.south) -- ++(0,-0.45) -| (e1.north);
+\draw[flow] (a5.south) -- ++(0,-0.45) -| (e2.north);
+\draw[flow] (a5.south) -- ++(0,-0.45) -| (e3.north);
+\draw[flow] (a5.south) -- ++(0,-0.45) -| (e4.north);
+\node[font=\tiny,align=center,text width=13.4cm] at (0,-3.0) {Chú giải ArchiMate 3.2: Association = ánh xạ hỗ trợ ở mức trừu tượng;\\Flow = luồng trao đổi giữa các thành phần ứng dụng.};
+\end{tikzpicture}
+\end{document}

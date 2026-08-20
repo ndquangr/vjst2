@@ -1,0 +1,63 @@
+% Source extracted verbatim from manuscript figure TikZ block.
+% Hình 4: Cấu trúc vùng chứa và ranh giới trách nhiệm -- góc nhìn vùng chứa logic dùng các phần tử C4; công nghệ/giao thức cụ thể được giữ ở L3
+% Edit the TikZ block below; compile with XeLaTeX.
+
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}[Ligatures=TeX]}
+  {\setmainfont{DejaVu Serif}[Ligatures=TeX]}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setotherlanguage{english}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\newcommand{\dnkhcn}{DN KH\&CN}
+\newcommand{\dnknst}{DN KNST}
+\newcommand{\khcn}{KH\&CN}
+\newcommand{\dmst}{ĐMST}
+\begin{document}
+\begin{tikzpicture}[
+  font=\scriptsize,
+  person/.style={draw, rounded corners=7pt, align=center, minimum height=0.78cm, text width=2.7cm, inner sep=2pt},
+  cont/.style={draw, rounded corners=2pt, align=center, minimum height=1.05cm, text width=3.2cm, inner sep=2pt},
+  db/.style={draw, cylinder, shape border rotate=90, aspect=0.18, align=center, minimum height=1.10cm, text width=3.0cm, inner sep=2pt},
+  ext/.style={draw, dashed, rounded corners=2pt, align=center, minimum height=0.78cm, text width=2.85cm, inner sep=2pt},
+  rel/.style={-{Latex[length=1.8mm]}, thick},
+  lab/.style={fill=white, inner sep=0.8pt, align=center, font=\tiny}
+]
+\node[person] (firm) at (-4.8,6.35) {\textbf{Đại diện doanh nghiệp}\\\texttt{<<Person>>}};
+\node[person] (officer) at (0,6.35) {\textbf{Cán bộ cấp tỉnh}\\\texttt{<<Person>>}};
+\node[person] (centraluser) at (4.8,6.35) {\textbf{Cán bộ/đầu mối trung ương}\\\texttt{<<Person>>}};
+
+\node[cont] (province) at (-4.2,4.15) {\textbf{Dịch vụ hồ sơ/quyết định cấp tỉnh}\\\texttt{<<Container>>}\\\emph{Công nghệ: chưa khóa (L3)}};
+\node[cont] (config) at (0,4.15) {\textbf{Dịch vụ quản trị cấu hình}\\\texttt{<<Container>>}\\\emph{Công nghệ: chưa khóa (L3)}};
+\node[cont] (central) at (4.2,4.15) {\textbf{Dịch vụ điều phối/đọc trung ương}\\\texttt{<<Container>>}\\\emph{Công nghệ: chưa khóa (L3)}};
+\node[db] (pdb) at (-4.2,1.85) {\textbf{Kho dữ liệu vận hành tỉnh}\\\texttt{<<Container: Database>>}\\\emph{Lưu trữ: chưa khóa (L3)}};
+\node[cont] (integ) at (0,1.85) {\textbf{Cổng tích hợp và trao đổi}\\\texttt{<<Container>>}\\\emph{Công nghệ: chưa khóa (L3)}};
+\node[db] (read) at (4.2,1.85) {\textbf{Mô hình đọc hợp nhất}\\\texttt{<<Container: Database>>}\\\emph{Lưu trữ: chưa khóa (L3)}};
+\node[draw,dashed,rounded corners=3pt,fit=(province)(config)(central)(pdb)(integ)(read),inner sep=7pt] (boundary) {};
+\node[font=\tiny,anchor=south east,fill=white,inner sep=1pt,xshift=-2pt,yshift=2pt] at (boundary.south east) {Nền tảng \texttt{<<Software System>>}};
+
+\node[ext] (tthc) at (-5.0,-0.75) {Hệ thống TTHC/dịch vụ công\\\texttt{<<Software System>>}};
+\node[ext] (ent) at (-1.7,-0.75) {CSDL quốc gia về doanh nghiệp\\\texttt{<<Software System>>}};
+\node[ext] (share) at (1.7,-0.75) {Hạ tầng chia sẻ/Agent Node\\\texttt{<<Software System>>}};
+\node[ext] (evidence) at (5.0,-0.75) {Nguồn bằng chứng chuyên ngành\\\texttt{<<Software System>>}};
+
+\draw[rel] (firm.south) -- node[lab,left]{nộp/tra cứu} (province.north west);
+\draw[rel] (officer.south) -- node[lab,right]{xử lý hồ sơ} (province.north east);
+\draw[rel] (centraluser.south) -- node[lab,right]{giám sát/khai thác} (central.north east);
+\draw[rel] (province.south) -- node[lab,left]{đọc/ghi} (pdb.north);
+\draw[rel] (central.south) -- node[lab,right]{đọc/ghi} (read.north);
+\draw[rel] (config.west) -- node[lab,above]{phát cấu hình} (province.east);
+\draw[rel] (config.east) -- node[lab,above]{phát phiên bản} (central.west);
+\draw[rel] (province.south east) -- node[lab,above,sloped]{phát sự kiện} (integ.north west);
+\draw[rel] (central.south west) -- node[lab,above,sloped]{điều phối} (integ.north east);
+\draw[rel] (integ.south west) -- ++(-0.25,-0.50) -| node[lab,pos=0.75,left]{trao đổi hồ sơ} (tthc.north);
+\draw[rel] (integ.south) -- ++(0,-0.50) -| node[lab,pos=0.73,left]{tra cứu định danh} (ent.north);
+\draw[rel] (integ.south) -- ++(0,-0.50) -| node[lab,pos=0.73,right]{chia sẻ dữ liệu} (share.north);
+\draw[rel] (integ.south east) -- ++(0.25,-0.50) -| node[lab,pos=0.75,right]{xác minh bằng chứng} (evidence.north);
+\node[font=\tiny,align=center,text width=14cm] at (0,-1.75) {Chú giải C4: Person = người dùng; Container = ứng dụng/kho dữ liệu; Software System = hệ thống ngoài biên; mọi mũi tên là quan hệ một chiều. Công nghệ/giao thức cụ thể chưa khóa ở L3.};
+\end{tikzpicture}
+\end{document}

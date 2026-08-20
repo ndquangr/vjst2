@@ -1,0 +1,11 @@
+scenario_id,b1_0_status,b1_r_status,b1_r_mechanism,residual_condition
+S1,ĐÁP ỨNG TRỰC TIẾP,ĐÁP ỨNG TRỰC TIẾP,AD01/CR2 giữ quyền ghi bám gán thẩm quyền hiện hành,Cần kiểm thử định tuyến và từ chối ghi ngoài scope
+S2,ĐÁP ỨNG TRỰC TIẾP,ĐÁP ỨNG TRỰC TIẾP,AD03/CR5 khóa mô hình nền L1 và kiểm tra cấu hình địa phương,Cần kiểm thử conformance gate
+S3,ĐÁP ỨNG CÓ ĐIỀU KIỆN,ĐÁP ỨNG CÓ ĐIỀU KIỆN,AD03/CR6 quản trị phiên bản và hồ sơ đang chạy,Cần kiểm thử hồi quy và chuyển phiên bản
+S4,ĐÁP ỨNG CÓ ĐIỀU KIỆN,ĐÁP ỨNG CÓ ĐIỀU KIỆN,AD04/CR8 giữ outbox/receipt/retry và bằng chứng thời hạn,Cần kiểm thử gián đoạn vượt cửa sổ và phục hồi
+S5,ĐÁP ỨNG CÓ ĐIỀU KIỆN,ĐÁP ỨNG CÓ ĐIỀU KIỆN,CR7 buộc AE25 công bố nguồn/độ mới/phiên bản,Cần đo độ mới và đối soát
+S6,ĐÁP ỨNG CÓ ĐIỀU KIỆN,ĐÁP ỨNG CÓ ĐIỀU KIỆN,CR4/AE03/AE15 làm mới và xác minh nguồn định danh,Cần chính sách stale-data và kiểm thử nguồn gián đoạn
+S7,ĐÁP ỨNG CÓ ĐIỀU KIỆN,ĐÁP ỨNG CÓ ĐIỀU KIỆN,AE24 tiếp tục bước thuần địa phương; policy dừng bước phụ thuộc ngoài,Cần kiểm thử miền lỗi và phục hồi
+S8,ĐÁP ỨNG CÓ ĐIỀU KIỆN,ĐÁP ỨNG CÓ ĐIỀU KIỆN,AD05/CR9 giữ quan hệ xuyên địa bàn theo nguồn và hiệu lực,Cần kiểm thử hợp nhất/khử trùng lặp
+S9,RỦI RO KIẾN TRÚC,ĐÁP ỨNG CÓ ĐIỀU KIỆN,AD01/CR2-CR3 bổ sung write_scope/máy trạng thái/writer_epoch/fencing,Cần nguyên mẫu kiểm thử cạnh tranh ghi/cutover/restart/forward recovery
+S10,ĐÁP ỨNG CÓ ĐIỀU KIỆN,ĐÁP ỨNG CÓ ĐIỀU KIỆN,AD03/CR6 bổ sung compatibility window/minimum version/pinning,Cần ma trận tương thích và rolling-upgrade test

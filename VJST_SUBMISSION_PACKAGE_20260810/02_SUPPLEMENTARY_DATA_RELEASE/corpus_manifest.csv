@@ -1,0 +1,17 @@
+document_id,citation_key,document,source_class,status_at_cutoff,selection_rule,inclusion_reason,constraint_family,notes
+DOC01,qd3090_2025,QĐ 3090/QĐ-BKHCN,A,hiện hành tại ngày cắt,D1,Khung kiến trúc tổng thể quốc gia số tác động trực tiếp tới vị trí hệ thống chuyên ngành,C01,
+DOC02,qd292_2025,QĐ 292/QĐ-BKHCN,A,hiện hành tại ngày cắt,D1,Khung kiến trúc Chính phủ số và các mô hình tham chiếu,C01,
+DOC03,qd2439_2025,QĐ 2439/QĐ-TTg,A,hiện hành tại ngày cắt,D1,Khung kiến trúc/quản trị dữ liệu và từ điển dùng chung,C02,
+DOC04,luatkhcndmst2025,Luật 93/2025/QH15,A,hiện hành tại ngày cắt,D1,"Luật miền nghiệp vụ khoa học, công nghệ và đổi mới sáng tạo",C03,
+DOC05,nd268_2025,NĐ 268/2025/NĐ-CP,A,hiện hành tại ngày cắt,D1,"Quy định trực tiếp tiêu chí, thẩm quyền, quy trình, thời hạn và vòng đời DN KH&CN/DN KNST",C03,
+DOC06,luatdulieu2024,Luật Dữ liệu 60/2024/QH15,A,hiện hành tại ngày cắt,D1,"Nghĩa vụ về dữ liệu dùng chung, chất lượng, phân loại và tránh thu thập lại",C04,
+DOC07,nd278_2025,NĐ 278/2025/NĐ-CP,A,hiện hành tại ngày cắt,D1;D2,"Kết nối/chia sẻ bắt buộc, nguồn tin cậy, truy vấn/đồng bộ và chuyển tiếp; đồng thời thay thế căn cứ cũ",C05,NĐ 47/2020 được nhận diện là hết hiệu lực qua D2
+DOC08,qd1973_2026,QĐ 1973/QĐ-BKHCN,A,hiện hành tại ngày cắt,D1,"Khung kiến trúc và quản trị dữ liệu Bộ KH&CN, nguồn dữ liệu doanh nghiệp và dữ liệu chủ chuyên ngành",C06,
+DOC09,qd1762_2025,QĐ 1762/QĐ-BKHCN,A,hiện hành tại ngày cắt,D1,Danh mục CSDL chuyên ngành hiện hành để kiểm tra phạm vi,C07,
+DOC10,nd69_2024,NĐ 69/2024/NĐ-CP,A,hiện hành tại ngày cắt,D1,Định danh/xác thực điện tử và điều kiện kết nối,C08,
+DOC11,nd169_2025,NĐ 169/2025/NĐ-CP,A,hiện hành tại ngày cắt,D2,Chỉ giữ phần sửa đổi có liên quan trực tiếp tới NĐ 69 trong phạm vi C08,C08,Không dùng như căn cứ chung cho toàn bộ miền
+DOC12,luatbvdlcn2025,Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15,A,hiện hành tại ngày cắt,D1,"Nghĩa vụ bảo vệ, giới hạn truy cập và biện pháp quản lý/kỹ thuật",C09,
+DOC13,nd356_2025,NĐ 356/2025/NĐ-CP,A,hiện hành tại ngày cắt,D1;D2,Hướng dẫn Luật bảo vệ dữ liệu cá nhân và xác định căn cứ cũ NĐ 13/2023 đã hết hiệu lực,C09,
+DOC14,duthao_khungtc,Dự thảo Khung tiêu chuẩn dữ liệu DN KH&CN/DN KNST,D,dự thảo tại ngày cắt,D4,Chỉ dùng chẩn đoán khả năng tương thích/phạm vi; không tạo nghĩa vụ L1,C07,
+DOC15,eif2017,European Interoperability Framework 2017,M,tham chiếu phương pháp,D3;D4,Khung kiểm tra liên thông bốn lớp; không tạo nghĩa vụ pháp lý Việt Nam,C10,
+DOC16,euact2024,Regulation (EU) 2024/903,M,tham chiếu phương pháp,D3;D4,Dùng để xác nhận vai trò phương pháp của EIF; không chuyển hóa thành nghĩa vụ Việt Nam,C10,

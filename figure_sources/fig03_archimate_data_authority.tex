@@ -1,0 +1,52 @@
+% Source extracted verbatim from manuscript figure TikZ block.
+% Hình 3: Kiến trúc dữ liệu tỉnh--trung ương -- góc nhìn ứng dụng--dữ liệu theo ArchiMate; topology vật lý là điểm biến thiên
+% Edit the TikZ block below; compile with XeLaTeX.
+
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}[Ligatures=TeX]}
+  {\setmainfont{DejaVu Serif}[Ligatures=TeX]}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setotherlanguage{english}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\newcommand{\dnkhcn}{DN KH\&CN}
+\newcommand{\dnknst}{DN KNST}
+\newcommand{\khcn}{KH\&CN}
+\newcommand{\dmst}{ĐMST}
+\begin{document}
+\begin{tikzpicture}[
+  font=\scriptsize,
+  app/.style={draw, rounded corners=1pt, align=center, minimum height=0.92cm, text width=4.10cm, inner sep=3pt},
+  data/.style={draw, align=center, minimum height=0.86cm, text width=3.50cm, inner sep=3pt},
+  flow/.style={-{Latex[length=2mm]}, thick, dashed},
+  access/.style={-{Latex[length=1.8mm]}, thick},
+  lab/.style={font=\tiny,fill=white,inner sep=0.7pt}
+]
+\node[app] (ent) at (-4.6,5.25) {\textbf{Application Component}\\CSDL quốc gia về doanh nghiệp\\\emph{nguồn định danh pháp lý}};
+\node[app] (other) at (4.6,5.25) {\textbf{Application Component}\\Nguồn KH\&CN, SHTT và bằng chứng chuyên ngành};
+\node[app, text width=4.8cm] (province) at (-3.0,3.15) {\textbf{Application Component}\\\textbf{Nút nghiệp vụ cấp tỉnh}\\dịch vụ hồ sơ/quyết định và cấu hình địa phương};
+\node[app, text width=4.8cm] (central) at (3.0,3.15) {\textbf{Application Component}\\\textbf{Lớp điều phối trung ương}\\sổ đăng ký, tổng hợp/giám sát và quản trị chuẩn};
+
+\node[data, text width=4.45cm] (pdb) at (-3.0,0.95) {\textbf{Data Object}\\Dữ liệu nghiệp vụ nút tỉnh\\hồ sơ, quyết định, giấy, lịch sử hiệu lực};
+\node[data, text width=4.45cm] (read) at (3.0,0.95) {\textbf{Data Object}\\Mô hình đọc hợp nhất quốc gia\\bản đọc có nguồn, độ mới và phiên bản};
+\node[data] (identity) at (-4.7,-1.55) {\textbf{Data Object}\\Định danh pháp lý DN};
+\node[data] (relations) at (0,-1.55) {\textbf{Data Object}\\Quan hệ hệ sinh thái\\liên tỉnh/liên vùng};
+\node[data] (meta) at (4.7,-1.55) {\textbf{Data Object}\\Từ điển, siêu dữ liệu,\\hợp đồng dữ liệu};
+
+% Flow: dashed. Access: solid. Shared data access is routed outside the central data boxes.
+\draw[flow] (ent.south) -- (province.north west);
+\draw[flow] (other.south) -- (central.north east);
+\draw[flow] (province.east) -- node[lab,above]{trao đổi} (central.west);
+\draw[access] (province.south) -- (pdb.north);
+\draw[access] (central.south) -- (read.north);
+\draw[access] (province.west) -- ++(-0.65,0) |- (identity.north);
+\draw[access] (province.east) -- ++(0.45,-0.35) |- (relations.north west);
+\draw[access] (central.west) -- ++(-0.45,-0.35) |- (relations.north east);
+\draw[access] (central.east) -- ++(0.65,0) |- (meta.north);
+\node[font=\tiny,align=center,text width=14cm] at (0,-2.55) {Chú giải ArchiMate 3.2: đường liền có mũi tên = Access từ Application Component tới Data Object; đường đứt có mũi tên = Flow giữa các Application Component.};
+\end{tikzpicture}
+\end{document}

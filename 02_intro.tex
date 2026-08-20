@@ -1,0 +1,35 @@
+%=====================================================================
+% 02 — GIỚI THIỆU — final scientific compression
+%=====================================================================
+\section{Giới thiệu}
+\label{sec:intro}
+
+Nghị định số 268/2025/NĐ-CP đặt phần lớn nghiệp vụ công nhận, chứng nhận doanh nghiệp ở cấp tỉnh nhưng đồng thời tạo nghĩa vụ cập nhật và báo cáo liên cấp. Khoản 1 Điều 48 xác lập Ủy ban nhân dân cấp tỉnh nơi doanh nghiệp đặt trụ sở chính là cơ quan có thẩm quyền đối với Giấy chứng nhận DN KH\&CN; khoản 3 Điều 48 yêu cầu cập nhật định kỳ dữ liệu liên quan lên Nền tảng số quản lý KH,CN\&ĐMST quốc gia; khoản 2 Điều 66 yêu cầu thông báo cho Bộ Khoa học và Công nghệ trong thời hạn 15 ngày đối với các quyết định thuộc phạm vi quy định \citep{nd268_2025}. Vì vậy, vấn đề không chỉ là số hóa thủ tục mà là tổ chức một hệ thống trong đó quyền xử lý và quyền ghi bám thẩm quyền địa phương, trong khi dữ liệu, trạng thái và khả năng quan sát vẫn phải liên thông ở cấp quốc gia.
+
+Nghiên cứu trước của nhóm tác giả đã mã hóa yêu cầu chức năng, tổ chức một khung nền tảng sáu lớp và minh họa kiến trúc C4 ở mức vùng chứa \citep[pp.~54, 58--59]{nhom_bai1}. Bài hiện tại không tái sử dụng các yêu cầu chức năng, sáu lớp hay hình của công trình đó để tổng hợp kiến trúc; nghiên cứu trước chỉ được dùng để xác lập ranh giới đóng góp. Khác biệt cốt lõi được tóm tắt ở Bảng~\ref{tab:prior-delta}.
+
+{\vjsttablefont
+\renewcommand{\arraystretch}{1.02}
+\setlength{\tabcolsep}{3pt}
+\begin{table}[H]
+\centering
+\caption{Ranh giới giữa nghiên cứu trước và nghiên cứu hiện tại}
+\label{tab:prior-delta}
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}XX@{}}
+\toprule
+\textbf{Chiều so sánh} & \textbf{Nghiên cứu trước} & \textbf{Nghiên cứu hiện tại} \\
+\midrule
+Trọng tâm & Yêu cầu của NĐ 268, đối sánh kinh nghiệm và khung nền tảng số phục vụ quản trị hệ sinh thái. & Lõi/điểm biến thiên của SRA tỉnh--trung ương, thẩm quyền dữ liệu và đánh đổi của một profile triển khai. \\
+Bằng chứng và phương pháp & 23 tài liệu thứ cấp; nghiên cứu khái niệm, phân tích chính sách và đối sánh quốc tế. & 16 tài liệu khóa ngày 08/08/2026; 116 đơn vị nguồn; DSR và chuỗi truy vết từ ràng buộc tới quyết định kiến trúc. \\
+Sản phẩm & Khung sáu lớp, bốn nhóm người dùng và luồng dữ liệu đa cấp. & SRA đa góc nhìn; mô hình thẩm quyền dữ liệu; ranh giới liên thông; lõi ổn định và điểm biến thiên. \\
+Đánh giá & Đối chiếu mức phù hợp chính sách/kinh nghiệm; chưa khảo sát hoặc thí điểm. & Mười kịch bản stress-test cấu hình ứng viên, tinh chỉnh kiến trúc và áp dụng lại cùng rubric. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+}
+
+Về nền tảng học thuật, SRA cung cấp một cấu trúc tổng quát cho một lớp hệ thống \citep{angelov2012}, còn ISO/IEC/IEEE 42010:2022 đặt mô tả kiến trúc trong quan hệ giữa bên liên quan, mối quan tâm, góc nhìn và mô hình \citep{iso42010_2022}. Nghiên cứu hệ sinh thái phần mềm và đổi mới số cho thấy các chủ thể tự chủ cần phối hợp quanh một hạ tầng hoặc nền tảng chung \citep{manikas2013,wang2021}; truy vết yêu cầu giúp duy trì quan hệ giữa căn cứ nguồn và các tạo tác kỹ thuật \citep{winkler2010,kosenkov2025}. Trong bối cảnh Việt Nam, các khung kiến trúc và dữ liệu quốc gia/chuyên ngành đã tạo hệ quy chiếu cho kiến trúc, quản trị dữ liệu và tích hợp \citep{qd3090_2025,qd2439_2025,qd1973_2026}, trong khi EIF cung cấp một khung phân tích liên thông theo các lớp pháp lý, tổ chức, ngữ nghĩa và kỹ thuật \citep[Hình~3, p.~22; pp.~27--30]{eif2017}. Đồng thời, các nghiên cứu về hệ sinh thái khởi nghiệp cho thấy quan hệ kinh tế--đổi mới có thể vượt địa giới hành chính \citep[pp.~27--28]{fischer2022}; \citep[pp.~1483--1484]{noak2025}. Các nền tảng này được phân tích sâu hơn ở Mục~\ref{sec:background}; khoảng trống của bài nằm ở cách kết hợp chúng thành một kiến trúc tỉnh--trung ương mà không đồng nhất thẩm quyền với topology lưu trữ.
+
+Từ khoảng trống đó, nghiên cứu trả lời ba câu hỏi: (i) SRA cần tổ chức lõi ổn định và điểm biến thiên như thế nào khi nghiệp vụ thuộc tỉnh nhưng quản trị và liên thông phải thống nhất; (ii) thẩm quyền dữ liệu và ranh giới trách nhiệm cần được biểu diễn thế nào để quyền ghi bám phạm vi thẩm quyền nhưng không phụ thuộc vào một cách bố trí lưu trữ vật lý duy nhất; và (iii) một cấu hình phân tán của SRA bộc lộ những điều kiện, rủi ro và đánh đổi nào khi được thử thách bởi thay đổi quy định, gián đoạn, tổng hợp toàn quốc, quan hệ xuyên tỉnh, chuyển giao thẩm quyền và nâng cấp không đồng thời.
+
+Bài đóng góp ba kết quả chính. Thứ nhất, một SRA đa góc nhìn tách \emph{lõi ổn định} khỏi \emph{điểm biến thiên}, qua đó xác định các bất biến về thẩm quyền, trách nhiệm và liên thông mà không khóa một topology hay sản phẩm công nghệ cụ thể. Thứ hai, một mô hình dữ liệu--liên thông trong đó nguồn có thẩm quyền được xác định theo nhóm thuộc tính và có thể thay đổi theo thời gian, đồng thời tách biên thẩm quyền khỏi biên quan hệ hệ sinh thái. Thứ ba, một quy trình tổng hợp và đánh giá có truy vết: 16 tài liệu tạo 116 đơn vị nguồn và 128 dòng truy vết; kiến trúc ứng viên được thử thách bằng mười kịch bản, tinh chỉnh khi phát hiện khoảng trống và sau đó được đánh giá lại bằng cùng rubric. Từ hai đóng góp kiến trúc đầu, Mục~\ref{subsec:design-principles} khái quát ba nguyên tắc thiết kế có khả năng chuyển giao cho các nền tảng công có phân quyền tương tự. Profile P-DIST chỉ là một cấu hình dùng để quan sát đánh đổi của phương án phân tán; kết quả là kiểm chứng kiến trúc dựa trên kịch bản trước triển khai, không phải bằng chứng thực nghiệm về hiệu năng hoặc tính ưu việt của một hệ thống đã vận hành.

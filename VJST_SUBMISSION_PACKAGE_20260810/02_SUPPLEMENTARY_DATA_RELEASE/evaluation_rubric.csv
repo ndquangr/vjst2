@@ -1,0 +1,4 @@
+rating,definition,interpretation
+ĐÁP ỨNG TRỰC TIẾP,Lõi B1 hiện tại xử lý kịch bản mà không phải sửa AD hoặc lõi ổn định.,Không đồng nghĩa đã kiểm chứng triển khai; chỉ là mức đáp ứng ở tầng kiến trúc.
+ĐÁP ỨNG CÓ ĐIỀU KIỆN,B1 xử lý được nếu một cơ chế/điểm biến thiên đã được kiến trúc cho phép được cụ thể hóa hoặc kiểm chứng.,Điều kiện phải được ghi rõ thành risk/control trước triển khai.
+RỦI RO KIẾN TRÚC,Kịch bản buộc phải xem xét lại AD/lõi ổn định hoặc còn vấn đề thẩm quyền/toàn vẹn chưa giải quyết.,Không được coi là đáp ứng cho tới khi kiến trúc được sửa hoặc có quyết định có thẩm quyền.

@@ -1,0 +1,117 @@
+﻿source_unit_id,source,locator,constraint_count,constraint_ids,atomization_rule
+SU001,QĐ 3090/QĐ-BKHCN,Điều 1,1,C01.01,R1
+SU002,QĐ 292/QĐ-BKHCN,"Phụ lục, Chương 2, Mục II",5,C01.02;C01.03;C01.04;C01.05;C01.06,R2
+SU003,QĐ 2439/QĐ-TTg,"Điều 1; Khung ban hành kèm theo, Chương I, Mục I.1",4,C02.01;C02.02;C02.03;C02.04,R2
+SU004,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"Luật 93/2025/QH15, khoản 3 Điều 20",1,C03.01,R1
+SU005,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 1 Điều 35",1,C03.02,R1
+SU006,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 2 Điều 35",1,C03.03,R1
+SU007,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 3 Điều 35",1,C03.04,R1
+SU008,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 1 Điều 38",1,C03.05,R1
+SU009,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 2 Điều 39",1,C03.06,R1
+SU010,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 3 Điều 39",1,C03.07,R1
+SU011,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 4 Điều 40",1,C03.08,R1
+SU012,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 5 Điều 40",1,C03.09,R1
+SU013,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm d khoản 1 Điều 41",1,C03.10,R1
+SU014,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 2 Điều 41",1,C03.11,R1
+SU015,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm a khoản 3 Điều 41",1,C03.12,R1
+SU016,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm d khoản 4 Điều 41",1,C03.13,R1
+SU017,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm đ khoản 4 Điều 41",1,C03.14,R1
+SU018,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 1 Điều 43",1,C03.15,R1
+SU019,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm a khoản 2 Điều 43",1,C03.16,R1
+SU020,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm b khoản 2 Điều 43",1,C03.17,R1
+SU021,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm c khoản 2 Điều 43",5,C03.18;C03.19;C03.20;C03.21;C03.22,R2
+SU022,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 3 Điều 43",1,C03.23,R1
+SU023,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm a khoản 3 Điều 44",1,C03.24,R1
+SU024,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm b khoản 3 Điều 44",1,C03.25,R1
+SU025,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 4 Điều 44",1,C03.26,R1
+SU026,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 1 Điều 45",1,C03.27,R1
+SU027,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 2 Điều 45",1,C03.28,R1
+SU028,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm a khoản 3 Điều 45",1,C03.29,R1
+SU029,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm b khoản 3 Điều 45",1,C03.30,R1
+SU030,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 1 Điều 48",1,C03.31,R1
+SU031,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 3 Điều 48",1,C03.32,R1
+SU032,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 1 Điều 50",1,C03.33,R1
+SU033,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, điểm b khoản 2 Điều 50",1,C03.34,R1
+SU034,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 1 Điều 51",1,C03.35,R1
+SU035,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 2 Điều 51",1,C03.36,R1
+SU036,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 3 Điều 51",1,C03.37,R1
+SU037,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 3 Điều 52",1,C03.38,R1
+SU038,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 1 Điều 53",1,C03.39,R1
+SU039,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 2 Điều 53",1,C03.40,R1
+SU040,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 3 Điều 53",1,C03.41,R1
+SU041,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 4 Điều 53",1,C03.42,R1
+SU042,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 5 Điều 53",1,C03.43,R1
+SU043,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 2 Điều 54",1,C03.44,R1
+SU044,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 4 Điều 65",1,C03.45,R1
+SU045,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 2 Điều 66",1,C03.46,R1
+SU046,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 4 Điều 66",1,C03.47,R1
+SU047,Luật 93/2025/QH15; NĐ 268/2025/NĐ-CP,"NĐ 268, khoản 5 Điều 66",1,C03.48,R1
+SU048,Luật Dữ liệu 60/2024/QH15,điểm a khoản 2 Điều 11,1,C04.01,R1
+SU049,Luật Dữ liệu 60/2024/QH15,điểm b khoản 2 Điều 11,1,C04.02,R1
+SU050,Luật Dữ liệu 60/2024/QH15,điểm c khoản 2 Điều 11,1,C04.03,R1
+SU051,Luật Dữ liệu 60/2024/QH15,điểm đ khoản 2 Điều 11,1,C04.04,R1
+SU052,Luật Dữ liệu 60/2024/QH15,khoản 1 Điều 12,1,C04.05,R1
+SU053,Luật Dữ liệu 60/2024/QH15,điểm a khoản 2 Điều 12,1,C04.06,R1
+SU054,Luật Dữ liệu 60/2024/QH15,điểm b khoản 2 Điều 12,1,C04.07,R1
+SU055,Luật Dữ liệu 60/2024/QH15,khoản 1 Điều 13,1,C04.08,R1
+SU056,NĐ 278/2025/NĐ-CP,khoản 1 Điều 4,1,C05.01,R1
+SU057,NĐ 278/2025/NĐ-CP,khoản 2 Điều 4,1,C05.02,R1
+SU058,NĐ 278/2025/NĐ-CP,khoản 3 Điều 4,1,C05.03,R1
+SU059,NĐ 278/2025/NĐ-CP,khoản 4 Điều 4,1,C05.04,R1
+SU060,NĐ 278/2025/NĐ-CP,khoản 5 Điều 4,1,C05.05,R1
+SU061,NĐ 278/2025/NĐ-CP,khoản 6 Điều 4,1,C05.06,R1
+SU062,NĐ 278/2025/NĐ-CP,khoản 7 Điều 4,1,C05.07,R1
+SU063,NĐ 278/2025/NĐ-CP,khoản 1 Điều 5,1,C05.08,R1
+SU064,NĐ 278/2025/NĐ-CP,khoản 2 Điều 5,1,C05.09,R1
+SU065,NĐ 278/2025/NĐ-CP,khoản 3 Điều 5,1,C05.10,R1
+SU066,NĐ 278/2025/NĐ-CP,khoản 1 Điều 6,1,C05.11,R1
+SU067,NĐ 278/2025/NĐ-CP,khoản 2 Điều 6,1,C05.12,R1
+SU068,NĐ 278/2025/NĐ-CP,điểm a khoản 2 Điều 7,1,C05.13,R1
+SU069,NĐ 278/2025/NĐ-CP,điểm b khoản 2 Điều 7,1,C05.14,R1
+SU070,NĐ 278/2025/NĐ-CP,khoản 3 Điều 7,1,C05.15,R1
+SU071,NĐ 278/2025/NĐ-CP,khoản 2 Điều 10,1,C05.16,R1
+SU072,NĐ 278/2025/NĐ-CP,khoản 2 Điều 23,1,C05.17,R1
+SU073,NĐ 278/2025/NĐ-CP,khoản 2--3 Điều 24,1,C05.18,R1
+SU074,QĐ 1973/QĐ-BKHCN,Mục II.1; nguyên tắc kế thừa khung quốc gia,1,C06.01,R1
+SU075,QĐ 1973/QĐ-BKHCN,Mục II.1(d--e),1,C06.02,R1
+SU076,QĐ 1973/QĐ-BKHCN,Mục II.2; nguyên tắc tạo lập dữ liệu,1,C06.03,R1
+SU077,QĐ 1973/QĐ-BKHCN,Mục II.2; minh bạch chia sẻ dữ liệu,1,C06.04,R1
+SU078,QĐ 1973/QĐ-BKHCN,Mục II.2; xác định nguồn tạo lập,1,C06.05,R1
+SU079,QĐ 1973/QĐ-BKHCN,Mục II.2; chuẩn hóa metadata/identifier,1,C06.06,R1
+SU080,QĐ 1973/QĐ-BKHCN,Mục III; nguyên tắc Zero Trust,1,C06.07,R1
+SU081,QĐ 1973/QĐ-BKHCN,Mục III; Data Lineage,1,C06.08,R1
+SU082,QĐ 1973/QĐ-BKHCN,Mục III.1.4,2,C06.09;C06.10,R2
+SU083,QĐ 1973/QĐ-BKHCN,Mục III.3.2/metadata catalog,1,C06.11,R1
+SU084,QĐ 1973/QĐ-BKHCN,"Mục III.3.3, STT 3",1,C06.12,R1
+SU085,QĐ 1973/QĐ-BKHCN,Mục III.3.3 và mô tả nền tảng dữ liệu dùng chung,1,C06.13,R1
+SU086,QĐ 1973/QĐ-BKHCN,"Phụ lục, Mục 3, STT 2--3",1,C06.14,R1
+SU087,QĐ 1762/QĐ-BKHCN,"Phụ lục, STT 38",1,C07.01,R1
+SU088,Dự thảo Khung tiêu chuẩn dữ liệu DNKH&CN/DNKNST (bản 2026 trong project source),Điều 4 khoản 1,1,C07.02,R1
+SU089,Dự thảo Khung tiêu chuẩn dữ liệu DNKH&CN/DNKNST (bản 2026 trong project source),Điều 4 khoản 2,1,C07.03,R1
+SU090,Dự thảo Khung tiêu chuẩn dữ liệu DNKH&CN/DNKNST (bản 2026 trong project source),Điều 4 khoản 3,1,C07.04,R1
+SU091,Dự thảo Khung tiêu chuẩn dữ liệu DNKH&CN/DNKNST (bản 2026 trong project source),Điều 4 khoản 5,1,C07.05,R1
+SU092,Dự thảo Khung tiêu chuẩn dữ liệu DNKH&CN/DNKNST (bản 2026 trong project source),Phụ lục I Điều 4; Phụ lục VI/VII tương ứng,1,C07.06,R1
+SU093,Dự thảo Khung tiêu chuẩn dữ liệu DNKH&CN/DNKNST (bản 2026 trong project source),"Phụ lục IV, MD001",1,C07.07,R1
+SU094,Dự thảo Khung tiêu chuẩn dữ liệu DNKH&CN/DNKNST (bản 2026 trong project source),"Phụ lục IX, MD001",1,C07.08,R1
+SU095,Dự thảo Khung tiêu chuẩn dữ liệu DNKH&CN/DNKNST (bản 2026 trong project source),Phần căn cứ pháp lý,1,C07.09,R1
+SU096,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ69, khoản 2 Điều 12",1,C08.01,R1
+SU097,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ69, khoản 3 Điều 12",1,C08.02,R1
+SU098,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ69, điểm a khoản 4 Điều 13",1,C08.03,R1
+SU099,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ69, điểm b khoản 4 Điều 13",1,C08.04,R1
+SU100,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ69, khoản 1 Điều 18",1,C08.05,R1
+SU101,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ69, khoản 2 Điều 18",1,C08.06,R1
+SU102,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ69, khoản 1 Điều 19",1,C08.07,R1
+SU103,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ69, khoản 2 và khoản 4 Điều 19",1,C08.08,R1
+SU104,NĐ 69/2024/NĐ-CP; NĐ 169/2025/NĐ-CP,"NĐ169, khoản 1--2 Điều 43",1,C08.09,R1
+SU105,Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15; NĐ 356/2025/NĐ-CP,"Luật 91, điểm c khoản 1 Điều 19",1,C09.01,R1
+SU106,Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15; NĐ 356/2025/NĐ-CP,"Luật 91, khoản 2 Điều 19",1,C09.02,R1
+SU107,Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15; NĐ 356/2025/NĐ-CP,"Luật 91, điểm c khoản 1 Điều 37",1,C09.03,R1
+SU108,Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15; NĐ 356/2025/NĐ-CP,"Luật 91, điểm e khoản 1 Điều 37",1,C09.04,R1
+SU109,Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15; NĐ 356/2025/NĐ-CP,"NĐ356, khoản 2 Điều 4",1,C09.05,R1
+SU110,Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15; NĐ 356/2025/NĐ-CP,"NĐ356, khoản 1--2 Điều 42",1,C09.06,R1
+SU111,EIF 2017; Regulation (EU) 2024/903,"EIF, Mục 3.1, p.22",1,C10.01,R1
+SU112,EIF 2017; Regulation (EU) 2024/903,"EIF, Mục 3.3, p.27",1,C10.02,R1
+SU113,EIF 2017; Regulation (EU) 2024/903,"EIF, Mục 3.4, p.28",1,C10.03,R1
+SU114,EIF 2017; Regulation (EU) 2024/903,"EIF, Mục 3.5, p.29",1,C10.04,R1
+SU115,EIF 2017; Regulation (EU) 2024/903,"EIF, Mục 3.6, p.30",1,C10.05,R1
+SU116,EIF 2017; Regulation (EU) 2024/903,"Regulation (EU) 2024/903, khoản 1--2 Điều 3; khoản 2 Điều 6",1,C10.06,R1

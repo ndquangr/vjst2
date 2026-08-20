@@ -1,0 +1,89 @@
+%=====================================================================
+% 06 — KIẾN TRÚC DỮ LIỆU — final scientific compression
+%=====================================================================
+\section{Kiến trúc dữ liệu của nền tảng}
+\label{sec:data}
+
+\subsection{Biên thẩm quyền dữ liệu và topology độc lập}
+\label{subsec:phanlopdulieu}
+
+Đề xuất dữ liệu của SRA dựa trên một phân biệt quan trọng: \textbf{thẩm quyền ghi là bất biến logic, còn cách bố trí dữ liệu vật lý là điểm biến thiên}. Quyền thay đổi trạng thái nghiệp vụ được gắn với cơ quan đang có thẩm quyền đối với chủ thể hoặc hồ sơ trong một khoảng thời gian xác định; lớp trung ương giữ sổ định tuyến, siêu dữ liệu, mô hình đọc và dữ liệu tổng hợp nhưng không thay thế quyết định gốc của địa phương. Vì vậy, cùng một SRA có thể được hiện thực bằng kho tập trung đa tenant, phân vùng logic/schema, kho vật lý theo tỉnh hoặc mô hình lai nếu vẫn bảo toàn quyền ghi, nguồn gốc và phiên bản. Profile P-DIST dùng trong đánh giá chỉ là một cấu hình cụ thể của điểm biến thiên này.
+
+Cách tách thẩm quyền khỏi topology phù hợp với yêu cầu xác định điểm tạo lập, tránh trùng lặp dữ liệu và duy trì một nguồn tin cậy theo từng loại dữ liệu trong QĐ 1973 và NĐ 278 \citep{qd1973_2026,nd278_2025}. Nó cũng tránh suy rộng nguyên tắc ``một nguồn'' thành yêu cầu ``một doanh nghiệp chỉ có một CSDL vật lý'': định danh pháp lý có thể đến từ CSDL quốc gia về doanh nghiệp, trong khi trạng thái công nhận/chứng nhận chuyên ngành phát sinh từ quyết định của cơ quan có thẩm quyền cấp tỉnh. Nền tảng vì thế quản trị một không gian dữ liệu hợp nhất về logic nhưng không tự nhận vai trò nguồn pháp lý cho mọi thuộc tính.
+
+Hình~\ref{fig:kientrucdulieu} biểu diễn góc nhìn ứng dụng--dữ liệu theo ArchiMate 3.2. Application Component truy cập Data Object bằng quan hệ Access, còn Flow chỉ biểu diễn trao đổi giữa các thành phần ứng dụng \citep[Chs.~5, 9; Apps.~A--B]{archimate32_2023}. Hình cố ý không khóa topology vật lý: điều cần bảo toàn là ranh giới giữa nguồn định danh, nút nghiệp vụ tỉnh, lớp điều phối trung ương và các đối tượng dữ liệu dùng chung.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  font=\scriptsize,
+  app/.style={draw, rounded corners=1pt, align=center, minimum height=0.92cm, text width=4.10cm, inner sep=3pt},
+  data/.style={draw, align=center, minimum height=0.86cm, text width=3.50cm, inner sep=3pt},
+  flow/.style={-{Latex[length=2mm]}, thick, dashed},
+  access/.style={-{Latex[length=1.8mm]}, thick},
+  lab/.style={font=\tiny,fill=white,inner sep=0.7pt}
+]
+\node[app] (ent) at (-4.6,5.25) {\textbf{Application Component}\\CSDL quốc gia về doanh nghiệp\\\emph{nguồn định danh pháp lý}};
+\node[app] (other) at (4.6,5.25) {\textbf{Application Component}\\Nguồn KH\&CN, SHTT và bằng chứng chuyên ngành};
+\node[app, text width=4.8cm] (province) at (-3.0,3.15) {\textbf{Application Component}\\\textbf{Nút nghiệp vụ cấp tỉnh}\\dịch vụ hồ sơ/quyết định và cấu hình địa phương};
+\node[app, text width=4.8cm] (central) at (3.0,3.15) {\textbf{Application Component}\\\textbf{Lớp điều phối trung ương}\\sổ đăng ký, tổng hợp/giám sát và quản trị chuẩn};
+
+\node[data, text width=4.45cm] (pdb) at (-3.0,0.95) {\textbf{Data Object}\\Dữ liệu nghiệp vụ nút tỉnh\\hồ sơ, quyết định, giấy, lịch sử hiệu lực};
+\node[data, text width=4.45cm] (read) at (3.0,0.95) {\textbf{Data Object}\\Mô hình đọc hợp nhất quốc gia\\bản đọc có nguồn, độ mới và phiên bản};
+\node[data] (identity) at (-4.7,-1.55) {\textbf{Data Object}\\Định danh pháp lý DN};
+\node[data] (relations) at (0,-1.55) {\textbf{Data Object}\\Quan hệ hệ sinh thái\\liên tỉnh/liên vùng};
+\node[data] (meta) at (4.7,-1.55) {\textbf{Data Object}\\Từ điển, siêu dữ liệu,\\hợp đồng dữ liệu};
+
+\draw[flow] (ent.south) -- (province.north west);
+\draw[flow] (other.south) -- (central.north east);
+\draw[flow] (province.east) -- node[lab,above]{trao đổi} (central.west);
+\draw[access] (province.south) -- (pdb.north);
+\draw[access] (central.south) -- (read.north);
+\draw[access] (province.west) -- ++(-0.65,0) |- (identity.north);
+\draw[access] (province.east) -- ++(0.45,-0.35) |- (relations.north west);
+\draw[access] (central.west) -- ++(-0.45,-0.35) |- (relations.north east);
+\draw[access] (central.east) -- ++(0.65,0) |- (meta.north);
+\node[font=\tiny,align=center,text width=14cm] at (0,-2.55) {Chú giải ArchiMate 3.2: đường liền có mũi tên = Access từ Application Component tới Data Object; đường đứt có mũi tên = Flow giữa các Application Component.};
+\end{tikzpicture}
+\caption{Kiến trúc dữ liệu tỉnh--trung ương; topology vật lý là điểm biến thiên}
+\label{fig:kientrucdulieu}
+\end{figure}
+
+\subsection{Thẩm quyền theo nhóm dữ liệu và chuyển giao quyền ghi}
+\label{subsec:masterdata}
+
+Mô hình thẩm quyền dữ liệu không gán một ``chủ sở hữu'' duy nhất cho toàn bộ thực thể doanh nghiệp. Thay vào đó, nghiên cứu phân biệt bốn vai trò theo từng nhóm thuộc tính: \emph{thẩm quyền pháp lý}; \emph{thẩm quyền tạo/cập nhật}; \emph{hệ thống lưu bản ghi nghiệp vụ chính} (SoR); và \emph{nguồn phân phối/tham chiếu}. Phân biệt này xuất phát từ việc QĐ 1973 đặt dữ liệu tổ chức/doanh nghiệp ở nguồn quốc gia nhưng vẫn coi DN KH\&CN và DN KNST là dữ liệu chủ chuyên ngành, trong khi NĐ 268 giao quyết định công nhận/chứng nhận cho cấp tỉnh \citep{nd268_2025,qd1973_2026}. Bảng~\ref{tab:masterdata} tóm tắt các miền dữ liệu quyết định đối với kiến trúc; ánh xạ chi tiết từng nhóm thuộc tính được đưa sang tài liệu bổ trợ.
+
+{\vjsttablefont
+\renewcommand{\arraystretch}{1.03}
+\setlength{\tabcolsep}{3pt}
+\begin{table}[H]
+\centering
+\caption{Thẩm quyền dữ liệu ở mức khái quát}
+\label{tab:masterdata}
+\begin{tabularx}{0.98\textwidth}{@{}p{3.1cm}p{5.2cm}X@{}}
+\toprule
+\textbf{Miền dữ liệu} & \textbf{Nguồn/thẩm quyền chính} & \textbf{Vai trò của nền tảng} \\
+\midrule
+Định danh pháp lý DN & CSDL quốc gia về doanh nghiệp theo Luật Dữ liệu, NĐ 278 và QĐ 1973 \citep{luatdulieu2024,nd278_2025,qd1973_2026}. & Tham chiếu/đồng bộ khóa và thuộc tính cần thiết; không tạo một bản chủ pháp lý mới. \\
+\addlinespace
+Trạng thái DN KH\&CN/DN KNST & Cơ quan cấp tỉnh có thẩm quyền ban hành quyết định theo NĐ 268 \citep{nd268_2025}. & Nút đang có quyền ghi là SoR nghiệp vụ; trung ương giữ bản đọc, định tuyến và tổng hợp có provenance. \\
+\addlinespace
+Bằng chứng chuyên ngành & Hệ thống/cơ quan tạo hoặc xác nhận kết quả KH\&CN, SHTT và loại bằng chứng tương ứng. & Lưu tham chiếu hoặc bản nghiệp vụ cần thiết kèm nguồn và trạng thái xác minh; không biến dữ liệu tự khai thành dữ liệu đã xác thực. \\
+\addlinespace
+Danh mục, quan hệ và dữ liệu dẫn xuất & Danh mục dùng chung theo khung quốc gia/Bộ; quan hệ và dữ liệu dẫn xuất được quản trị trên nền tảng với nguồn gốc rõ ràng \citep{nd278_2025,qd1973_2026}. & Quản lý phiên bản, ánh xạ, provenance và khoảng hiệu lực; dữ liệu dẫn xuất không thay thế nguồn đầu vào có thẩm quyền. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+}
+
+Một rủi ro đặc thù của mô hình nhiều địa phương là thay đổi thẩm quyền trong khi hồ sơ hoặc trạng thái nghiệp vụ vẫn đang tồn tại. Sau stress-test S9, B1-R biểu diễn quyền ghi như một gán có phạm vi và khoảng hiệu lực thay vì thuộc tính địa bàn cố định. Đối với cùng một phạm vi, tại một thời điểm chỉ có một writer hợp lệ; việc chuyển quyền phải xác nhận đóng băng writer cũ, đối soát dữ liệu/nguồn gốc rồi mới kích hoạt writer mới. Một epoch tăng đơn điệu được dùng để phát hiện ghi từ gán quyền cũ. Đây là ngữ nghĩa thiết kế L2 nhằm bảo toàn single-active-writer và tính truy vết; thuật toán khóa, consensus hay middleware cụ thể vẫn thuộc L3. Chi tiết trường dữ liệu và máy trạng thái chuyển giao nằm trong tài liệu bổ trợ.
+
+\subsection{Chuẩn hóa, nguồn gốc và chất lượng dữ liệu}
+\label{subsec:chuanhoa}
+
+Đồng nhất logic giữa các địa phương được thực hiện bằng hợp đồng dữ liệu, từ điển, danh mục, siêu dữ liệu và quy tắc phiên bản dùng chung, chứ không bằng giả định mọi dữ liệu phải nằm trong một kho vật lý duy nhất. Luật Dữ liệu, NĐ 278 và QĐ 1973 yêu cầu thống nhất dữ liệu chủ, mô tả, chất lượng và khả năng liên thông \citep{luatdulieu2024,nd278_2025,qd1973_2026}. Do đó, các bản ghi trao đổi hoặc tổng hợp phải truy nguyên được ít nhất nguồn, thời điểm ghi nhận/hiệu lực, trạng thái xác minh, phiên bản và lịch sử thay đổi; mô hình đọc trung ương còn phải công bố độ mới để tránh bị diễn giải như nguồn quyết định gốc. Đối với giấy công nhận/chứng nhận, các biến cố cấp, cấp lại, chấm dứt và thu hồi phải được lưu theo phiên bản thay vì chỉ ghi đè trạng thái cuối \citep{nd268_2025}.
+
+Dự thảo khung tiêu chí cung cấp thêm các quy ước về mã, định dạng và siêu dữ liệu nhưng chỉ được dùng như nguồn chẩn đoán lớp D \citep{duthao_khungtc}. Đối sánh với nguồn hiện hành cho thấy ba điểm cần theo dõi: dự thảo còn viện dẫn NĐ 47/2020/NĐ-CP đã hết hiệu lực theo NĐ 278; khái niệm MD001 cần tách định danh pháp lý khỏi trạng thái chuyên ngành; và phạm vi CSDL trong QĐ 1762 chưa hoàn toàn trùng với hai miền DN KH\&CN/DN KNST của dự thảo \citep{nd278_2025,qd1762_2025,duthao_khungtc}. Các điểm này chỉ được xem là \textsc{cần làm rõ}; chúng không làm thay đổi lõi SRA cho đến khi có văn bản có thẩm quyền mới.
+
+Như vậy, đóng góp của kiến trúc dữ liệu không nằm ở một schema hay sản phẩm CSDL cụ thể, mà ở ba bất biến có thể kiểm tra: \emph{thẩm quyền được xác định theo nhóm thuộc tính và thời gian}; \emph{topology vật lý không làm thay đổi nguồn pháp lý hoặc quyền ghi}; và \emph{mọi bản sao, tổng hợp hay quan hệ dẫn xuất đều bảo toàn provenance, phiên bản và khoảng hiệu lực}. Các bất biến này trở thành căn cứ cho thiết kế liên thông ở Mục~\ref{sec:interop} và cho các kịch bản đánh giá ở Mục~\ref{sec:evaluation}.

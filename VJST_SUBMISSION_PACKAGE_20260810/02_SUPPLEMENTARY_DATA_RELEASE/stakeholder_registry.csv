@@ -1,0 +1,7 @@
+id,stakeholder_group,primary_concerns,viewpoints
+STK1,Cơ quan trung ương,quản trị chuẩn; tổng hợp; giám sát; điều phối,V1;V4;V5;V6
+STK2,Cơ quan cấp tỉnh,thẩm quyền nghiệp vụ; biên ghi; cấu hình địa phương; liên tục cục bộ,V1;V2;V3;V4;V5;V6
+STK3,Doanh nghiệp/người nộp hồ sơ,nộp/tra cứu; trạng thái hồ sơ; quyền truy cập,V1;V2;V6
+STK4,Chủ quản hệ thống nguồn,thẩm quyền nguồn; điều kiện truy cập; chất lượng/nguồn gốc,V1;V3;V4;V6
+STK5,Đầu mối kiến trúc và dữ liệu,lược đồ; từ điển; hợp đồng dữ liệu; phiên bản; điểm biến thiên,V2;V3;V4;V5
+STK6,Chức năng an toàn và tuân thủ,biên tin cậy; phân quyền; kiểm toán; bảo vệ dữ liệu,V1;V5;V6

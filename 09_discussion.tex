@@ -1,0 +1,65 @@
+%=====================================================================
+% 09 — BÀN LUẬN — scientific-paper compression
+%=====================================================================
+\section{Bàn luận}
+\label{sec:discussion}
+
+\subsection{Ý nghĩa của đóng góp kiến trúc}
+\label{subsec:delta}
+
+Đóng góp của nghiên cứu không nằm ở một topology triển khai cụ thể mà ở cách SRA tách \emph{lõi ổn định} khỏi \emph{điểm biến thiên}. Lõi ổn định bảo toàn quyền ghi theo thẩm quyền, nguồn gốc và hiệu lực dữ liệu, cùng trách nhiệm liên thông; còn bố trí kho dữ liệu, cơ chế tích hợp và chi tiết quy trình địa phương được để ở lớp biến thiên. Cách tách này cho phép thay đổi tổ chức hoặc công nghệ mà không phải diễn giải lại các nghĩa vụ nền tảng.
+
+Mô hình thẩm quyền theo \emph{nhóm thuộc tính} là điểm khác biệt thứ hai: định danh pháp lý, trạng thái chuyên ngành, bằng chứng ngoài hệ thống và dữ liệu dẫn xuất có thể thuộc các nguồn có thẩm quyền khác nhau. Nhờ đó, nền tảng chuyên ngành không trở thành một nguồn pháp lý song song. Chuỗi truy vết từ nguồn tới quyết định kiến trúc đồng thời vận hành hóa yêu cầu về tính phù hợp kiến trúc trước đầu tư tại Khung kiến trúc số của Bộ KH\&CN \citep{qd1973_2026}; giá trị của nó nằm ở khả năng giải thích vì sao một quyết định tồn tại và phần nào phải xem xét lại khi nguồn thay đổi, thay vì ở số lượng mã truy vết nội bộ.
+
+\subsection{Các nguyên tắc thiết kế có khả năng khái quát và đối sánh với khung hiện hành}
+\label{subsec:design-principles}
+
+Từ hai đóng góp kiến trúc và các phát hiện của stress-test, nghiên cứu rút ra ba nguyên tắc thiết kế ở mức khái quát. Các nguyên tắc này không được trình bày như quy luật phổ quát; chúng là \emph{design knowledge} có điều kiện, có khả năng chuyển giao cho các nền tảng khu vực công có phân cấp thẩm quyền, nhiều nguồn dữ liệu có thẩm quyền và yêu cầu liên thông đa cấp tương tự.
+
+\textbf{P1 -- Phân rã thẩm quyền theo nhóm thuộc tính--phạm vi--thời gian.} Nguồn có thẩm quyền và quyền ghi nên được xác định theo từng nhóm thuộc tính, phạm vi nghiệp vụ và khoảng hiệu lực thay vì gán toàn bộ thực thể cho một CSDL hoặc một cơ quan. Nguyên tắc này cho phép định danh pháp lý, trạng thái chuyên ngành và dữ liệu dẫn xuất cùng tồn tại mà không tạo các nguồn pháp lý song song.
+
+\textbf{P2 -- Lõi pháp lý ổn định, biến thể vận hành có kiểm soát.} Thẩm quyền, trạng thái quyết định, nguồn pháp lý và thời hạn bắt buộc thuộc stable core; bước xử lý nội bộ, vai trò phối hợp, biểu mẫu phụ trợ và cấu hình địa phương có thể biến thiên nếu được version hóa và không làm thay đổi lõi này. Cách tách đó cho phép thích nghi tổ chức mà không phải tái diễn giải nghĩa vụ pháp lý mỗi khi quy trình vận hành thay đổi.
+
+\textbf{P3 -- Liên thông độc lập topology nhưng không độc lập provenance.} Biên thẩm quyền, trách nhiệm liên thông và nguồn gốc dữ liệu phải được bảo toàn bất kể hệ thống dùng kho tập trung, phân vùng hay phân tán. Bản sao, mô hình đọc và dữ liệu tổng hợp chỉ có thể thay đổi nơi lưu và cách truy cập; chúng vẫn phải giữ nguồn, phiên bản, thời điểm hiệu lực và bằng chứng trao đổi để không bị diễn giải như nguồn quyết định gốc.
+
+Để làm rõ mức độ mà SRA đã được neo vào các khung mới hiện hành, Bảng~\ref{tab:conformance-current} đối sánh trực tiếp yêu cầu kiến trúc với biểu hiện trong artefact. Bảng này là bằng chứng truy vết/conformance ở mức thiết kế, không phải chứng nhận rằng một hệ thống chưa triển khai đã tuân thủ đầy đủ mọi yêu cầu kỹ thuật và an toàn.
+
+{\vjsttablefont
+\renewcommand{\arraystretch}{1.02}
+\setlength{\tabcolsep}{2.5pt}
+\begin{table}[H]
+\centering
+\caption{Đối sánh SRA với các khung kiến trúc, dữ liệu và liên thông hiện hành}
+\label{tab:conformance-current}
+\begin{tabularx}{\textwidth}{@{}p{3.0cm}XXX@{}}
+\toprule
+\textbf{Nguồn/vị trí} & \textbf{Yêu cầu kiến trúc} & \textbf{Biểu hiện trong SRA} & \textbf{Bằng chứng} \\
+\midrule
+QĐ 3090/QĐ-BKHCN, Điều 1 \citep{qd3090_2025} & Nền tảng chuyên ngành phải được đặt trong hệ quy chiếu kiến trúc số quốc gia, tránh hình thành kiến trúc biệt lập. & Hình~\ref{fig:dinhvi} định vị SRA giữa khung số, dữ liệu và nghiệp vụ; stable core/variation tách nghĩa vụ ổn định khỏi lựa chọn công nghệ. & Hình~\ref{fig:dinhvi}; Mục~\ref{subsec:phanlop}. \\
+QĐ 292/QĐ-BKHCN, Chương 2 Mục II; Chương 3 Mục II.6--7 \citep{qd292_2025} & Kiểm tra theo các mô hình tham chiếu nghiệp vụ, dữ liệu, ứng dụng, công nghệ, ATTT; sử dụng lớp tích hợp/chia sẻ quốc gia và cấp bộ/tỉnh. & Các góc nhìn năng lực--ứng dụng, dữ liệu--thẩm quyền và container tách ranh giới trách nhiệm; trao đổi liên cơ quan đi qua lớp tích hợp thay vì kết nối điểm--điểm tùy ý. & Hình~\ref{fig:dinhvi}; Hình~\ref{fig:ranhgioi}; Mục~\ref{sec:interop}. \\
+QĐ 2439/QĐ-TTg \citep{qd2439_2025}; NĐ 278, khoản 2,4 Điều 4; khoản 2 Điều 5; khoản 2--3 Điều 7 \citep{nd278_2025} & Một nguồn tin cậy cho dữ liệu chủ; chia sẻ bắt buộc qua Nền tảng chia sẻ, điều phối; Agent Node tại bộ/địa phương. & Thẩm quyền được xác định theo nhóm thuộc tính; bản sao giữ provenance/phiên bản; cổng tích hợp của SRA thích nghi với hạ tầng chia sẻ/điều phối. & Hình~\ref{fig:pdist-main}; Mục~\ref{sec:data}--\ref{sec:interop}. \\
+QĐ 1973/QĐ-BKHCN, Mục II.1(b), III.1.4, III.3.3 \citep{qd1973_2026} & Thu thập một lần, một nguồn dữ liệu gốc; đồng bộ qua nền tảng tích hợp của Bộ; dữ liệu tổ chức/doanh nghiệp nhận từ nguồn quốc gia. & SRA không tạo master định danh doanh nghiệp song song; tỉnh quản trị trạng thái chuyên ngành theo thẩm quyền; Hình~\ref{fig:pdist-main} ánh xạ logic tới LGSP/LDOP--Agent Node. & Mục~\ref{subsec:phanlopdulieu}; Mục~\ref{subsec:v5v6}. \\
+NĐ 268/2025/NĐ-CP, Điều 48; khoản 2 Điều 66 \citep{nd268_2025} & Thẩm quyền nghiệp vụ chủ yếu ở cấp tỉnh nhưng có nghĩa vụ cập nhật/thông báo liên cấp và thời hạn luật định. & Quyền ghi bám thẩm quyền có hiệu lực; trung ương đọc/tổng hợp; sự kiện trao đổi giữ bằng chứng gửi--nhận và không chuyển 15 ngày thành API SLA. & Mục~\ref{subsec:phanlopdulieu}; Mục~\ref{subsec:sla}. \\
+NĐ 69 \citep{nd69_2024}; Luật Bảo vệ dữ liệu cá nhân \citep{luatbvdlcn2025}; NĐ 356 \citep{nd356_2025} & Định danh/xác thực, phân quyền theo phạm vi, tối thiểu hóa và bảo vệ dữ liệu, truy vết/kiểm toán. & Xác thực theo nguồn phù hợp; tách đặc quyền tỉnh--trung ương; kiểm soát trường trao đổi; lưu provenance, version và audit evidence. & Mục~\ref{subsec:v5v6}; tài liệu bổ trợ. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+}
+
+Đối sánh cho thấy SRA đã có các điểm neo rõ vào hệ quy chiếu hiện hành ở mức nghiệp vụ, dữ liệu và liên thông. Tuy nhiên, các hàng trên không khóa công nghệ và không thay thế thẩm định triển khai: sản phẩm CSDL, giao thức, cấu hình bảo mật, chỉ tiêu hiệu năng và bằng chứng kết nối thực tế vẫn thuộc giai đoạn hiện thực hóa/kiểm thử. Các nguồn dự thảo chỉ tiếp tục được dùng như tín hiệu chẩn đoán, không được đưa vào bảng như nghĩa vụ bắt buộc.
+
+\subsection{Trade-off, P-DIST và khả năng khái quát}
+\label{subsec:distributed-discussion}
+
+Kết quả kịch bản không cho thấy P-DIST ưu việt hơn kiến trúc tập trung. P-DIST hỗ trợ biên vận hành địa phương và cô lập một số lỗi, nhưng làm tăng yêu cầu phối hợp phiên bản, tổng hợp toàn quốc và chuyển quyền ghi; phương án tập trung thuận lợi hơn cho phát hành thay đổi và tạo ảnh đọc toàn quốc. Vì vậy, P-DIST chỉ là một cấu hình dùng để kiểm tra xem các bất biến của SRA có được bảo toàn dưới phân tán hay không, không phải khuyến nghị mặc định ``mỗi tỉnh một kho vật lý''.
+
+Hai phát hiện S9--S10 có ý nghĩa rộng hơn cấu hình này. S9 cho thấy thẩm quyền ghi là quan hệ có hiệu lực theo thời gian, không chỉ là ánh xạ tĩnh theo địa bàn; S10 cho thấy một SRA dùng chung phải chịu được giai đoạn các đơn vị vận hành khác phiên bản. B1-R vì thế bổ sung chuyển quyền và quản trị tương thích ở mức kiến trúc, trong khi chi tiết hiện thực hóa vẫn phải được kiểm chứng bằng nguyên mẫu.
+
+Khả năng chuyển giao còn nằm ở việc tách biên thẩm quyền khỏi biên hệ sinh thái. Các nghiên cứu cho thấy quan hệ khởi nghiệp và đầu tư có thể vượt địa giới hành chính \citep[pp.~28, 32]{fischer2022}; \citep[pp.~1483--1484]{noak2025}. Do đó, địa bàn phù hợp để xác định thẩm quyền và phạm vi xử lý nhưng không nên là ranh giới bắt buộc của quan hệ doanh nghiệp--quỹ--chuyên gia--viện/trường. Nguyên tắc này có thể áp dụng cho các nền tảng công khác có xử lý phân quyền nhưng dữ liệu/liên thông dùng chung; topology cụ thể vẫn phải được lựa chọn theo thẩm quyền, miền sự cố và yêu cầu đồng bộ của từng hệ thống.
+
+\subsection{Giới hạn nghiên cứu}
+\label{subsec:limits-transfer}
+
+Bằng chứng hiện tại dừng ở \emph{scenario-based architecture verification} trước triển khai. Bộ mười kịch bản đã phát hiện khoảng trống thiết kế và dẫn tới B1-R, nhưng không chứng minh bộ kịch bản là đầy đủ; việc xây dựng và chấm kịch bản vẫn do nhóm tác giả thực hiện. Các nguồn dự thảo chỉ có vai trò chẩn đoán và không tạo nghĩa vụ bắt buộc cho SRA.
+
+Nghiên cứu chưa cung cấp bằng chứng thực nghiệm về hiệu năng, tính sẵn sàng, an toàn, phục hồi hoặc liên thông vận hành. Bước tiếp theo vì vậy là xây dựng nguyên mẫu và kiểm thử lặp lại đối với chuyển quyền ghi, nâng cấp lệch phiên bản, gián đoạn kết nối, trao đổi qua hạ tầng dùng chung và các thuộc tính chất lượng đo được. Chỉ khi đó mới có thể xác nhận các cơ chế L2 chuyển thành hành vi triển khai đúng với chi phí vận hành chấp nhận được.

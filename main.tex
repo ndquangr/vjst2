@@ -1,0 +1,84 @@
+%=====================================================================
+% BÀI BÁO KHOA HỌC — ĐỀ XUẤT KIẾN TRÚC THAM CHIẾU, VJST-MOST
+% Định dạng ưu tiên theo mẫu biên tập 4044_VJST.docx và quy định chi tiết VJST.
+%=====================================================================
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}[Ligatures=TeX]}
+  {\setmainfont{DejaVu Serif}[Ligatures=TeX]}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setotherlanguage{english}
+
+% Quy định chi tiết VJST: A4, lề trên/dưới 2 cm, trái 3 cm, phải 2 cm.
+% Mẫu biên tập 4044 dùng thân chữ 13 pt và giãn dòng 1,2.
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{cleveref}
+\usepackage[numbers,sort&compress]{natbib}
+
+% Thân chữ 13 pt như bản 4044_VJST.docx.
+\AtBeginDocument{\fontsize{13pt}{15.6pt}\selectfont}
+\setstretch{1.2}
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{3pt}
+\emergencystretch=2em
+\setlist{nosep,leftmargin=*}
+
+% Tiêu đề mục trong bản 4044 giữ cùng cỡ thân bài, in đậm.
+\titleformat{\section}{\bfseries\fontsize{13pt}{15.6pt}\selectfont}{\thesection.}{0.45em}{}
+\titleformat{\subsection}{\bfseries\fontsize{13pt}{15.6pt}\selectfont}{\thesubsection.}{0.45em}{}
+\titleformat{\subsubsection}{\bfseries\fontsize{13pt}{15.6pt}\selectfont}{\thesubsubsection.}{0.45em}{}
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+\titlespacing*{\subsubsection}{0pt}{4pt}{2pt}
+
+\DeclareCaptionFont{vjstcaption}{\fontsize{13pt}{15.6pt}\selectfont}
+\captionsetup{font=vjstcaption,labelfont=bf,textfont=bf,labelsep=period}
+\renewcommand{\refname}{TÀI LIỆU THAM KHẢO}
+
+% Ghi chú nội bộ: giữ trong source nhưng ẩn ở PDF bản sạch.
+\newcommand{\note}[1]{\textcolor{red}{\small[GHI CHÚ: #1]}}
+\renewcommand{\note}[1]{}
+
+\newcommand{\vjsttablefont}{\fontsize{10pt}{12pt}\selectfont}
+\newcommand{\dnkhcn}{DN KH\&CN}
+\newcommand{\dnknst}{DN KNST}
+\newcommand{\khcn}{KH\&CN}
+\newcommand{\dmst}{ĐMST}
+
+\begin{document}
+\input{00_frontmatter}
+\input{01_abstract}
+\input{02_intro}
+\input{03_background}
+\input{04_method}
+\input{05_architecture}
+\input{06_data}
+\input{07_interop}
+\input{08_evaluation}
+\input{09_discussion}
+\input{10_conclusion}
+
+% Không dựng mục Lời cảm ơn khi chưa có thông tin tài trợ/hỗ trợ được tác giả xác nhận.
+% Polyglossia có thể đặt lại tên mục tài liệu khi bắt đầu document; khóa lại ngay trước bibliography.
+\renewcommand{\refname}{TÀI LIỆU THAM KHẢO}
+\input{references}
+\end{document}

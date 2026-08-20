@@ -1,0 +1,11 @@
+scenario_id,coverage_group,operating_mode,drivers,viewpoints,coverage_rationale
+S1,COV1,vận hành bình thường/thẩm quyền,DRV1,V1;V3;V4,Kiểm tra biên thẩm quyền và định tuyến trong luồng bình thường.
+S2,COV1,biến thể địa phương,DRV2;DRV5,V2;V4;V6,"Kiểm tra cấu hình địa phương, phiên bản và cổng tuân thủ."
+S3,COV2,thay đổi quy định,DRV2;DRV5,V2;V4;V5;V6,Kiểm tra phát hành mô hình nền và quản trị thay đổi.
+S4,COV3,gián đoạn liên thông,DRV3;DRV4;DRV5,V4;V5;V6,"Kiểm tra retry/chống trùng, bằng chứng trao đổi và cửa sổ pháp lý."
+S5,COV4,tổng hợp toàn quốc,DRV4;DRV5,V1;V3;V4;V5,"Kiểm tra độ mới, nguồn gốc và mô hình đọc trung ương."
+S6,COV2,thay đổi nguồn có thẩm quyền,DRV4;DRV5,V3;V4;V6,Kiểm tra làm mới/xác minh nguồn định danh và kiểm soát truy cập.
+S7,COV3,gián đoạn lớp trung ương,DRV3;DRV4,V1;V4;V5,Kiểm tra miền sự cố và khả năng tiếp tục xử lý cục bộ.
+S8,COV4,quan hệ xuyên địa bàn,DRV1;DRV4,V1;V3;V4,Kiểm tra tách biên thẩm quyền khỏi quan hệ hệ sinh thái.
+S9,COV5,chuyển thẩm quyền/quyền ghi,DRV1;DRV4;DRV5,V1;V3;V4;V5;V6,"Kiểm tra ownership theo thời gian, single-active-writer, provenance và audit."
+S10,COV2,nâng cấp cuốn chiếu,DRV2;DRV4;DRV5,V2;V3;V4;V5;V6,"Kiểm tra cửa sổ tương thích, ghim phiên bản và dữ liệu lịch sử."

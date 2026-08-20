@@ -1,0 +1,59 @@
+% Source extracted verbatim from manuscript figure TikZ block.
+% Hình 5: Profile P-DIST -- góc nhìn C4 Deployment ánh xạ các vùng chứa của Hình~\ref{fig:ranhgioi
+% Edit the TikZ block below; compile with XeLaTeX.
+
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}[Ligatures=TeX]}
+  {\setmainfont{DejaVu Serif}[Ligatures=TeX]}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setotherlanguage{english}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\newcommand{\dnkhcn}{DN KH\&CN}
+\newcommand{\dnknst}{DN KNST}
+\newcommand{\khcn}{KH\&CN}
+\newcommand{\dmst}{ĐMST}
+\begin{document}
+\begin{tikzpicture}[
+  font=\scriptsize,
+  dnode/.style={draw, rounded corners=2pt, dashed, inner sep=7pt},
+  head/.style={align=center,font=\scriptsize,text width=4.8cm},
+  inst/.style={draw, rounded corners=1pt, align=center, minimum height=0.76cm, text width=3.70cm, inner sep=2pt},
+  infra/.style={draw, rounded corners=2pt, align=center, minimum height=0.90cm, text width=4.9cm, inner sep=3pt},
+  rel/.style={-{Latex[length=2mm]},thick},
+  lab/.style={fill=white,inner sep=0.8pt,font=\tiny,align=center}
+]
+% Provincial deployment node
+\node[inst] (psvc) at (-4.1,3.60) {\textbf{Dịch vụ hồ sơ/quyết định cấp tỉnh}\\\texttt{<<Container instance>>}};
+\node[inst] (pdbi) at (-4.1,2.15) {\textbf{Kho dữ liệu vận hành tỉnh}\\\texttt{<<Container instance>>}};
+\node[inst] (pinteg) at (-4.1,0.70) {\textbf{Cổng tích hợp và trao đổi}\\\texttt{<<Container instance>>}};
+\node[dnode,fit=(psvc)(pdbi)(pinteg)] (pnode) {};
+\node[head] at (-4.1,5.00) {\textbf{Nút $P_i$} \texttt{<<Deployment Node>>}\\$i=1..n$; môi trường L3};
+
+% Central deployment node
+\node[inst] (cconfig) at (4.1,4.15) {\textbf{Dịch vụ quản trị cấu hình}\\\texttt{<<Container instance>>}};
+\node[inst] (csvc) at (4.1,2.80) {\textbf{Dịch vụ điều phối/đọc trung ương}\\\texttt{<<Container instance>>}};
+\node[inst] (cread) at (4.1,1.45) {\textbf{Mô hình đọc hợp nhất}\\\texttt{<<Container instance>>}};
+\node[inst] (cinteg) at (4.1,0.10) {\textbf{Cổng tích hợp và trao đổi}\\\texttt{<<Container instance>>}};
+\node[dnode,fit=(cconfig)(csvc)(cread)(cinteg)] (cnode) {};
+\node[head] at (4.1,5.55) {\textbf{Nút trung ương} \texttt{<<Deployment Node>>}\\môi trường L3};
+
+\node[infra] (shareinfra) at (0,-2.10) {\textbf{Hạ tầng chia sẻ/điều phối + Agent Node}\\\texttt{<<Infrastructure Node>>}\\theo cơ chế kết nối được quy định};
+
+% Relationships use side corridors to keep labels clear of instances.
+\draw[rel] (psvc) -- node[lab,left]{đọc/ghi} (pdbi);
+\draw[rel] (psvc.west) -- ++(-0.50,0) |- node[lab,pos=0.70,left]{trao đổi} (pinteg.west);
+\draw[rel] (pinteg.south east) -- node[lab,above,sloped]{chia sẻ} (shareinfra.north west);
+
+\draw[rel] (cconfig) -- node[lab,right]{cấu hình} (csvc);
+\draw[rel] (csvc) -- node[lab,right]{đọc/ghi} (cread);
+\draw[rel] (csvc.east) -- ++(0.50,0) |- node[lab,pos=0.70,right]{điều phối} (cinteg.east);
+\draw[rel] (cinteg.south west) -- node[lab,above,sloped]{chia sẻ} (shareinfra.north east);
+
+\node[font=\tiny,align=center,text width=14cm] at (0,-3.05) {Chú giải C4 Deployment: Deployment Node = nút triển khai; Container instance = bản thực thi vùng chứa; Infrastructure Node = nút hạ tầng. Sơ đồ thể hiện phụ thuộc logic; môi trường, nền tảng và giao thức cụ thể thuộc L3.};
+\end{tikzpicture}
+\end{document}

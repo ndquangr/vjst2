@@ -1,0 +1,6 @@
+id,driver,basis,architectural_consequence,linked_decisions
+DRV1,Quyền ghi bám phạm vi thẩm quyền,L1 về thẩm quyền nghiệp vụ; không tự suy ra cấu trúc vật lý,Mỗi thay đổi trạng thái pháp lý phải được định tuyến tới nút/chủ thể đúng thẩm quyền; trung ương không tự trở thành nguồn quyết định,AD01;AD05
+DRV2,Cấu hình quy trình địa phương có kiểm soát,Biến thể thực thi địa phương dưới cùng nghĩa vụ pháp lý,Mô hình nền pháp lý trung ương + cấu hình địa phương có phiên bản và cổng tuân thủ,AD03
+DRV3,Liên tục cục bộ và cô lập miền sự cố,Nhu cầu vận hành khi lớp điều phối trung ương tạm gián đoạn trong các bước không phụ thuộc bắt buộc vào nguồn ngoài,Tách môi trường thực thi/biên ghi cấp tỉnh và cơ chế gửi lại/khôi phục,AD01;AD04
+DRV4,"Ngữ nghĩa, nguồn chính thức và liên thông thống nhất",Luật Dữ liệu; NĐ278; QĐ1973,Lược đồ/hợp đồng dữ liệu/từ điển chung; AE25 chỉ là mô hình đọc/tổng hợp; chia sẻ qua hạ tầng quy định,AD01;AD02;AD05
+DRV5,Truy vết và quản trị phiên bản,"Yêu cầu nguồn gốc, chất lượng, kiểm toán và thay đổi quy trình/lược đồ","Gắn phiên bản/hiệu lực/nguồn cho cấu hình, lược đồ và trạng thái; không ghi đè lịch sử",AD03;AD04

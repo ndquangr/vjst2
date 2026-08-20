@@ -1,0 +1,12 @@
+id,rule,scope,evidence,mandatory
+CR1,Mọi hành vi thực hiện nghĩa vụ pháp lý phải truy được tới Cxx.yy lớp A và AD/AE liên quan.,core,ma trận truy vết và hồ sơ quyết định,có
+CR2,Mọi thao tác thay đổi trạng thái phải kiểm tra gán quyền ghi đang hiệu lực đối với phạm vi ghi được khai báo.,core,policy/sequence kiểm tra quyền và audit,có
+CR3,Tại một thời điểm chỉ một writer hợp lệ đối với cùng write_scope; ghi từ gán cũ phải bị từ chối.,core,bất biến single-active-writer và writer_epoch,có
+CR4,Thẩm quyền dữ liệu phải được gán theo nhóm thuộc tính và phân biệt legal authority/create-update authority/SoR/distribution source.,core,ma trận thẩm quyền dữ liệu,có
+CR5,Cấu hình địa phương không được nới thẩm quyền/trạng thái quyết định/thời hạn L1 và phải qua cổng kiểm tra trước kích hoạt.,core,baseline pháp lý và conformance gate,có
+CR6,Hợp đồng/lược đồ/quy trình phải có phiên bản/ngày hiệu lực/cửa sổ tương thích và quy tắc xử lý hồ sơ đang chạy.,core,registry phiên bản và compatibility policy,có
+CR7,Mô hình đọc AE25 phải công bố nguồn/độ mới/phiên bản và không được dùng như nguồn ban hành quyết định pháp lý.,core,metadata/provenance và nhãn nguồn,có
+CR8,Luồng chia sẻ bắt buộc phải giữ định danh/tính lũy đẳng/bằng chứng gửi--nhận/thử lại có kiểm soát.,core,exchange log/receipt/retry policy,có
+CR9,Quan hệ hệ sinh thái xuyên địa bàn phải giữ định danh chủ thể/nguồn/khoảng hiệu lực và không bị nhân bản theo biên thẩm quyền.,core,relationship model và lineage,có
+PD1,Mỗi AE24 trong profile P-DIST được ánh xạ tới một kho vận hành vật lý tách biệt và AE25 chỉ giữ mô hình đọc/điều phối.,P-DIST,V5 deployment profile,có với P-DIST
+PD2,Profile P-DIST phải mô tả biên lỗi/phục hồi/độ mới và giao thức chuyển quyền giữa các kho vật lý.,P-DIST,V5/V6 và kiểm thử hậu triển khai,có với P-DIST

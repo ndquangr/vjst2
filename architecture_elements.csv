@@ -1,0 +1,27 @@
+id,name,role
+AE01,Căn chỉnh hệ quy chiếu kiến trúc,Ghi nhận quan hệ của kiến trúc miền với các khung/mô hình tham chiếu cấp quốc gia và cấp bộ.
+AE02,"Quản trị từ điển, danh mục và siêu dữ liệu","Kế thừa từ điển/danh mục dùng chung; quản lý siêu dữ liệu, mapping và phiên bản."
+AE03,Bộ thích nghi nguồn định danh doanh nghiệp,Tham chiếu/đồng bộ EnterpriseIdentity từ nguồn doanh nghiệp quốc gia.
+AE04,Dịch vụ hồ sơ và luồng công nhận DNKNST,"Tiếp nhận, kiểm tra hợp lệ, trạng thái, thời hạn và quyết định công nhận."
+AE05,Dịch vụ hội đồng/đánh giá,"Quản lý thành viên, phản biện, quorum, biểu quyết, biên bản và kết luận."
+AE06,Sổ đăng ký và vòng đời giấy công nhận/chứng nhận,"Lưu hiệu lực, phiên bản, cấp lại, chấm dứt, thu hồi/hủy bỏ và lịch sử."
+AE07,Biên tiếp nhận thủ tục hành chính,Trao đổi hồ sơ/kết quả với hệ thống giải quyết TTHC/dịch vụ công.
+AE08,Dịch vụ thẩm định DNKH&CN,"Kiểm tra hồ sơ, thẩm định, quyết định và hỗ trợ các hình thức đánh giá."
+AE09,Hậu kiểm và công khai trạng thái DNKH&CN,"Lịch hậu kiểm, quy tắc thu hồi/hủy, công bố quyết định."
+AE10,"Điều phối thông báo, báo cáo và thời hạn","Sự kiện liên cấp, bộ hẹn, nhắc hạn, báo cáo định kỳ và bằng chứng gửi/nhận."
+AE11,Lớp tích hợp và chia sẻ dữ liệu cấp Bộ,"LGSP/LDOP, API/bộ thích nghi, theo dõi trao đổi và điều phối nội bộ."
+AE12,Biên Agent Node/nền tảng chia sẻ dữ liệu quốc gia,"Kết nối ra nền tảng chia sẻ, điều phối dữ liệu theo cơ chế bắt buộc."
+AE13,Bộ thích nghi định danh/xác thực điện tử,Kết nối nguồn định danh/xác thực có thẩm quyền; không tự phát hành danh tính pháp lý.
+AE14,"Kiểm soát truy cập, riêng tư và nhật ký","Phân quyền, giới hạn truy cập, bảo vệ dữ liệu cá nhân và kiểm toán/nhật ký trail."
+AE15,"Nguồn gốc, lineage, chất lượng và lịch sử dữ liệu","Lưu nguồn, thời điểm hiệu lực, trạng thái xác minh, lineage, quy tắc chất lượng và bằng chứng chuyển quyền/phiên bản để bảo toàn provenance."
+AE16,Mô hình dữ liệu chủ theo thẩm quyền thuộc tính,Tách legal authority/create-update authority/system of record/distribution source theo nhóm thuộc tính.
+AE17,Mô hình quan hệ hệ sinh thái đa địa bàn,Quan hệ doanh nghiệp--quỹ--chuyên gia--tổ chức hỗ trợ tách khỏi phạm vi thẩm quyền.
+AE18,"Kho quy tắc, biểu mẫu và phiên bản","Quản lý quy tắc/biểu mẫu/lược đồ có ngày hiệu lực; công bố cửa sổ tương thích, phiên bản tối thiểu còn hỗ trợ và lịch sử thay đổi."
+AE19,Bộ thích nghi nguồn bằng chứng chuyên ngành,"Tham chiếu/xác minh dữ liệu KH&CN, sở hữu trí tuệ và kết quả từ hệ thống có thẩm quyền."
+AE20,Quản trị liên thông và ranh giới trách nhiệm,"Ghi rõ chủ thể, ownership, hợp đồng dữ liệu/ngữ nghĩa và biên hệ thống."
+AE21,Công bố và khai thác thông tin,Cổng/báo cáo công khai có phạm vi và nguồn dữ liệu được kiểm soát.
+AE22,Hồ sơ hiện thực hóa công nghệ,"Viewpoint V5: sơ đồ C4 Deployment tách deployment node và container instance; khóa biên lỗi/phụ thuộc giữa nút tỉnh, lớp trung ương và hạ tầng chia sẻ; sản phẩm/cụm/HA vẫn là variation point."
+AE23,Hồ sơ kiến trúc an toàn và riêng tư,"Viewpoint V6: ma trận trust zone khóa quyền theo phạm vi, phân loại/truy cập, nguồn gốc, kiểm toán và chủ bằng chứng; thuật toán/IAM/sản phẩm cụ thể là L3."
+AE24,Nút nghiệp vụ cấp tỉnh,Điểm thực thi logic gắn với thẩm quyền tỉnh; chỉ ghi khi write_scope và writer_epoch đang hiệu lực trỏ tới nó; phải revalidate epoch sau restart và không đổi nguồn lịch sử khi chuyển. Kho vật lý tách biệt chỉ là thuộc tính của P-DIST.
+AE25,Lớp điều phối và mô hình đọc hợp nhất trung ương,"Tiếp nhận đồng bộ/thông báo từ các tỉnh; duy trì sổ đăng ký/mô hình đọc, siêu dữ liệu và báo cáo; đồng thời duy trì sổ định tuyến write_scope/writer_epoch, trạng thái chuyển giao và khả năng đọc/biến đổi các phiên bản còn trong cửa sổ tương thích. Không thay thế nguồn pháp lý địa phương."
+AE26,Quản trị cấu hình quy trình hai cấp,"Duy trì mô hình nền pháp lý trung ương và cấu hình quy trình địa phương có phiên bản; kiểm tra conformance trước kích hoạt, pin phiên bản cho hồ sơ đang chạy, công bố cửa sổ tương thích/phiên bản tối thiểu và chỉ chuyển phiên bản theo quy tắc minh thị."
