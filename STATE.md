@@ -77,8 +77,17 @@ của lựa chọn VP7, không phải thiếu sót cần sửa AD.
 - [x] WP2-fix việc 1: S7 + Bảng 5 nhãn I-code (phương án b; sửa thêm 2 lỗi biên dịch tiền nhiệm phát hiện được: `\citep` không tồn tại trong supplementary, đường dẫn hình fig05→fig06)
 - [x] WP2-fix việc 2: rút tóm tắt VI 233 từ, EN 163 từ (đo qua pdftotext), tương đương nội dung 1-1
 - [x] WP2-fix: nghiệm thu (check_citation_order 37/37, compile main+supplementary sạch, 33tr/15885 từ) + REVISION_LOG — còn thiếu: commit
-- [ ] WP3 việc 1-2: evaluation_results_b0.csv (10 dòng, có lập luận)
-- [ ] WP3 việc 3: 08_evaluation.tex Bảng thành 4 cột B0|B1|B1-R|Hàm ý
-- [ ] WP3 việc 4: viết lại Mục 7.3 dựa trên B0 thật, giữ cảnh báo không suy luận nhân quả
-- [ ] WP3 việc 5: supplementary_material.tex S12 khớp (thêm cột B0)
-- [ ] WP3: nghiệm thu + commit + REVISION_LOG
+- [x] WP3 việc 1-2: evaluation_results_b0.csv (10 dòng, có lập luận: 4 trực tiếp/4 điều kiện/2 rủi ro — SC4,SC7)
+- [x] WP3 việc 3: 08_evaluation.tex Bảng~6 thành 4 cột B0|B1|B1-R|Hàm ý
+- [x] WP3 việc 4: viết lại Mục 7.3 dựa trên B0 thật, giữ+nhấn mạnh cảnh báo không suy luận nhân quả
+- [x] WP3 việc 5: supplementary_material.tex S12 khớp (thêm cột B0)
+- [x] WP3: nghiệm thu (citation 37/37, compile main 34tr/16414 từ + supplementary 10tr sạch) + REVISION_LOG — còn thiếu: commit
+
+### Phát hiện phụ cần người dùng xác nhận (không chặn, đã ghi vào REVISION_LOG)
+Khi chấm B0 cho SC4/SC7, phải diễn giải "lớp trung ương gián đoạn" là gián
+đoạn TẦNG VẬN HÀNH NỘI BỘ dùng chung (không phải hạ tầng chia sẻ bên ngoài
+LGSP/LDOP/Agent Node, vốn nằm ngoài biên nền tảng bất kể B0 hay P-DIST) —
+chọn vì mã kịch bản gốc tham chiếu AE10/AE24/AE25 (nội bộ), không phải
+AE11/AE12 (biên tích hợp cấp Bộ). Đây là lựa chọn có căn cứ nhưng là một
+diễn giải, không phải sự thật hiển nhiên trong dữ liệu gốc — ảnh hưởng trực
+tiếp tới việc B0 bị chấm Rủi ro kiến trúc ở đúng hai kịch bản này.

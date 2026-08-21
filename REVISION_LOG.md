@@ -628,3 +628,127 @@ nội dung (trước đó VI có một câu EN cũng có nhưng bị lặp ý �
   nhãn "(I1)"--"(I6)" xuất hiện đúng vị trí trong Bảng~5 thân bài, đúng thứ
   tự dòng gốc (Nền tảng số quốc gia=I6 ở đầu, Định danh/xác thực=I1 ở dòng
   hai, v.v.).
+
+---
+
+## WP3 — Chấm đường cơ sở B0, bổ sung Bảng~6 và viết lại Mục 7.3 dựa trên dữ liệu thật (2026-08-21)
+
+### Vấn đề xử lý
+Mục 3.4 (`subsec:scenario-method`) và Mục 7.1 (`subsec:eval-baseline`) giới
+thiệu B0 (cấu hình tập trung) như đường cơ sở đối chiếu định tính, nhưng
+trước WP3, Bảng~6 (`tab:evaluation` -- nhãn được dùng xuyên suốt thay vì số
+cứng, đúng ghi chú của `prompts/WP3.md`) chỉ có hai cột B1/B1-R. Mục 7.3
+(`subsec:eval-limitations`) vẫn đưa nhận định định tính về B0 ("có thể giảm
+số điểm cấu hình...") mà không có bảng dữ liệu nào chứng minh -- phản biện
+đọc ra ngay: tuyên bố có baseline, không có dữ liệu, vẫn kết luận về nó.
+
+### Định nghĩa B0 dùng để chấm điểm (quyết định phương pháp, ghi trong STATE.md)
+B0 = phương án "kho tập trung đa tenant" đã liệt kê sẵn trong
+`architecture_decisions.csv` (AD01, cột `alternatives`) -- áp dụng **cùng lõi
+ổn định đã tinh chỉnh** như B1-R (AD01 write\_scope/writer\_epoch/máy trạng
+thái, AD03 cấu hình có phiên bản/cửa sổ tương thích), chỉ khác lựa chọn
+topology (VP7): một kho tập trung thay vì kho vật lý tách biệt theo tỉnh
+(P-DIST). Căn cứ: `architecture_elements.csv` (AE24) ghi rõ "Kho vật lý tách
+biệt chỉ là thuộc tính của P-DIST" -- tức cơ chế single-active-writer là
+topology-độc lập; `README.md` mục WP7.1 xác nhận "B0 chỉ là baseline
+contrast, không phải ablation model". Nếu chấm B0 như một kiến trúc "tiền
+tinh chỉnh" (thiếu cơ chế AD01/AD03 đã tinh chỉnh) thì phép so sánh B0 với
+B1-R sẽ lẫn hai biến số (topology và mức tinh chỉnh) cùng lúc, phá vỡ đúng
+cảnh báo mà Mục 7.3 phải giữ nguyên ("không suy luận nhân quả cho một quyết
+định riêng lẻ").
+
+### Kết quả chấm B0 (10 kịch bản, rubric ba mức, lập luận đầy đủ trong `evaluation_results_b0.csv` mới)
+**4 đáp ứng trực tiếp (SC1, SC2, SC5, SC8), 4 đáp ứng có điều kiện (SC3, SC6,
+SC9, SC10), 2 rủi ro kiến trúc (SC4, SC7).** So sánh: B1 gốc = 2/7/1; B1-R =
+2/8/0.
+
+- **B0 tốt hơn hoặc bằng B1-R** ở SC1/SC2 (cơ chế quyền ghi và cấu hình quy
+  trình topology-độc lập, không đổi), SC5/SC8 (không cần mô hình đọc/bước
+  hợp nhất quan hệ liên kho riêng vì chỉ có một kho), và SC9 (vẫn Có điều
+  kiện như B1-R nhưng điều kiện nhẹ hơn: không cần đồng bộ chéo hai kho vật
+  lý/cutover liên nút).
+- **B0 kém hơn B1-R** đúng ở SC4 và SC7 -- hai kịch bản gắn trực tiếp với cô
+  lập miền sự cố khi lớp trung ương gián đoạn: vì B0 không tách kho vận hành
+  theo tỉnh (thiếu PD1/PD2), một gián đoạn ở lớp trung tâm có thể chặn cả
+  khả năng tỉnh tự ghi quyết định cục bộ, không chỉ chặn bước đồng bộ như ở
+  P-DIST.
+- **Không nghiêng có lợi cho P-DIST:** phân bố 4 tốt hơn/4 ngang bằng (điều
+  kiện nhẹ hơn)/2 kém hơn cho thấy hồ sơ đánh đổi hai chiều thật, không phải
+  B0 bị đánh giá thấp một cách hệ thống để tôn P-DIST lên.
+- **Không dừng lại theo điều kiện "báo cáo nếu B0 lộ khoảng trống mà B1-R
+  chưa xử lý":** hai mức rủi ro ở SC4/SC7 phản ánh đánh đổi CỐ HỮU của việc
+  chọn phương án "kho tập trung đa tenant" ở điểm biến thiên VP7 -- đã được
+  ghi nhận sẵn trong `architecture_decisions.csv` (AD01, cột `tradeoffs`:
+  "P-DIST tăng cô lập miền sự cố") từ trước WP3, không phải một khoảng
+  trống mới của lõi ổn định (AD01--AD05) mà B1-R bỏ sót.
+
+### File thay đổi
+- **`evaluation_results_b0.csv` (mới)** -- 10 dòng, theo schema tương tự
+  `evaluation_results.csv` nhưng đổi tên hai cột chủ ngữ cho đúng bản chất
+  file (`b0_assessment` thay `b1_assessment`; `b1r_contrast` thay
+  `b0_contrast`, đối chiếu ngược lại B1-R thay vì B0), giữ nguyên các cột
+  `driver_links, mechanism, sensitivity_point, risk_or_condition` -- theo
+  đúng tiền lệ đã có trong repo (`evaluation_results_b1r.csv` cũng không
+  dùng lại nguyên văn tên cột của `evaluation_results.csv` mà đặt tên theo
+  ngữ nghĩa riêng). Mỗi dòng có lập luận đầy đủ: cơ chế áp dụng, điểm nhạy
+  cảm, điều kiện/rủi ro, và đối chiếu tường minh với B1-R.
+- **`08_evaluation.tex`** (Mục 7.1 `subsec:eval-baseline`): thêm câu công bố
+  kết quả B0 (4/4/2) ngay sau kết quả B1/B1-R; nhấn mạnh cảnh báo B0 và
+  B1(-R) khác nhau đồng thời ở nhiều quyết định nên không suy luận nhân quả,
+  trỏ sang Mục~7.3. Bảng~\ref{tab:evaluation} (Bảng~6) đổi từ 3 cột kết quả
+  (B1, B1-R, Hàm ý) thành 4 cột (**B0 | B1 | B1-R | Hàm ý kiến trúc chính**);
+  thu hẹp `tabcolsep` và bề rộng các cột trạng thái (2.25/2.15cm →
+  1.75cm×3) để bảng vẫn vừa `textwidth` 16cm sau khi thêm cột. Cột "Hàm ý
+  kiến trúc chính" được viết lại cho từng dòng để phản ánh B0 khi khác biệt
+  có ý nghĩa (SC4, SC5, SC7, SC8, SC9, SC10), không chỉ liệt kê nhãn.
+- **`08_evaluation.tex`** (Mục 7.3 `subsec:eval-limitations`): viết lại đoạn
+  đầu dựa trên dữ liệu B0 thật (4/4/2, giải thích SC1/2/5/8/9 tốt hơn/ngang
+  bằng, SC4/7 rủi ro do thiếu cách ly miền sự cố, gắn với đánh đổi đã ghi
+  trong AD01). Thêm một đoạn mới nhấn mạnh: không có cấu hình nào ưu việt
+  đồng loạt; B0 và B1(-R) khác nhau đồng thời ở nhiều quyết định (không chỉ
+  topology); **giữ nguyên và làm nổi bật (in đậm)** cảnh báo không suy luận
+  nhân quả cho một quyết định riêng lẻ và không phải xếp hạng hiệu năng/chi
+  phí -- đúng yêu cầu "giữ nguyên và nhấn mạnh". Đoạn giới hạn scenario-based
+  verification giữ lại, bỏ câu B0/B1 khác nhau trùng lặp (đã chuyển lên đoạn
+  mới, tránh lặp ý) và thêm vế "không chứng minh một topology tốt hơn
+  topology khác".
+- **`supplementary_material.tex` (S12)**: thêm cột **B0** vào ma trận đánh
+  giá kịch bản chi tiết (nay 6 cột: Kịch bản, B0, B1, B1-R, Neo kiến trúc,
+  Kiểm chứng hiện thực hóa cần thiết); thu hẹp bề rộng cột cho vừa trang.
+  Cột "Neo kiến trúc" chỉ ghi thêm khi B0 có anchor/điều kiện khác biệt so
+  với B1-R (SC4, SC5, SC7, SC8, SC9, SC10 có ghi chú; SC1/2/3/6 để nguyên vì
+  anchor không đổi) -- tránh lặp lại toàn bộ neo cho mọi dòng. Thêm câu dẫn
+  giải thích B0 dùng lại lõi ổn định đã tinh chỉnh, chỉ khác VP7; thêm câu
+  cuối mục trỏ sang `evaluation_results_b0.csv` và giải thích rõ hai mức rủi
+  ro SC4/SC7 là đánh đổi cố hữu, không phải khoảng trống mới.
+
+### Phát hiện phụ ngoài phạm vi yêu cầu, không sửa
+Khi chấm B0 cho SC4, cân nhắc liệu "lớp trung ương gián đoạn" trong ngữ cảnh
+B0 có đồng nghĩa toàn bộ nền tảng gián đoạn (vì không có kho tỉnh riêng) hay
+chỉ là gián đoạn hạ tầng chia sẻ bên ngoài (LGSP/LDOP/Agent Node, vốn nằm
+ngoài biên nền tảng theo Hình~`fig:ranhgioi` bất kể B0 hay P-DIST). Đã chọn
+diễn giải thứ nhất (gián đoạn tầng vận hành nội bộ dùng chung) vì mã kịch
+bản tham chiếu AE10/AE24/AE25 (thành phần nội bộ), không phải AE11/AE12
+(biên tích hợp cấp Bộ) -- đây là lựa chọn diễn giải có căn cứ nhưng không
+tuyệt đối chắc chắn; nếu nhóm tác giả có ý khác về ranh giới "lớp trung
+ương" trong kịch bản SC4/SC7, cần xác nhận lại vì nó ảnh hưởng trực tiếp tới
+mức chấm Rủi ro kiến trúc của B0 tại hai kịch bản này.
+
+### Nghiệm thu WP3
+- `python scripts/check_citation_order.py` → 37/37 khớp (WP3 không thêm
+  citation mới).
+- `latexmk -xelatex main.tex`: sạch, 0 lỗi, 0 tham chiếu thiếu, 0 overfull
+  hbox mới (chỉ underfull hbox cũ trong mục tài liệu tham khảo); **34 trang,
+  16414 từ** (`pdftotext main.pdf - | wc -w`) -- tăng 529 từ, 1 trang so với
+  sau WP2-fix (15885 từ, 33 trang), phần lớn do thêm cột B0 vào Bảng~6 và
+  hai đoạn mới ở Mục 7.1/7.3.
+- `latexmk -xelatex supplementary_material.tex`: sạch, 0 lỗi, 0 tham chiếu
+  thiếu. 4 overfull hbox được `grep` phát hiện đều thuộc các đoạn KHÔNG bị
+  WP3 đụng tới (S3, S9.2, S10.1 -- các chuỗi `\texttt{...csv}` dài không
+  ngắt được, tồn tại từ trước WP3); S12 (đoạn WP3 sửa) không có overfull hbox
+  mới, chỉ vài underfull hbox do cột hẹp (chấp nhận được, không phải lỗi).
+  10 trang, không đổi số trang so với sau WP2-fix.
+- Đối chiếu `pdftotext`: Bảng~6 thân bài hiển thị đúng 4 cột B0|B1|B1-R|Hàm ý
+  với giá trị khớp `evaluation_results_b0.csv`; S12 tài liệu bổ trợ hiển thị
+  đúng 6 cột; không còn "Bảng 5" viết tay nào trỏ tới bảng đánh giá (grep xác
+  nhận `08_evaluation.tex`/`09_discussion.tex` sạch).

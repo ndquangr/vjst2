@@ -9,35 +9,35 @@
 
 B1 là cấu hình ứng viên của SRA theo profile P-DIST trước vòng đánh giá; B0 là một cấu hình tập trung dùng làm đường cơ sở định tính để làm rõ các đánh đổi. Hai cấu hình khác nhau đồng thời ở nhiều quyết định, vì vậy B0 không được dùng như đối chứng thực nghiệm và kết quả không được diễn giải như bằng chứng rằng một topology tốt hơn topology khác. Mười kịch bản SC1--SC10 và rubric ba mức đã trình bày ở Mục~\ref{subsec:scenario-method} được áp dụng trước cho B1, sau đó áp dụng lại cho B1-R sau tinh chỉnh.
 
-Kết quả ban đầu gồm \textbf{2 kịch bản đáp ứng trực tiếp, 7 đáp ứng có điều kiện và 1 rủi ro kiến trúc}. Sau vòng tinh chỉnh, B1-R đạt \textbf{2 đáp ứng trực tiếp, 8 đáp ứng có điều kiện và không còn rủi ro kiến trúc chưa được hấp thụ ở mức thiết kế L2}. Bảng~\ref{tab:evaluation} giữ toàn bộ mười kịch bản nhưng chỉ trình bày phát hiện có ý nghĩa đối với lập luận kiến trúc; các mã thành phần, quy tắc phù hợp và phép kiểm tra chi tiết được chuyển sang tài liệu bổ trợ.
+Kết quả ban đầu gồm \textbf{2 kịch bản đáp ứng trực tiếp, 7 đáp ứng có điều kiện và 1 rủi ro kiến trúc}. Sau vòng tinh chỉnh, B1-R đạt \textbf{2 đáp ứng trực tiếp, 8 đáp ứng có điều kiện và không còn rủi ro kiến trúc chưa được hấp thụ ở mức thiết kế L2}. Cùng rubric ba mức được áp dụng cho \textbf{B0} như đường cơ sở đối chiếu định tính: B0 đạt \textbf{4 đáp ứng trực tiếp, 4 đáp ứng có điều kiện và 2 rủi ro kiến trúc}. B0 và B1(-R) khác nhau đồng thời ở nhiều quyết định kiến trúc (không chỉ topology), nên kết quả không hỗ trợ suy luận nhân quả cho một quyết định riêng lẻ và không phải một xếp hạng; ý nghĩa của việc đối chiếu được thảo luận ở Mục~\ref{subsec:eval-limitations}. Bảng~\ref{tab:evaluation} giữ toàn bộ mười kịch bản nhưng chỉ trình bày phát hiện có ý nghĩa đối với lập luận kiến trúc; các mã thành phần, quy tắc phù hợp, neo kiến trúc của B0 và phép kiểm tra chi tiết được chuyển sang tài liệu bổ trợ (S12).
 
 {\vjsttablefont
-\setlength{\tabcolsep}{2.8pt}
+\setlength{\tabcolsep}{2.4pt}
 \renewcommand{\arraystretch}{1.02}
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{4.25cm}>{\raggedright\arraybackslash}p{2.25cm}>{\raggedright\arraybackslash}p{2.15cm}>{\raggedright\arraybackslash}p{5.75cm}@{}}
-\caption{Kết quả stress-test B1 và kiểm tra lại B1-R bằng cùng rubric}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}p{1.75cm}>{\raggedright\arraybackslash}p{1.75cm}>{\raggedright\arraybackslash}p{1.75cm}>{\raggedright\arraybackslash}p{5.25cm}@{}}
+\caption{Kết quả stress-test B1, kiểm tra lại B1-R và đối chiếu định tính với đường cơ sở tập trung B0, bằng cùng rubric}
 \label{tab:evaluation}\\
 \toprule
-\textbf{Kịch bản} & \textbf{B1} & \textbf{B1-R} & \textbf{Hàm ý kiến trúc chính} \\
+\textbf{Kịch bản} & \textbf{B0} & \textbf{B1} & \textbf{B1-R} & \textbf{Hàm ý kiến trúc chính} \\
 \midrule
 \endfirsthead
-\multicolumn{4}{c}{\tablename\ \thetable\ -- tiếp theo}\\
+\multicolumn{5}{c}{\tablename\ \thetable\ -- tiếp theo}\\
 \toprule
-\textbf{Kịch bản} & \textbf{B1} & \textbf{B1-R} & \textbf{Hàm ý kiến trúc chính} \\
+\textbf{Kịch bản} & \textbf{B0} & \textbf{B1} & \textbf{B1-R} & \textbf{Hàm ý kiến trúc chính} \\
 \midrule
 \endhead
 \bottomrule
 \endfoot
-SC1. Tỉnh xử lý và quyết định theo thẩm quyền & \textbf{Trực tiếp} & \textbf{Trực tiếp} & Biên quyền ghi theo phạm vi thẩm quyền là phù hợp với nghiệp vụ phân cấp. \\
-SC2. Hai tỉnh khác bước nội bộ nhưng cùng nghĩa vụ pháp lý & \textbf{Trực tiếp} & \textbf{Trực tiếp} & Cần tách mô hình nền pháp lý khỏi cấu hình nội bộ có kiểm soát. \\
-SC3. Quy định thay đổi trạng thái, biểu mẫu hoặc thời hạn & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Thay đổi phải đi qua quản trị phiên bản và xử lý hồ sơ đang chạy. \\
-SC4. Chia sẻ trung ương gián đoạn sau quyết định của tỉnh & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Xử lý cục bộ và đồng bộ lại chỉ khả thi nếu bảo toàn trạng thái, thời hạn và chống lặp. \\
-SC5. Trung ương cần ảnh dữ liệu toàn quốc & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Mô hình đọc hợp nhất phải công bố nguồn, phiên bản và độ mới thay vì trở thành nguồn pháp lý mới. \\
-SC6. Định danh doanh nghiệp thay đổi tại nguồn quốc gia & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Dữ liệu tham chiếu phải được làm mới và xác minh lại từ nguồn có thẩm quyền ở các bước nhạy cảm. \\
-SC7. Lớp trung ương không sẵn sàng khi tỉnh đang xử lý & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Khả năng tiếp tục cục bộ phụ thuộc ranh giới rõ giữa bước địa phương và bước bắt buộc dùng dịch vụ ngoài. \\
-SC8. Quan hệ đầu tư/hỗ trợ vượt địa giới & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Quan hệ hệ sinh thái phải độc lập với biên thẩm quyền và giữ nguồn cùng thời gian hiệu lực. \\
-SC9. Chuyển phạm vi quản lý từ tỉnh A sang B & \textbf{Rủi ro} & \textbf{Có điều kiện} & Biên ghi theo địa bàn là chưa đủ; quyền ghi phải được biểu diễn như một gán quyền có hiệu lực theo thời gian. \\
-SC10. Các tỉnh nâng lược đồ/quy trình lệch thời điểm & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Kiến trúc cần quản trị tương thích phiên bản và quy tắc chuyển đổi minh thị. \\
+SC1. Tỉnh xử lý và quyết định theo thẩm quyền & \textbf{Trực tiếp} & \textbf{Trực tiếp} & \textbf{Trực tiếp} & Biên quyền ghi theo phạm vi thẩm quyền là phù hợp với nghiệp vụ phân cấp, độc lập với topology lưu trữ. \\
+SC2. Hai tỉnh khác bước nội bộ nhưng cùng nghĩa vụ pháp lý & \textbf{Trực tiếp} & \textbf{Trực tiếp} & \textbf{Trực tiếp} & Cần tách mô hình nền pháp lý khỏi cấu hình nội bộ có kiểm soát, độc lập với topology lưu trữ. \\
+SC3. Quy định thay đổi trạng thái, biểu mẫu hoặc thời hạn & \textbf{Có điều kiện} & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Thay đổi phải đi qua quản trị phiên bản và xử lý hồ sơ đang chạy; B0 chỉ nhẹ hơn ở khâu phát hành hạ tầng, không ở khâu cấu hình theo tỉnh. \\
+SC4. Chia sẻ trung ương gián đoạn sau quyết định của tỉnh & \textbf{Rủi ro} & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Xử lý cục bộ và đồng bộ lại chỉ khả thi nếu có kho vận hành tách biệt theo tỉnh (P-DIST); B0 không có tuyến cách ly đó nên gián đoạn trung tâm có thể chặn cả ghi cục bộ. \\
+SC5. Trung ương cần ảnh dữ liệu toàn quốc & \textbf{Trực tiếp} & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Mô hình đọc hợp nhất phải công bố nguồn, phiên bản và độ mới; B0 không cần mô hình đọc tách biệt vì đọc trực tiếp trên kho giao dịch. \\
+SC6. Định danh doanh nghiệp thay đổi tại nguồn quốc gia & \textbf{Có điều kiện} & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Dữ liệu tham chiếu phải được làm mới và xác minh lại từ nguồn có thẩm quyền; B0 có ít bản tham chiếu cần đồng bộ lại hơn. \\
+SC7. Lớp trung ương không sẵn sàng khi tỉnh đang xử lý & \textbf{Rủi ro} & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Khả năng tiếp tục cục bộ phụ thuộc ranh giới rõ giữa bước địa phương và bước bắt buộc dùng dịch vụ ngoài; B0 không có ranh giới vật lý đó nên miền sự cố rộng hơn. \\
+SC8. Quan hệ đầu tư/hỗ trợ vượt địa giới & \textbf{Trực tiếp} & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Quan hệ hệ sinh thái phải độc lập với biên thẩm quyền và giữ nguồn cùng thời gian hiệu lực; B0 không cần bước hợp nhất liên kho. \\
+SC9. Chuyển phạm vi quản lý từ tỉnh A sang B & \textbf{Có điều kiện} & \textbf{Rủi ro} & \textbf{Có điều kiện} & Biên ghi theo địa bàn là chưa đủ; quyền ghi phải được biểu diễn như một gán quyền có hiệu lực theo thời gian. B0 vẫn cần chuyển giao đó nhưng không cần đồng bộ chéo hai kho vật lý. \\
+SC10. Các tỉnh nâng lược đồ/quy trình lệch thời điểm & \textbf{Có điều kiện} & \textbf{Có điều kiện} & \textbf{Có điều kiện} & Kiến trúc cần quản trị tương thích phiên bản và quy tắc chuyển đổi minh thị; ở B0 chỉ còn rủi ro lệch phiên bản cấu hình quy trình, không còn lệch phiên bản lược đồ liên kho. \\
 \end{longtable}
 }
 
@@ -53,6 +53,8 @@ Hai phát hiện trên cho thấy giá trị của phép đánh giá nằm ở v
 \subsection{Diễn giải và giới hạn của bằng chứng đánh giá}
 \label{subsec:eval-limitations}
 
-B0 cho thấy một cấu hình tập trung có thể giảm số điểm cấu hình, đơn giản hóa một số thao tác tổng hợp và tránh một phần chi phí phối hợp khi chuyển dữ liệu; ngược lại, P-DIST làm rõ biên thực thi theo tỉnh nhưng phát sinh thêm yêu cầu điều phối quyền ghi, đồng bộ và tương thích phiên bản. Đây là các đánh đổi kiến trúc, không phải kết quả xếp hạng hiệu năng hay chi phí.
+Chấm B0 bằng đúng rubric ba mức trên cả mười kịch bản (lập luận theo từng kịch bản ở S12 tài liệu bổ trợ) cho kết quả \textbf{4 đáp ứng trực tiếp, 4 đáp ứng có điều kiện và 2 rủi ro kiến trúc}. B0 đáp ứng trực tiếp hoặc tốt hơn B1-R đúng ở các kịch bản không phụ thuộc việc cách ly vật lý theo tỉnh: SC1/SC2 vì cơ chế gán quyền ghi và quản trị cấu hình quy trình vốn topology-độc lập; SC5/SC8 vì một kho tập trung không cần một mô hình đọc hoặc bước hợp nhất quan hệ liên kho riêng; và một phần SC9 vì chuyển quyền ghi không cần giao thức đồng bộ hay di chuyển dữ liệu vật lý giữa hai kho. Ngược lại, B0 rơi xuống mức rủi ro kiến trúc đúng ở hai kịch bản gắn với cô lập miền sự cố khi lớp trung ương gián đoạn (SC4, SC7): vì B0 không tách kho vận hành theo tỉnh, một gián đoạn ở lớp trung tâm có thể chặn cả khả năng tỉnh tự ghi quyết định cục bộ, không chỉ chặn bước đồng bộ như ở P-DIST. Đây là đánh đổi cố hữu của phương án ``kho tập trung đa tenant'' tại điểm biến thiên VP7 -- đã được ghi nhận sẵn trong đánh đổi của AD01 -- chứ không phải một khoảng trống mới đòi hỏi sửa lại lõi ổn định.
 
-Phép đánh giá là \textbf{kiểm chứng kiến trúc theo kịch bản trước triển khai} (\textit{scenario-based architecture verification/stress-test}). Các kịch bản được xây dựng và chấm bởi cùng nhóm tác giả; nghiên cứu chưa có prototype vận hành, tải thực, phép đo độ trễ/tính sẵn sàng, thời gian phục hồi, chi phí hay đánh giá người dùng. B0 và B1 cũng khác nhau ở nhiều quyết định nên không hỗ trợ suy luận nhân quả cho một quyết định riêng lẻ. Vì vậy, kết quả chỉ chứng minh mức đầy đủ và tính nhất quán tương đối của artefact dưới các kịch bản đã chọn. Bằng chứng tiếp theo cần đến từ nguyên mẫu và các phép thử có thể lặp lại đối với chuyển quyền ghi, tương thích/nâng cấp, liên thông, phục hồi và an toàn.
+Kết quả cho thấy không có cấu hình nào ưu việt đồng loạt: B0 không tệ hơn B1-R một cách hệ thống, và P-DIST/B1-R cũng không ưu việt hơn B0 một cách hệ thống; mỗi cấu hình bộc lộ một hồ sơ đánh đổi khác nhau tùy kịch bản. \textbf{Điểm cần nhấn mạnh là B0 và B1(-R) khác nhau đồng thời ở nhiều quyết định kiến trúc, không chỉ ở topology lưu trữ} -- lựa chọn topology kéo theo khác biệt cả ở cơ chế mô hình đọc, hợp nhất quan hệ và ranh giới miền sự cố. Vì vậy phép đối chiếu này \textbf{không cho phép suy luận nhân quả về giá trị của một quyết định kiến trúc riêng lẻ} và không phải một xếp hạng hiệu năng hay chi phí; đây chỉ là đối chiếu đánh đổi định tính ở mức kiến trúc.
+
+Phép đánh giá là \textbf{kiểm chứng kiến trúc theo kịch bản trước triển khai} (\textit{scenario-based architecture verification/stress-test}). Các kịch bản được xây dựng và chấm bởi cùng nhóm tác giả; nghiên cứu chưa có prototype vận hành, tải thực, phép đo độ trễ/tính sẵn sàng, thời gian phục hồi, chi phí hay đánh giá người dùng. Vì vậy, kết quả chỉ chứng minh mức đầy đủ và tính nhất quán tương đối của artefact dưới các kịch bản đã chọn, không chứng minh một topology tốt hơn topology khác. Bằng chứng tiếp theo cần đến từ nguyên mẫu và các phép thử có thể lặp lại đối với chuyển quyền ghi, tương thích/nâng cấp, liên thông, phục hồi và an toàn.

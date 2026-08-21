@@ -368,35 +368,35 @@ C10 (6; M) & EIF, Hình 3 tr.22, tr.27--30; EU 2024/903, Điều 3 và 6 & Kiể
 
 
 \section*{S12. Ma trận đánh giá kịch bản chi tiết}
-Phần này giữ các neo kiến trúc và phép kiểm tra chi tiết đã được rút khỏi thân bài. Bảng chính chỉ trình bày phát hiện có ý nghĩa đối với lập luận khoa học; các nội dung dưới đây phục vụ truy vết và chuẩn bị kiểm chứng nguyên mẫu.
+Phần này giữ các neo kiến trúc và phép kiểm tra chi tiết đã được rút khỏi thân bài, cùng kết quả chấm điểm đầy đủ cho đường cơ sở tập trung B0 (\texttt{evaluation\_results\_b0.csv}). Bảng chính chỉ trình bày phát hiện có ý nghĩa đối với lập luận khoa học; các nội dung dưới đây phục vụ truy vết và chuẩn bị kiểm chứng nguyên mẫu. B0 dùng lại đúng lõi ổn định đã tinh chỉnh (AD01 gán quyền ghi/máy trạng thái, AD03 cấu hình có phiên bản) như B1-R -- chỉ khác lựa chọn topology (VP7: kho tập trung đa tenant thay vì P-DIST) -- nên cột Neo kiến trúc chỉ ghi thêm khi B0 có anchor hoặc điều kiện khác biệt so với B1-R; ô để trống nghĩa là anchor không đổi.
 
 \small
-\setlength{\tabcolsep}{2.1pt}
+\setlength{\tabcolsep}{2.0pt}
 \renewcommand{\arraystretch}{1.02}
-\begin{longtable}{@{}p{3.1cm}p{1.7cm}p{1.7cm}p{3.1cm}p{5.0cm}@{}}
+\begin{longtable}{@{}p{2.55cm}p{1.35cm}p{1.35cm}p{1.35cm}p{2.95cm}p{4.5cm}@{}}
 \toprule
-\textbf{Kịch bản} & \textbf{B1} & \textbf{B1-R} & \textbf{Neo kiến trúc} & \textbf{Kiểm chứng hiện thực hóa cần thiết} \\
+\textbf{Kịch bản} & \textbf{B0} & \textbf{B1} & \textbf{B1-R} & \textbf{Neo kiến trúc} & \textbf{Kiểm chứng hiện thực hóa cần thiết} \\
 \midrule
 \endfirsthead
 \toprule
-\textbf{Kịch bản} & \textbf{B1} & \textbf{B1-R} & \textbf{Neo kiến trúc} & \textbf{Kiểm chứng hiện thực hóa cần thiết} \\
+\textbf{Kịch bản} & \textbf{B0} & \textbf{B1} & \textbf{B1-R} & \textbf{Neo kiến trúc} & \textbf{Kiểm chứng hiện thực hóa cần thiết} \\
 \midrule
 \endhead
 \bottomrule
 \endfoot
-SC1. Tỉnh xử lý/quyết định theo thẩm quyền & Trực tiếp & Trực tiếp & AD01, AE24, CR2 & Định tuyến theo phạm vi và từ chối ghi ngoài phạm vi đang có hiệu lực. \\
-SC2. Hai tỉnh khác bước nội bộ & Trực tiếp & Trực tiếp & AD03, AE26, CR5 & Kiểm tra cấu hình địa phương không nới trạng thái, thẩm quyền hay thời hạn L1. \\
-SC3. Quy định thay đổi & Có điều kiện & Có điều kiện & AD03, CR6 & Hồi quy cấu hình; phát hành phiên bản mới; xử lý hồ sơ đang chạy và lịch sử. \\
-SC4. Chia sẻ trung ương gián đoạn & Có điều kiện & Có điều kiện & AD04, CR8 & Gửi lại có kiểm soát, chống xử lý trùng, bảo toàn trạng thái và thời hạn nghiệp vụ. \\
-SC5. Ảnh dữ liệu toàn quốc & Có điều kiện & Có điều kiện & AE25, CR7 & Đo độ mới, kiểm tra provenance/phiên bản và đối soát với nguồn tạo lập. \\
-SC6. Định danh doanh nghiệp đổi ở nguồn quốc gia & Có điều kiện & Có điều kiện & AE03, AE15, CR4 & Làm mới/xác minh nguồn và xử lý thay đổi khóa/tham chiếu mà không tạo bản chủ cạnh tranh. \\
-SC7. Lớp trung ương không sẵn sàng & Có điều kiện & Có điều kiện & AD04, V4/V5 & Thử miền lỗi và xác minh bước nào được tiếp tục, dừng hoặc khôi phục theo phụ thuộc ngoài. \\
-SC8. Quan hệ xuyên tỉnh & Có điều kiện & Có điều kiện & AD05, CR9 & Hợp nhất quan hệ theo định danh, nguồn, hai đầu quan hệ và thời gian hiệu lực. \\
-SC9. Chuyển phạm vi quản lý A--B & Rủi ro & Có điều kiện & AD01, CR2--CR3 & Ghi cạnh tranh, cutover, khởi động lại, gửi lại và forward recovery phải giữ single-active-writer/provenance. \\
-SC10. Nâng lược đồ/quy trình lệch thời điểm & Có điều kiện & Có điều kiện & AD03, CR6 & Ma trận tương thích, nâng cấp cuốn chiếu, version pinning và phát lại dữ liệu lịch sử. \\
+SC1. Tỉnh xử lý/quyết định theo thẩm quyền & Trực tiếp & Trực tiếp & Trực tiếp & AD01, AE24, CR2 & Định tuyến theo phạm vi và từ chối ghi ngoài phạm vi đang có hiệu lực; với B0 cần kiểm thử riêng việc cách ly tenant chỉ ở tầng ứng dụng. \\
+SC2. Hai tỉnh khác bước nội bộ & Trực tiếp & Trực tiếp & Trực tiếp & AD03, AE26, CR5 & Kiểm tra cấu hình địa phương không nới trạng thái, thẩm quyền hay thời hạn L1. \\
+SC3. Quy định thay đổi & Có điều kiện & Có điều kiện & Có điều kiện & AD03, CR6 & Hồi quy cấu hình; phát hành phiên bản mới; xử lý hồ sơ đang chạy và lịch sử. \\
+SC4. Chia sẻ trung ương gián đoạn & \textbf{Rủi ro} & Có điều kiện & Có điều kiện & AD04, CR8; B0 thiếu PD1/PD2 (không có kho vận hành tách biệt theo tỉnh) & Gửi lại có kiểm soát, chống xử lý trùng, bảo toàn trạng thái và thời hạn nghiệp vụ; với B0 cần xác minh liệu tỉnh có ghi cục bộ được khi lớp trung tâm gián đoạn hay không. \\
+SC5. Ảnh dữ liệu toàn quốc & \textbf{Trực tiếp} & Có điều kiện & Có điều kiện & AE25, CR7; B0 không cần AE25 tách biệt (đọc trực tiếp kho giao dịch) & Đo độ mới, kiểm tra provenance/phiên bản và đối soát với nguồn tạo lập; với B0 cần kiểm thử tranh chấp tài nguyên giữa truy vấn tổng hợp và ghi giao dịch. \\
+SC6. Định danh doanh nghiệp đổi ở nguồn quốc gia & Có điều kiện & Có điều kiện & Có điều kiện & AE03, AE15, CR4 & Làm mới/xác minh nguồn và xử lý thay đổi khóa/tham chiếu mà không tạo bản chủ cạnh tranh. \\
+SC7. Lớp trung ương không sẵn sàng & \textbf{Rủi ro} & Có điều kiện & Có điều kiện & AD04, V4/V5; B0 thiếu PD1/PD2 & Thử miền lỗi và xác minh bước nào được tiếp tục, dừng hoặc khôi phục theo phụ thuộc ngoài; với B0 cần xác minh còn bước thuần địa phương nào không phụ thuộc lớp trung tâm. \\
+SC8. Quan hệ xuyên tỉnh & \textbf{Trực tiếp} & Có điều kiện & Có điều kiện & AD05, CR9; B0 không cần bước hợp nhất liên kho & Hợp nhất quan hệ theo định danh, nguồn, hai đầu quan hệ và thời gian hiệu lực; với B0 cần kiểm thử kiểm soát truy cập theo phạm vi trên cùng một kho. \\
+SC9. Chuyển phạm vi quản lý A--B & Có điều kiện & Rủi ro & Có điều kiện & AD01, CR2--CR3; B0 không cần đồng bộ chéo hai kho vật lý & Ghi cạnh tranh, cutover, khởi động lại, gửi lại và forward recovery phải giữ single-active-writer/provenance; với B0 phạm vi kiểm thử hẹp hơn (không có cutover liên kho) nhưng vẫn cần kiểm thử chuyển writer\_epoch/định tuyến nguyên tử. \\
+SC10. Nâng lược đồ/quy trình lệch thời điểm & Có điều kiện & Có điều kiện & Có điều kiện & AD03, CR6; ở B0 chỉ còn rủi ro lệch phiên bản cấu hình quy trình, không còn lệch phiên bản lược đồ liên kho & Ma trận tương thích, nâng cấp cuốn chiếu, version pinning và phát lại dữ liệu lịch sử. \\
 \end{longtable}
 \normalsize
 
-Chi tiết L2 của chuyển quyền ghi theo thời gian được mô tả ở S9.2 và S10.1; chi tiết quản trị tương thích phiên bản nằm ở S9.2. Các phép kiểm tra trên chưa được thực hiện trong nghiên cứu hiện tại và không được diễn giải như kết quả prototype.
+Chi tiết L2 của chuyển quyền ghi theo thời gian được mô tả ở S9.2 và S10.1; chi tiết quản trị tương thích phiên bản nằm ở S9.2. Các phép kiểm tra trên chưa được thực hiện trong nghiên cứu hiện tại và không được diễn giải như kết quả prototype. Lập luận đầy đủ cho từng mức chấm B0 (mechanism, sensitivity\_point, risk\_or\_condition, đối chiếu với B1-R) nằm trong \texttt{evaluation\_results\_b0.csv}; hai kịch bản B0 đạt mức rủi ro kiến trúc (SC4, SC7) phản ánh đánh đổi cố hữu của việc chọn phương án "kho tập trung đa tenant" ở điểm biến thiên VP7 -- đã được ghi nhận sẵn trong \texttt{architecture\_decisions.csv} (AD01, trường \texttt{tradeoffs}) -- không phải một khoảng trống mới của lõi ổn định đòi hỏi sửa AD01--AD05.
 
 \end{document}
