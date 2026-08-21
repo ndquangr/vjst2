@@ -525,3 +525,106 @@ tham chiếu triển khai, chỉ cắt phần narrative đã trùng.
    `git mv`, không build lại) vì nội dung TikZ bên trong không đổi, chỉ số
    thứ tự đổi; đã xác nhận qua diff rằng nội dung `.tex` nguồn chỉ khác dòng
    comment "% Hình N" ở đầu file.
+
+---
+
+## WP2-fix — Ma trận EIF S7 thiếu ranh giới mới + rút tóm tắt VI/EN (2026-08-21)
+
+### Việc 1 — Bảng 5 (`tab:lienthong`) có 6 ranh giới nhưng ma trận EIF S7 chỉ có I1--I5
+Dòng "Nền tảng số quốc gia" được WP1 thêm vào Bảng 5 thân bài nhưng chưa có
+ánh xạ bốn lớp EIF (Pháp lý/Tổ chức/Ngữ nghĩa/Kỹ thuật) tương ứng trong S7 --
+vi phạm chính phương pháp luận EIF mà Mục 6 tuyên bố dùng.
+
+**Quyết định đánh mã (phương án b, như đề xuất của người yêu cầu):** giữ
+nguyên I1--I5, thêm **I6** ở CUỐI bảng S7 (không chèn đầu bảng), và hiển thị
+nhãn "(I\emph{n})" ngay trong Bảng 5 thân bài cạnh mỗi tên ranh giới. Lý do
+chọn (b) thay vì (a) đổi số I1→I2...I5→I6: (a) đòi hỏi sửa lại mọi tham
+chiếu "I\emph{n}" hiện có trong repo, đáng chú ý `viewpoint_registry.csv`
+hàng V6 trỏ "Bảng 5/I1" mà ý nghĩa "I1" ở đó **chưa từng được xác nhận**
+(câu hỏi mở còn treo từ WP2 -- xem mục "Điểm cần lưu ý" phía trên). Đổi số
+trong tình huống còn một tham chiếu chưa rõ nghĩa có nguy cơ lan sai nếu suy
+luận nhầm hàng khi rà thủ công; (b) là thay đổi cục bộ, không đụng tới bất
+kỳ file nào khác ngoài hai bảng liên quan, an toàn hơn. Hệ quả chấp nhận:
+thứ tự mã I6 xuất hiện sau I1--I5 trong S7 dù ở thân bài dòng "Nền tảng số
+quốc gia" đứng đầu Bảng 5 -- điều này được ghi chú tường minh ngay sau bảng
+S7 để người đọc không nhầm là lỗi.
+
+**File thay đổi:**
+- `supplementary_material.tex` (S7): thêm hàng I6 vào cuối `longtable`, đủ
+  bốn lớp EIF theo đúng nội dung yêu cầu (Luật 93 khoản 3 Điều 20; NĐ 268
+  khoản 3 Điều 48; NĐ 268 khoản 2 Điều 66 -- ba khoản trích dẫn tách biệt,
+  không gộp phạm vi, đúng nguyên tắc đã sửa ở WP1-fix). Thêm một câu chú
+  thích ngay sau bảng giải thích lựa chọn đánh mã (b) và vị trí I6.
+  **Lưu ý kỹ thuật quan trọng phát hiện khi biên dịch:** `supplementary_material.tex`
+  là tài liệu LaTeX độc lập (`\documentclass` riêng, ghi rõ trong comment đầu
+  file "không được `\input{}` vào thân bài chính") và **không nạp gói trích
+  dẫn nào** (không `natbib`/`biblatex`) -- toàn bộ 12 mục S1--S12 từ trước
+  tới nay đều trích luật bằng văn bản thường (ví dụ "NĐ 268 khoản 1 Điều
+  18..."), không dùng `\citep`. Bản nháp đầu tiên của hàng I6 dùng `\citep`
+  theo đúng văn phong thân bài nhưng gây lỗi biên dịch "Undefined control
+  sequence" vì macro đó không tồn tại trong tài liệu này; đã sửa lại thành
+  trích dẫn văn bản thường đúng quy ước sẵn có của bổ trợ. Tương tự, câu chú
+  thích ban đầu dùng `\ref{tab:lienthong}` (label định nghĩa trong
+  `07_interop.tex`, chỉ tồn tại khi biên dịch qua `main.tex`) -- cũng lỗi vì
+  lý do độc lập tài liệu nêu trên; đã đổi thành số bảng viết tay "Bảng~5"
+  kèm tên bảng, đúng quy ước toàn bộ tài liệu bổ trợ (không `\ref` chéo sang
+  thân bài).
+- `07_interop.tex` (Bảng~\ref{tab:lienthong}): thêm nhãn "(I\emph{n})" vào
+  sau tên mỗi ranh giới (I1 Định danh/xác thực ... I6 Nền tảng số quốc gia);
+  thêm một câu ngay sau bảng giải thích ý nghĩa nhãn và việc thứ tự mã không
+  trùng thứ tự dòng.
+
+**Phát hiện phụ (ngoài phạm vi yêu cầu, sửa vì nghiệm thu bắt buộc "biên dịch
+sạch cả main và supplementary"):** khi biên dịch độc lập
+`supplementary_material.tex` lần đầu tiên trong phiên làm việc này (dường
+như chưa từng được biên dịch riêng kể từ khi đổi tên file hình ở WP2), phát
+hiện Mục S8 vẫn tham chiếu `figure_sources/fig05_c4_deployment_pdist.pdf` --
+tên file này đã được `git mv` thành `fig06_c4_deployment_pdist.pdf` ở WP2
+nhưng `\includegraphics` trong bổ trợ bị sót không cập nhật, gây lỗi "file
+not found". Đã sửa đường dẫn về đúng `fig06_...`.
+
+### Việc 2 — Tóm tắt VI vượt khung 160--250 từ và không tương đương nội dung với EN
+Tóm tắt VI trước sửa: 328 từ (đo bằng script bóc tách LaTeX cục bộ) / 233 từ
+(đo bằng `pdftotext` trên PDF đã biên dịch, phương pháp cuối cùng dùng để
+báo cáo). Tóm tắt EN trước sửa: 200/163 từ theo hai phương pháp tương ứng.
+
+**Nguyên tắc cắt áp dụng (theo đúng thứ tự ưu tiên của yêu cầu):** giữ
+nguyên hoàn toàn (i) câu bối cảnh, (ii) câu DSR+SRA truy vết, (iii) câu phát
+hiện trung tâm (quyền ghi = gán có phạm vi/thời gian hiệu lực + máy trạng
+thái single-active-writer -- đóng góp số 1, chỉ bỏ một cụm diễn giải trùng
+nghĩa "một writer hợp lệ tại một thời điểm" đứng ngay trước thuật ngữ tiếng
+Anh cùng nghĩa), (iv) câu kết quả mười kịch bản/hậu kiểm, (vi) câu giới hạn
+scenario-based verification. Cắt mạnh nhất ở hai chỗ đúng như gợi ý: (a) bỏ
+hẳn câu "SRA tách lõi ổn định khỏi điểm biến thiên, xác định nguồn dữ liệu
+theo nhóm thuộc tính, quản trị cấu hình quy trình và liên thông..." -- trùng
+ý với chính ba nguyên tắc thiết kế P1--P3 được liệt kê ngay sau đó trong
+cùng đoạn tóm tắt; (b) nén câu liệt kê đầy đủ ba nguyên tắc (ba mệnh đề đủ
+chủ ngữ-vị ngữ) thành một cụm ngắn nêu tên ba ý mà không diễn giải lại từng
+mệnh đề. Áp dụng cắt tương tự cho bản EN (bỏ đúng câu SRA tách lõi tương ứng,
+nén cụm ba nguyên tắc) để đạt tương đương nội dung hai bản -- đây là thay đổi
+bắt buộc để xử lý phần cốt lõi của yêu cầu ("bản Việt nói nhiều hơn bản
+Anh"), không chỉ là cắt để đạt số từ.
+
+**Kết quả:** VI 233 từ, EN 163 từ (đo bằng `pdftotext` trên `main.pdf` đã
+biên dịch lại). VI nằm trong khung 230--240 từ yêu cầu; EN nằm trong khung
+160--250 từ chung của tạp chí. Hai bản nay có đúng bảy câu tương ứng 1-1 về
+nội dung (trước đó VI có một câu EN cũng có nhưng bị lặp ý ở cuối đoạn).
+
+### Nghiệm thu WP2-fix
+- `python scripts/check_citation_order.py` → 37/37 khớp (không thêm citation
+  mới nào -- ba khoản trích dẫn ở hàng I6 dùng lại đúng các khóa
+  `luatkhcndmst2025`/`nd268_2025` đã có sẵn theo đúng locator của WP1-fix2).
+- `latexmk -xelatex main.tex`: sạch, 0 lỗi, 0 tham chiếu thiếu, 0 overfull
+  hbox (chỉ còn các underfull hbox trong mục tài liệu tham khảo đã tồn tại
+  từ trước, không phải hồi quy mới); **33 trang, 15885 từ** (`pdftotext
+  main.pdf - | wc -w`, cùng phương pháp với các lần đo trước để so sánh được
+  -- giảm 63 từ so với sau WP2 (15948 từ) dù có thêm một đoạn và sáu nhãn mã
+  mới, vì phần cắt tóm tắt (~95 từ) lớn hơn phần thêm).
+- `latexmk -xelatex supplementary_material.tex`: biên dịch độc lập lần đầu
+  trong phiên này; sau khi sửa hai lỗi nêu trên (macro `\citep` không tồn
+  tại, `\ref` chéo sang thân bài, đường dẫn hình `fig05`→`fig06`), biên dịch
+  sạch, 0 lỗi, 0 tham chiếu thiếu; 10 trang.
+- Đối chiếu thủ công qua `pdftotext`: hàng I6 xuất hiện đúng ở cuối Bảng S7;
+  nhãn "(I1)"--"(I6)" xuất hiện đúng vị trí trong Bảng~5 thân bài, đúng thứ
+  tự dòng gốc (Nền tảng số quốc gia=I6 ở đầu, Định danh/xác thực=I1 ở dòng
+  hai, v.v.).

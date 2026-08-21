@@ -130,15 +130,25 @@ Phần thân bài chỉ giữ các ranh giới và hệ quả kiến trúc. Bả
 \textbf{I4. Hệ thống thủ tục hành chính} & NĐ 268 và NĐ 278 tạo căn cứ cho tiếp nhận/trả kết quả và trao đổi dữ liệu. & Hệ thống TTHC giữ kênh tiếp nhận/trả kết quả; nền tảng thực hiện nghiệp vụ chuyên ngành. & Ánh xạ mã hồ sơ, chủ thể, thủ tục, trạng thái, kết quả và quyết định/giấy. & Có thể dùng API/dịch vụ dữ liệu/sự kiện; cơ chế cụ thể là L3. \\
 \addlinespace
 \textbf{I5. Nguồn bằng chứng chuyên ngành} & NĐ 268 công nhận kết quả nhiệm vụ KH,CN\&ĐMST và văn bằng SHTT là tài liệu chứng minh. & Hệ thống nguồn vẫn tạo/xác nhận bằng chứng; nền tảng tham chiếu/xác minh. & Chuẩn hóa định danh kết quả/văn bằng, cơ quan ban hành, hiệu lực và quan hệ với DN. & Tra cứu tự động chỉ là L3 khi có quyền và dịch vụ nguồn; không giả định API bắt buộc. \\
+\addlinespace
+\textbf{I6. Nền tảng số quốc gia} & Luật 93/2025 khoản 3 Điều 20 (Nhà nước xây dựng, vận hành Nền tảng số quản lý KH,CN\&ĐMST quốc gia); NĐ 268 khoản 3 Điều 48 (UBND cấp tỉnh định kỳ cập nhật dữ liệu vòng đời Giấy chứng nhận DN KH\&CN lên nền tảng quốc gia); NĐ 268 khoản 2 Điều 66 (UBND cấp tỉnh thông báo Bộ trong 15 ngày, áp dụng cả Giấy công nhận DN KNST). & Nền tảng số quốc gia tổng hợp/kết nối/quan sát liên ngành; UBND cấp tỉnh là chủ thể mang nghĩa vụ pháp lý; nút tỉnh đang có gán quyền ghi hiệu lực là SoR nghiệp vụ; nền tảng chuyên ngành đề xuất là phương tiện kỹ thuật hỗ trợ thực hiện nghĩa vụ, không tự mang nghĩa vụ pháp lý. & Hợp đồng dữ liệu cho sự kiện cập nhật/thông báo phải giữ loại giấy (chứng nhận DN KH\&CN phân biệt với công nhận DN KNST), cơ quan quyết định, ngày quyết định/hiệu lực, trạng thái vòng đời, nguồn và phiên bản; hai loại sự kiện (cập nhật vòng đời, thông báo Bộ) mang định danh và đích nhận tách biệt, không gộp. & Trao đổi đi qua cổng tích hợp và hạ tầng chia sẻ/điều phối theo quy định; gửi lại phải lũy đẳng và giữ bằng chứng gửi--nhận; không mở nhánh báo cáo song song thay thế vai trò tổng hợp quốc gia. Giao thức, chu kỳ đồng bộ và kiểu API vẫn là L3. \\
 \end{longtable}
 \normalsize
+
+Đánh mã: I6 được thêm vào cuối bảng trên (không đổi số I1--I5) để tránh phải
+sửa lại mọi tham chiếu "I\emph{n}" hiện có trong repo, đáng chú ý là
+\texttt{viewpoint\_registry.csv} hàng V6 đang trỏ ``Bảng 5/I1'' tới đúng
+dòng Định danh/xác thực. Ở Bảng~5 (\emph{Các ranh giới liên thông và hệ quả
+kiến trúc chính}) của thân bài, dòng ``Nền tảng số quốc gia'' đứng đầu bảng
+nhưng mang mã I6 -- thứ tự mã vì vậy không trùng thứ tự dòng; nhãn mã được
+hiển thị trực tiếp trong Bảng~5 để người đọc thấy ánh xạ thân bài--bổ trợ.
 
 \section*{S8. Profile triển khai P-DIST và ma trận biên tin cậy}
 P-DIST là profile dùng trong stress-test, không phải cấu hình bắt buộc của SRA. Hình dưới ánh xạ các vùng chứa logic sang một phương án triển khai có kho vận hành vật lý tách biệt theo tỉnh và mô hình đọc/tổng hợp ở trung ương. Các profile đa tenant, phân vùng logic/schema hoặc lai vẫn có thể phù hợp nếu bảo toàn các bất biến về thẩm quyền, nguồn gốc, phiên bản và biên tin cậy.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.96\textwidth]{figure_sources/fig05_c4_deployment_pdist.pdf}
+\includegraphics[width=0.96\textwidth]{figure_sources/fig06_c4_deployment_pdist.pdf}
 \caption{Profile P-DIST -- góc nhìn triển khai dùng trong đánh giá.}
 \end{figure}
 
